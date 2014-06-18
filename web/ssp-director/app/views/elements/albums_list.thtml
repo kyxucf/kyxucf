@@ -1,0 +1,205 @@
+<?php 
+    $paginator->options( 
+            array('update' => 'container',  
+                    'url' => array('controller' => 'albums', 'action' => 'index'),
+					'before' => "pagination_spinner();", "complete" => 'init_copiers();')); 
+?>
+
+<div id="head">
+	
+	<div class="head-wrap">
+		
+		<div id="head-form">
+			
+			<?php if ($user['perms'] > 1 && $writable): ?> 
+				
+			<div class="icon-bump">
+                
+				<form name="album_form" action="#" onsubmit="add_album(this); return false;">
+					
+					<label class="inline"><?php __('Create a new album'); ?>:</label>&nbsp;&nbsp;
+					<?php e($form->text('Album.name', array('size' => 30, 'class' => 'inline med', 'value' => __('Album title', true), 'onfocus' => "if (this.value == __('Album title')) this.value='';", 'onblur' => "if (this.value == '') this.value = __('Album title');"))); ?>&nbsp;&nbsp;
+					<select name="data[Album][smart]">
+						<option value="0"><?php __('Standard'); ?></option>
+						<option value="1"><?php __('Smart'); ?></option>
+					</select>&nbsp;&nbsp;<button type="submit" title="<?php __('Create'); ?>" class="primary_lg"><?php __('Create'); ?></button>	 
+				
+				</form>
+				
+			</div>
+			<?php endif; ?>
+
+		</div>
+		
+		<h1 class="albums"><?php __('Albums'); ?></h1>
+	
+	</div>
+	
+	<div class="clear"></div>
+
+</div>
+
+<div id="container-wrap">
+
+	<div class="col-wrap">
+
+		<?php if (!$writable): ?>
+		
+		<div id="alert">
+			<div class="warn">
+				<div class="tr"></div>
+				<div class="content">
+					<div class="fluid icon">
+						<?php printf(__("Before you can add a new album, the albums folder of your Director installation needs to be writable by the web server. The full path to this folder on your server is %s. For more information on how to set the permissions on this folder, consult the Director user guide.", true), ALBUMS); ?>
+					</div>
+				</div>
+				<div class="bl"><div class="br"></div></div>
+			</div>
+		</div>
+
+		<?php elseif (empty($albums) && !$empty): ?>
+		
+		<div id="alert">
+			<div class="warn">
+				<div class="tr"></div>
+				<div class="content">
+					<div class="fixed icon">
+						<?php if ($user['perms'] > 1): ?>
+							<?php __("You don't have any albums! Use the form at the top-right to create one."); ?>
+						<?php else: ?>
+							<?php __("You don't have any albums! A user with higher permissions will have to add one before you can continue."); ?>
+						<?php endif; ?>
+					</div>
+				</div>
+				<div class="bl"><div class="br"></div></div>
+			</div>
+		</div>
+		<?php else: ?>
+
+						
+		<?php endif; ?>
+		
+		<div id="table-sort-wrap">
+			
+			<div class="head">
+				
+				
+				<label class="inline"><?php __('Showing'); ?>:</label>
+				<?php echo $paginator->counter(array( 
+				        'format' => sprintf(__('%s-%s of %s', true), '%start%', '%end%', '%count%') 
+				)); ?>&nbsp;&nbsp;<button class="primary_sm" onclick="toggle_filter_albums();"><?php __('Filter'); ?></button>
+				
+				
+				<div class="pagination"><span class="refresh_spin" style="display:none;"><?php __('Refreshing...'); ?></span> <?php echo $paginator->prev('<button class="primary_sm">' . __('Previous', true) . '</button>', array('escape' => false)); ?>
+						&nbsp;
+					<?php echo $paginator->numbers(array('separator' => ' ')); ?>
+					&nbsp; 
+				    <?php echo $paginator->next('<button class="primary_sm">' . __('Next', true) . '</button>', array('escape' => false)); ?></div>
+				
+				
+			</div> <!-- close head -->
+			
+			<div id="filter" class="filter"<?php e(ife(!$filtered, ' style="display:none"')) ?>>
+				
+				<form id="albums-filter-form" action="#" method="post" style="display:inline;" onsubmit="filter_albums_list(); return false;">
+				<label class="inline"><?php __('Filter'); ?>:</label>&nbsp;&nbsp;Show <?php e($form->select('Album.active', array(2 => __('All', true), 1 => __('Active', true), 0 => __('Inactive', true)), null, array('onchange' => 'filter_albums_list()'), false)); ?>&nbsp;&nbsp;of type&nbsp;&nbsp;<?php e($form->select('Album.type', array(2 => __('Any', true), 0 => __('Standard', true), 1 => __('Smart', true)), null, array('onchange' => 'filter_albums_list()'), false)); ?>
+
+				&nbsp;&nbsp;&nbsp;&nbsp;<label class="inline"><?php e(__('Search') . ':</label> ' . $form->text('Album.search', array('size' => 30, 'class' => 'small'))); ?>&nbsp;&nbsp;<button type="submit" class="primary_sm"><?php __('Search'); ?></button><?php if (isset($this->data['Album']['search']) && !empty($this->data['Album']['search'])): ?>&nbsp;<button id="clear-btn" type="button" class="primary_sm" onclick="$('AlbumSearch').value = '';filter_albums_list();"><?php __('Clear'); ?></button><?php endif; ?></form>
+				
+				
+			</div> <!-- close filter -->
+			
+			
+		<?php $sort_key = r('Album.', '', $paginator->sortKey()); ?>
+		<table cellspacing="0" cellpadding="0" id="albums-table" class="sortable">
+			<tr>
+				<th class="title<?php if ($sort_key == 'name'): e(' sort' . $paginator->sortDir()); endif; ?>"><?php e($paginator->sort(__('Albums', true), 'name')); ?></th>
+				<th><?php __('Preview'); ?></th>
+				<th<?php if ($sort_key == 'smart'): e(' class="sort' . $paginator->sortDir() . '"'); endif; ?>><?php e($paginator->sort(__('Type', true), 'smart')); ?></th>
+				<th<?php if ($sort_key == 'images_count'): e(' class="sort' . $paginator->sortDir() . '"'); endif; ?>><?php e($paginator->sort(__('Count', true), 'images_count')); ?></th>
+				<th<?php if ($sort_key == 'modified_on'): e(' class="sort' . $paginator->sortDir() . '"'); endif; ?>><?php e($paginator->sort(__('Modified', true), 'modified_on')); ?></th>
+				<th<?php if ($sort_key == 'created_on'): e(' class="sort' . $paginator->sortDir() . '"'); endif; ?>><?php e($paginator->sort(__('Created', true), 'created_on')); ?></th>
+				<th><?php __('Publish'); ?></th>
+				<th class="tr"><?php __('Actions'); ?></th>
+			</tr>
+			
+			<?php if (empty($albums)): ?>
+			
+			<tr>
+				<td colspan="8" class="title end">
+					<?php if (isset($empty)): ?>
+						<?php __('No albums that match your filter settings were found.'); ?>
+					<?php else: ?>
+						<?php __('You have no albums.'); ?>
+					<?php endif; ?>
+				</td>
+			</tr>
+			
+			<?php else: ?>
+				
+			<?php foreach($albums as $album): ?>
+				<tr id="album_<?php e($album['Album']['id']); ?>" class="<?php e(ife($album['Album']['active'],'publish', 'draft')); ?> content">
+
+					<td class="title<?php e(ife($sort_key == 'name', ' sortchild')); ?>">
+						<h5 class="<?php e(ife($album['Album']['smart'], 'icon_label_smartalbum', 'icon_label_album')); ?>"><a href="<?php e($html->url("/albums/edit/{$album['Album']['id']}")); ?>" title="<?php __('Edit album'); ?>"><?php e($album['Album']['name']); ?></a>&nbsp;<span>(<?php __('Inactive'); ?>)</span></h5><span><?php e(htmlspecialchars($album['Album']['description_clean'])); ?></span>
+					</td>
+					<td class="thumb">						
+
+						<?php e($director->albumBg($album['Album']['aTn'], $album['Album']['id'])); ?>
+						
+					</td>
+					<td<?php e(ife($sort_key == 'smart', ' class="sortchild"')); ?>>
+						<?php e(ife($album['Album']['smart'], __('Smart', true), __('Standard', true))); ?>
+					</td>
+					<td<?php e(ife($sort_key == 'images_count', ' class="sortchild"')); ?>>
+						<?php e($album['Album']['images_count']); ?>
+					</td>
+					<!-- Keep whitespace out of the following to cells, messes up sorting -->
+					<td<?php e(ife($sort_key == 'modified_on', ' class="sortchild"')); ?>><?php e($director->_date(__('%m/%d/%Y %I:%M%p', true), $album['Album']['modified_on'])); ?></td>
+					<td<?php e(ife($sort_key == 'created_on', ' class="sortchild"')); ?>><?php e($director->_date(__('%m/%d/%Y %I:%M%p', true), $album['Album']['created_on'])); ?></td>
+					
+
+					<td align="center">
+						<button type="button" onclick="publish_it('album', <?php e($album['Album']['id']); ?>, '<?php e(addslashes($album['Album']['name'])); ?>');" title="<?php __('Publish'); ?>" class="primary_sm"><?php __('Publish'); ?></button>
+					</td>
+						
+					<td align="center" class="end">
+											
+						<div style="margin:0 auto;display:block;width:<?php e(ife($user['perms'] > 1, '65', '44')) ?>px;"> 		
+						<a title="<?php $album['Album']['active'] ? __('Deactivate album') : __('Activate album'); ?>" class="icon <?php $album['Album']['active'] ? '' : e('in'); ?>active left nudgeR" href="#" onclick="toggle_album_active_index(<?php e($album['Album']['id']) ?>); return false;"></a>         
+						<a title="<?php __('Edit album'); ?>" class="icon edit left nudgeR" href="<?php e($html->url("/albums/edit/{$album['Album']['id']}")); ?>"></a>     
+							
+							<?php if ($user['perms'] > 1): ?><a title="<?php __('Delete album'); ?>" class="icon delete left" href="#" onclick="delete_album(<?php e($album['Album']['id']); ?>); return false;"></a><?php endif; ?>
+								
+						</div>
+					</td>
+				
+				</tr>
+		
+			<?php endforeach; ?>
+		
+			<?php endif; ?>
+	
+		</table> 
+		
+			<?php if ($paginator->hasPage(null, 2)): ?>
+			<div class="foot">
+				<div class="pagination"><span class="refresh_spin" style="display:none;"><?php __('Refreshing...'); ?></span> <?php echo $paginator->prev('<button class="primary_sm">Previous</button>', array('escape' => false)); ?>
+						&nbsp;
+					<?php echo $paginator->numbers(array('separator' => ' ')); ?>
+					&nbsp; 
+				    <?php echo $paginator->next('<button class="primary_sm">Next</button>', array('escape' => false)); ?></div>
+			</div>
+			<?php endif; ?>
+			
+		
+		</div>
+		
+		
+	</div>
+
+</div> <!--close container-wrap-->
+
+<div id="container-footer">
+	<div>&nbsp;</div>
+</div>

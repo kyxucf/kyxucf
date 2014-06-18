@@ -1,0 +1,38 @@
+<?php if (isset($new_version) && AUTO_UPDATE): ?>
+
+<?php e($director->preDialogue('update')); ?>
+				
+	<h1><?php __('Update available'); ?></h1>  
+	
+	<img src="<?php e(DIR_HOST); ?>/app/webroot/img/icon_download_crate_48.png" width="48" height="48" alt="Download" style="float:left;margin:2px 8px 4px 0;" />
+	
+	<p><?php __('A new version of SlideShowPro Director is available. Click the button below to automatically upgrade your installation.'); ?></p>
+	
+	<p><strong><?php __('Your version'); ?>:</strong> <?php e(DIR_VERSION) ?><br /><strong><?php __('Available version'); ?>:</strong> <?php e($new_version) ?> <a href="http://wiki.slideshowpro.net/SSPdir/VH-VersionHistory" target="_blank"><?php __('More info'); ?></a></p>
+	
+	<?php if (strpos($new_version, 'b') !== false || strpos($new_version, 'a') !== false): ?>
+	<div class="dialogue-spacer">
+		<strong><?php __('Warning'); ?></strong>: <?php __('This is a beta release of SlideShowPro Director. Beta software may be unstable and not function as expected. Please make sure you are comfortable using beta software and have a backup of your installation before continuing.'); ?>
+	</div>
+	<?php endif; ?>
+	<fieldset class="nopad">
+		<button type="button" title="<?php __('Update now'); ?>" onclick="do_update('update');" class="primary_lg_mod right nudgeR"><?php __('Update now'); ?></button>
+		<button type="button" title="<?php __('Later'); ?>" onclick="Messaging.kill('update'); return false;" class="primary_lg_mod right"><?php __('Later'); ?></button>     
+	</fieldset>
+	
+<?php e($director->postDialogue()); ?>
+
+<?php e($director->preDialogue('update-fail')); ?>
+				
+	<h1><?php __('Uh oh!'); ?></h1>
+	
+	<p><?php __('Director was not able to properly write the updated files to the server. Make sure the Director folder has world writable permissions and try again.'); ?></p>
+		
+	<fieldset class="nopad">
+		<button type="button" title="<?php __('Try again'); ?>" onclick="do_update('update-fail');" class="primary_lg_mod right nudgeR"><?php __('Try again'); ?></button>
+		<button type="button" title="<?php __('Later'); ?>" onclick="Messaging.kill('update-fail'); return false;" class="primary_lg_mod right"><?php __('Later'); ?></button>     
+	</fieldset>
+	
+<?php e($director->postDialogue()); ?>
+
+<?php endif; ?>

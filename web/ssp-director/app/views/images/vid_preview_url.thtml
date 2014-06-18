@@ -1,0 +1,5 @@
+<?php if ($type == 1): ?>
+	<?php e($director->getVidThumb($image['Image']['src'], $image['Image']['lg_preview'], $image['Image']['aid'], 210, 210, 0, 85, 1, false)) ?>
+<?php else: ?>
+	<?php e($director->getVidThumb($image['Image']['src'], $image['Image']['tn_preview'], $image['Image']['aid'], 210, 210, 0, 85, 1, false)) ?>
+<?php endif; ?>

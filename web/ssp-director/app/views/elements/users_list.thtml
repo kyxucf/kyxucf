@@ -1,0 +1,142 @@
+<div id="head">
+	
+	<div class="head-wrap">
+		
+		<div id="head-form">
+			
+			<div class="icon-bump">					
+				<button type="button" title="<?php __('Invite new users'); ?>" class="primary_lg" onclick="Messaging.dialogue('invite-user');"><?php __('Invite new users'); ?></button>          
+			</div>
+
+		</div>
+		
+		<h1 class="profile"><?php __('Users'); ?></h1>
+		
+	</div>
+	
+	<div class="clear"></div>
+
+</div>
+
+<div id="container-wrap">
+
+	<div class="col-wrap">
+		
+		 <table cellspacing="0" cellpadding="0" id="users-table" class="sortable">
+			<tr>
+				<th class="title"><?php __('Users'); ?> <span>(<?php __('Total'); ?>:<?php e(count($users)); ?>)</span></th>
+				<th><?php __('Role'); ?></th>
+				<th><?php __('Last login'); ?></th>
+				<th><?php __('Activity'); ?></th>
+				<th class="tr"><?php __('Actions'); ?></th>
+			</tr> 
+			
+			<?php foreach($users_hot as $user): ?>
+			<tr class="content">
+
+				<td class="title"><h4 class="icon_label_user"><span class="sort_this" style="display:none;"><?php e($user['User']['usr']) ?></span><a href="<?php e($html->url("/users/profile/{$user['User']['id']}")); ?>"><?php e($user['User']['usr']) ?></a></h4><span><?php e($user['User']['display_name_fill']) ?> / <?php e($user['User']['email']) ?></span></td>
+				
+				<td><?php e($user['User']['role_label']) ?><span class="sort_this" style="display:none;"><?php e($user['User']['perms']) ?></span></td>
+	   
+				<!-- Keep whitespace out of the following two cells, messes up sorting -->
+				<?php if (is_null($user['User']['last_seen'])): ?>
+					<td><?php __('Never'); ?><span class="sort_this" style="display:none;">0</span></td>
+				<?php else:  ?>
+					<td><?php e($director->_date(__('%m/%d/%Y %I:%M%p', true), $user['User']['last_seen'])); ?><span class="sort_this" style="display:none;"><?php e($user['User']['last_seen']); ?></span></td>
+				<?php endif; ?>
+					<td><?php printf(__('%s assets uploaded', true), $users[$user['User']['id']]['image_count']); ?><span class="sort_this" style="display:none;"><?php e($users[$user['User']['id']]['image_count']); ?></span></td>
+				
+				
+				<td class="end">
+					
+					<?php if ($viewer['perms'] == 3 && $user['User']['perms'] == 4): /* Next */ else: ?>				
+					<?php if ($user['User']['id'] != $viewer['id'] && ($user['User']['perms'] < 3 || ($user['User']['perms'] == 3 && $viewer['perms'] == 4))): ?>
+					<div style="margin:0 auto;display:block;width:45px;">
+					<?php else: ?>
+					<div style="margin:0 auto;display:block;width:22px;">	
+					<?php endif; ?>
+										
+				        
+						<a title="<?php __('Edit user'); ?>" class="icon edit left nudgeR" href="<?php e($html->url("/users/profile/{$user['User']['id']}")); ?>"></a>         
+						
+						<?php if ($user['User']['id'] != $viewer['id'] && ($user['User']['perms'] < 3 || ($user['User']['perms'] == 3 && $viewer['perms'] == 4))): ?>
+							<a title="<?php __('Delete user'); ?>" class="icon delete left" href="#" onclick="delete_user(<?php e($user['User']['id']); ?>); return false;"></a>
+						<?php endif; ?>
+							
+					</div>
+					<?php endif; ?>
+				</td>
+			
+			</tr>
+			<?php endforeach; ?>
+
+		 </table>
+		
+	</div>
+
+</div> <!--close container-wrap-->
+
+<div id="container-footer">
+	<div>&nbsp;</div>
+</div>
+
+<?php e($director->preDialogue('invite-user')); ?>
+			
+	<h1><?php __('Invite a new user'); ?></h1>
+	
+	<p><?php __('Other people can share your SlideShowPro Director installation. Enter your new user data below, and an email with instructions will be sent to them.'); ?></p>
+
+	<form id="new-user-form" action="#" onsubmit="add_user(this); return false;">
+		<input type="hidden" name="data[User][account_id]" value="<?php e($account['Account']['id']) ?>" />
+		
+		<div class="dialogue-spacer">
+			
+		<fieldset>
+			<label><?php __('New user role'); ?>:</label>
+			<?php e($form->select('User.perms', array(1 => __('Editor', true), 2 => __('Contributor', true), 3 => __('Administrator', true)), null, null, null, false)); ?>
+		</fieldset>
+	
+		<fieldset>
+			<label><?php __('New user email'); ?>:</label>
+			<div class="input-wrap"><?php e($form->text('User.usr', array('class' =>'wide', 'onkeyup' => 'validate_user_invite()'))); ?></div>
+		</fieldset>
+
+		<fieldset class="nopad">
+			<label><?php __('E-mail message'); ?>:</label>
+			<div class="input-wrap"><textarea class="wide" name="message" rows="5" cols="40"></textarea></div>
+		</fieldset>
+        
+	</div>
+
+
+		<fieldset class="nopad">
+			 <button id="new-user-submit" disabled="true" type="submit" title="<?php __('Add user'); ?>" class="primary_lg_mod right"><?php __('Add user'); ?></button>
+			<button type="button" title="<?php __('Add user'); ?>" class="primary_lg_mod right nudgeR" onclick="Messaging.kill('invite-user');"><?php __('Cancel'); ?></button>            
+		</fieldset>
+	</form>
+    
+<?php e($director->postDialogue()); ?>
+
+<?php e($director->preDialogue('invite-user-fail')); ?>
+			
+	<h1><?php __('User exists'); ?></h1>
+	
+	<p><?php __('Another user with that email address already exists. Please use a different address.'); ?></p>
+
+	<fieldset class="nopad">
+		 <button type="button" title="<?php __('OK'); ?>" class="primary_lg_mod right" onclick="Messaging.dialogue('invite-user');Messaging.kill('invite-user-fail', true);"><?php __('OK'); ?></button>        
+	</fieldset>
+    
+<?php e($director->postDialogue()); ?>
+
+<?php e($director->preDialogue('invite-user-fail-email', false, null, '', false)); ?>
+			
+	<h1><?php __('Invalid email'); ?></h1>
+	
+	<p><?php __('Please enter a valid email for the new user.'); ?></p>
+
+	<fieldset class="nopad">
+		 <button type="button" title="<?php __('OK'); ?>" class="primary_lg_mod right" onclick="Messaging.dialogue('invite-user');Messaging.kill('invite-user-fail-email', true);Messaging.dialogue('invite-user');"><?php __('OK'); ?></button>        
+	</fieldset>
+    
+<?php e($director->postDialogue()); ?>

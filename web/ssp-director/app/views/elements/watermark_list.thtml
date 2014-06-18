@@ -1,0 +1,153 @@
+<table cellspacing="0" cellpadding="0" class="sortable">
+<tr>
+	<th colspan="3" style="text-align:left;" class="hide-border">
+		<?php __('Watermarks'); ?>
+		<span class="help"><span>
+			<?php __('This allows you to apply watermarks to slideshow content. After uploading a PNG or GIF, you may make the image the default watermark for all new albums. You will be able to choose watermarks within each album as well.') ?>
+		</span></span>
+	</th> 
+	<th class="tr" style="text-align:right;">
+		<button type="button" onclick="set_water_upload();" title="<?php __('Upload watermark'); ?>" class="primary_sm"><?php __('Upload watermark'); ?></button>
+	</th>
+</tr>
+
+<?php if (empty($watermarks)): ?>
+	<tr>
+		<td colspan="4" style="text-align:left;"><?php __('You have not added any watermarks. To add one, click the "Upload watermark" button above.'); ?></td>
+	</tr>
+<?php else: ?>
+	<tr class="sub-row">
+		 <td style="text-align:left;"><?php __('Title'); ?></td>
+	     <td><?php __('Position'); ?></td>
+	     <td><?php __('Opacity'); ?></td>
+		 <td style="width:190px;text-align:center;"><?php __('Action') ?></td>
+	</tr>
+	
+	<?php foreach($watermarks as $watermark): ?>
+		<tr>
+			<td class="row-label title">
+				<?php e($watermark['Watermark']['name'] . ife($watermark['Watermark']['main'], ' <span>(' . __('Default', true) . ')</span>')); ?>
+			</td>
+			<td>
+				<?php 
+				switch((int) $watermark['Watermark']['position']) {
+					case 1:
+						e(__('Top Left'));
+						break;
+					case 2:
+						e(__('Top Center'));
+						break;
+					case 3:
+						e(__('Top Right'));
+						break;
+					case 4:
+						e(__('Center Left'));
+						break;	
+					case 5:
+						e(__('Center'));
+						break;
+					case 6:
+						e(__('Center Right'));
+						break;
+					case 7:
+						e(__('Bottom Left'));
+						break;						
+					case 8:
+						e(__('Bottom Center'));
+						break;				
+					case 9:
+						e(__('Bottom Right'));
+						break;
+				} 
+				?>
+			</td> 
+			<td>
+				<?php e($watermark['Watermark']['opacity']); ?>%
+			</td>
+			<td>
+				<button type="button" onclick="Messaging.dialogue('edit-watermark-<?php e($watermark['Watermark']['id']) ?>')" title="<?php __('Edit watermark'); ?>" class="primary_lg"><?php __('Edit'); ?></button>&nbsp;&nbsp;<button type="button" onclick="Messaging.dialogue('preview-watermark-<?php e($watermark['Watermark']['id']) ?>')" title="<?php __('Preview'); ?>" class="primary_lg"><?php __('Preview'); ?></button>&nbsp;&nbsp;<button type="button" onclick="delete_watermark(<?php e($watermark['Watermark']['id']); ?>)" title="<?php __('Delete'); ?>" class="primary_lg"><?php __('Delete'); ?></button>           
+				</td>
+		</tr>
+	<?php endforeach; ?>
+
+<?php endif; ?>
+
+</table>
+
+<?php foreach($watermarks as $watermark): ?>
+	
+<?php e($director->preDialogue('edit-watermark-' . $watermark['Watermark']['id'])); ?>
+			
+	<h1><?php __('Edit watermark'); ?></h1>
+	
+	<p><?php __('Assign this watermark a title (how it will be represented within Director), position (where the watermark will be placed inside each image) and opacity setting (how opaque the watermark will be when combined with each image).'); ?></p>
+     
+	
+	<div class="dialogue-spacer">
+		
+		<fieldset class="embed">
+			<table cellspacing="0" cellpadding="0" class="dialogue-table-basic">
+				<tr>
+					<td class="row-label"><label><?php __('File'); ?>:</label></td>                                                                                                      
+				    <td style="width:15px;">&nbsp;</td>
+					<td><?php e($watermark['Watermark']['fn']) ?></td>
+				</tr>
+				<tr>
+					<td class="row-label"><label><?php __('Title'); ?>:</label></td>
+					<td style="width:15px;">&nbsp;</td>
+					<td><input type="text" value="<?php e($watermark['Watermark']['name']); ?>" id="watermark_name_<?php e($watermark['Watermark']['id']); ?>" /></td>
+				</tr> 
+				<tr>
+					<td class="row-label"><label><?php __('Position'); ?>:</label></td>
+					<td style="width:15px;">&nbsp;</td>
+					<td>
+						<select id="watermark_position_<?php e($watermark['Watermark']['id']); ?>">
+							<option value="1"<?php e(ife($watermark['Watermark']['position'] == 1, ' selected="selected"')); ?>><?php __('Top Left'); ?></option>
+							<option value="2"<?php e(ife($watermark['Watermark']['position'] == 2, ' selected="selected"')); ?>><?php __('Top'); ?></option>
+							<option value="3"<?php e(ife($watermark['Watermark']['position'] == 3, ' selected="selected"')); ?>><?php __('Top Right'); ?></option>
+							<option value="4"<?php e(ife($watermark['Watermark']['position'] == 4, ' selected="selected"')); ?>><?php __('Center Left'); ?></option>
+							<option value="5"<?php e(ife($watermark['Watermark']['position'] == 5, ' selected="selected"')); ?>><?php __('Center'); ?></option>
+							<option value="6"<?php e(ife($watermark['Watermark']['position'] == 6, ' selected="selected"')); ?>><?php __('Center Right'); ?></option>
+							<option value="7"<?php e(ife($watermark['Watermark']['position'] == 7, ' selected="selected"')); ?>><?php __('Bottom Left'); ?></option>
+							<option value="8"<?php e(ife($watermark['Watermark']['position'] == 8, ' selected="selected"')); ?>><?php __('Bottom'); ?></option>
+							<option value="9"<?php e(ife($watermark['Watermark']['position'] == 9, ' selected="selected"')); ?>><?php __('Bottom Right'); ?></option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="row-label"><label><?php __('Opacity'); ?>:</label></td>
+					<td style="width:15px;">&nbsp;</td>
+					<td><input id="watermark_opacity_<?php e($watermark['Watermark']['id']); ?>" type="text" size="3" value="<?php e($watermark['Watermark']['opacity']); ?>" /> %</td>
+				</tr>
+			 </table>
+		</fieldset>
+	</div> 
+	
+	<div class="dialogue-spacer">
+	      <input id="watermark_main_<?php e($watermark['Watermark']['id']); ?>" type="checkbox" value="1"<?php e(ife($watermark['Watermark']['main'], ' checked="checked"')); ?> />&nbsp;<label for="watermark_main_<?php e($watermark['Watermark']['id']); ?>" class="inline"><?php __('Make default') ?></label><br /> 
+	<span style="font-size:10px;"><?php __('Watermark will be automatically added to all album content. This may be overridden on the Settings page of any album.') ?></span>
+	</div>
+	
+	<fieldset class="nopad">
+		<button type="button" onclick="update_watermark(<?php e($watermark['Watermark']['id']) ?>)" class="primary_lg_mod right" title="<?php __('Save'); ?>"><?php __('Save'); ?></button>
+		<button type="button" onclick="Messaging.kill('edit-watermark-<?php e($watermark['Watermark']['id']); ?>');" class="primary_lg_mod right" title="<?php __('Cancel'); ?>"><?php __('Cancel'); ?></button>
+	</fieldset>
+	
+<?php e($director->postDialogue()); ?>
+
+<?php e($director->preDialogue('preview-watermark-' . $watermark['Watermark']['id'])); ?>
+			
+	<h1><?php __('Preview watermark'); ?></h1>
+       
+    <?php $file = glob(WATERMARKS . DS . $watermark['Watermark']['id'] . '.*'); $file = basename($file[0]); ?>
+	<div class="dialogue-spacer" style="text-align:center">
+		<img style="opacity:<?php e($watermark['Watermark']['opacity']/100) ?>" src="<?php e(DIR_HOST) ?>/albums/watermarks/<?php e($file); ?>" />
+	</div> 
+	
+	<fieldset class="nopad">
+		<button type="button" onclick="Messaging.kill('preview-watermark-<?php e($watermark['Watermark']['id']); ?>');" class="primary_lg_mod right" title="<?php __('Done'); ?>"><?php __('Done'); ?></button>
+	</fieldset>
+	
+<?php e($director->postDialogue()); ?>
+
+<?php endforeach; ?>

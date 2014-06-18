@@ -1,0 +1,97 @@
+<div id="login-container">
+	
+	<div id="login-content">
+	
+		<div class="out-module">
+			
+			<div class="wrap">
+				
+				<div class="out-module-logo"></div>    
+				
+				<div class="content">
+				
+					<div id="title_wrap">
+						<h1 id="eng_head">Welcome to Director</h1>
+						
+						<?php foreach($langs as $l): ?>
+							<h1 id="<?php e($l['locale']); ?>_head" style="opacity:0.0001"><?php e($l['welcome']); ?></h1>
+						<?php endforeach; ?>
+						&nbsp;
+					</div>
+				
+					<p>This installation will only take a couple of minutes. If you need additional assistance, we recommend opening the <a href="http://wiki.slideshowpro.net/SSPdir/Installation" title="Installation instructions" target="_blank">installation instructions</a>.</p>
+						
+				    <h5 style="margin-top:30px;"><?php __('Please choose a language'); ?>:</h5> 
+					
+				    <div id="install-lang">
+				
+						<ul>   
+							
+							<li class="mark">
+								<a id="eng_sub" href="<?php e($html->url('/install/lang/eng')); ?>" title="Install in English">  
+									Click here to install in English           
+								</a>
+						    </li>
+					
+							<?php foreach($langs as $l): ?>
+				
+						 	<li>
+								<a id="<?php e($l['locale']) ?>_sub" href="<?php e($html->url("/install/lang/{$l['locale']}")); ?>" title="<?php echo($l['action']); ?>">  
+									<?php echo($l['action']); ?>
+								</a>
+						  	</li>
+				
+							<?php endforeach; ?>         
+
+						</ul>                  
+						
+					</div> <!-- close install-lang -->
+					
+				 </div> <!-- close content-->
+					
+			</div> <!--close module wrap-->
+
+		</div> <!--close module-->
+
+	</div> <!--close login-content-->
+
+</div> <!--close login-container-->
+
+<?php 
+
+	$locale_arr = array();
+
+	foreach($langs as $l) { 
+		$locale_arr[] = "'" . $l['locale'] . "'";
+	}
+
+	$locale_str = join(',', $locale_arr);
+	
+?>
+
+<script type="text/javascript" charset="utf-8">
+	var h1s = $$('h1');
+	var total = h1s.length;
+	var current = 'eng';
+	
+	var all = [
+		'eng', <?php e($locale_str); ?>
+	];
+	
+	function change_header() {
+		var r = Math.floor(Math.random()*total);
+		var noob = all[r];
+		if (noob == current) {
+			window.setTimeout(change_header, 5);
+		} else {
+			$(current + '_head').morph('opacity:0.0001', { duration: 0.75 });
+			$(noob + '_sub').morph('color:#fff;', { duration: 0.75 });
+			$(current + '_sub').morph('color:#999;', { duration: 0.75 });
+			$(noob + '_head').morph('opacity:1', { duration: 0.75 });
+			current = noob;
+			window.setTimeout(change_header, 3000)
+		}
+	}
+	$(current + '_sub').setStyle('color:#fff;');
+	window.setTimeout(change_header, 3000);
+</script>

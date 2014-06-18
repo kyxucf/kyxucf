@@ -1,0 +1,86 @@
+<div id="page">
+	
+	<div id="container">
+		
+		<div id="head">  
+			
+			<div style="position:absolute;right:15px;bottom:0;">SlideShowPro Director <?php e(DIR_VERSION); ?><?php if (isset($new_version)): ?>&nbsp;&nbsp;<button class="primary_sm" onclick="Messaging.dialogue('update');" title="<?php __('Update available') ?>"><?php __('Update available') ?></button><?php endif; ?></div>  
+			
+			<h1 class="system"><?php __('System info'); ?></h1>
+		</div>
+	
+		<div id="container-wrap">
+
+			<div class="col-wrap">
+	               
+	     		<table class="sortable" cellspacing="0" cellpadding="0">
+					<tr>    
+						<th style="width:40px;"><?php __('Status') ?></th>
+						<th class="lalign"><?php __('Utility') ?></th>
+						<th class="lalign"><?php __('Note') ?></th>
+						<th class="tr"><?php __('Action') ?></th>
+					</tr>
+					
+					<?php foreach($reports as $report): ?>
+						<tr>
+							<td class="<?php e($report['status']) ?>"></td>
+							<td class="lalign"><?php e($report['name']); ?></td>
+							<td class="lalign"><?php e($report['note']) ?></td>
+							<td>
+								<?php if (!empty($report['button'])): ?>
+								<button<?php e(ife(!empty($report['button']['id']), ' id="' . $report['button']['id'] . '"')); ?> class="primary_lg" onclick="<?php e($report['button']['js']); ?>" title="<?php e($report['button']['label']) ?>"><?php e($report['button']['label']) ?></button>
+								<?php endif; ?>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+					<tr>
+						<th></th>
+						<th class="lalign"><?php __('API INFORMATION') ?> <span class="help"><span><?php __('Credentials for connecting to this installation of SlideShowPro Director through its API. See wiki.slideshowpro.net for more information.'); ?></span></span></th>
+						<th></th>
+						<th><?php __('Action') ?></th>
+					</tr> 
+					<tr>
+						<td></td>
+						<td class="lalign"><?php __('API Key'); ?></td>
+						<td class="lalign"><code>local-<?php e($account['Account']['api_key']) ?></code></td>
+						<td><?php $id = 'copy-key-button' ?>
+						<div id="<?php e($id); ?>" class="copier"><span id="<?php e($id); ?>_tocopy" style="display:none;">local-<?php e($account['Account']['api_key']) ?></span><button id="<?php e($id) ?>_button" type="button" title="<?php __('Copy'); ?>" class="primary_lg"><?php __('Copy'); ?></button><div id="<?php e($id) ?>_target" style="position:absolute;top:0;left:0;z-index:1500;"></div></div>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td class="lalign"><?php __('API Path'); ?></td>
+						<td class="lalign"><code><?php e(r('http://', '', DIR_HOST)); ?></code></td>
+						<td><?php $id = 'copy-path-button' ?>
+						<div id="<?php e($id); ?>" class="copier"><span id="<?php e($id); ?>_tocopy" style="display:none;"><?php e(r('http://', '', DIR_HOST)) ?></span><button id="<?php e($id) ?>_button" type="button" title="<?php __('Copy'); ?>" class="primary_lg"><?php __('Copy'); ?></button><div id="<?php e($id) ?>_target" style="position:absolute;top:0;left:0;z-index:1500;"></div></div></td>
+					</tr>
+				</table>
+				
+			</div> <!--close col-wrap-->
+	
+		</div> <!--close container-wrap-->
+		
+		<div id="container-footer">
+			<div>&nbsp;</div>
+		</div>
+	
+	</div> <!--close container-->
+
+</div> <!--close page-->
+
+<?php e($director->preDialogue('clear-album-caches')); ?>
+				
+	<h1><?php __('Album caching'); ?></h1>
+	
+	<p><?php __("Director caches copies of images that are requested at specific sizes by your slideshows. If you'd like to remove any caches that haven't been accessed in one week, click the \"Clear old caches\" button. To clear all of your existing caches and have your slideshows regenerate images, click the \"Clear all caches\" button."); ?></p>
+		
+	<fieldset class="nopad">
+		<button type="button" title="<?php __('Clear old caches'); ?>" onclick="clear_cache('<?php e(DIR_HOST); ?>', 0);" class="primary_lg right"><?php __('Clear old caches'); ?></button>
+		<button type="button" title="<?php __('Clear all caches'); ?>" onclick="clear_cache('<?php e(DIR_HOST); ?>', 1);" class="primary_lg right"><?php __('Clear all caches'); ?></button> 
+		     
+		<button type="button" title="<?php __('Cancel'); ?>" onclick="Messaging.kill('clear-album-caches');" class="primary_lg right"><?php __('Cancel'); ?></button>
+	</fieldset>
+	
+<?php e($director->postDialogue()); ?>
+
+<?php e($this->element('update_dialogues')); ?>

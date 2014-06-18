@@ -1,0 +1,96 @@
+<?php 
+    if (isset($paginator)) {
+		$paginator->options( 
+            array('update' => 'update-target',  
+                    'url' => array('controller' => 'albums', 'action' => 'page_smart', 'id' => $album['Album']['id']),
+					'before' => "pagination_spinner();", "complete" => 'init_copiers(); do_img_load(); smart_double();'));
+		$start = (int) $paginator->counter(array('format' => '%start%'));
+		$total = (int) $paginator->counter(array('format' => '%count%'));
+	} else {
+		$start = 1;
+		$total = count($images);
+	}
+?><div class="module-head">
+	<div class="pagination"><span id="refresh_spin" class="refresh_spin" style="display:none;"><?php __('Refreshing...'); ?></span> <?php if (isset($paginator)): ?>
+		<?php e($paginator->prev('<button class="primary_sm">Previous</button>', array('escape' => false))); ?>
+								&nbsp;
+							<?php echo $paginator->numbers(array('separator' => ' ')); ?>
+							&nbsp; 
+						    <?php echo $paginator->next('<button class="primary_sm">Next</button>', array('escape' => false)); ?>
+	<?php endif; ?>					
+	</div>
+	<h3><?php __('Content rule preview'); ?> <span class="help"><span><?php __('The images and/or videos included in this smart album based on the criteria entered in Content Rules above.'); ?></span></span> <?php if (isset($paginator)): e($paginator->counter(array( 
+							        'format' => '<span>Showing %start%-%end% of %count%</span>' 
+							))); endif; ?></h3>
+	
+</div>
+
+<div class="wrap">
+
+	<div class="content">						
+		<?php if (empty($images)): ?>
+			<p><?php __('No content found. Refine your rule criteria above.'); ?></p>
+		<?php else: ?>
+			<ul id="image-view">
+			<?php $n = $start; foreach($images as $i): ?>
+				
+				<li id="c_<?php e($i['Image']['aid'] . '_' . $i['Image']['id']);  ?>" class="<?php e(ife(isNotImg($i['Image']['src']), 'video', 'image')); ?>" style="width:130px;cursor:pointer;">
+					<div class="meta"><?php
+
+						$date = $shift = true;
+						switch($options['order']) {
+							case 'file':
+								$out = $i['Image']['src'];
+								$date = false;
+								break;
+							case 'captured':
+								$out = $i['Image']['captured_on'];
+								$shift = false;
+								break;
+							default:
+								$out = $i['Image']['created_on'];
+								break;
+						}
+
+						if ($date) {
+							if (!empty($out)) {
+								$out = r(' ', '&nbsp;', $director->_date(__('%m/%d/%Y %I:%M%p', true), $out, $shift));
+							}
+						}
+						echo $out;
+						
+						if (isNotImg($i['Image']['src'])) {
+							$filename = $director->getVidThumb($i['Image']['src'], $i['Image']['lg_preview'], $i['Image']['aid'], 176, 132, 1, 70, 1, true);
+						} else {
+							$arr = unserialize($i['Image']['anchor']);
+							if (empty($arr)) {
+								$arr['x'] = $arr['y'] = 50;
+							}
+							$filename = __p(array(	'src' => $i['Image']['src'], 
+													'album_id' => $i['Image']['aid'],
+													'anchor_x' => $arr['x'], 
+													'anchor_y' => $arr['y'],
+													'force' => true));
+						}
+
+					?></div>
+					
+					<div class="scale-image" style="width:130px;height:98px"><div class="thumbimg loadme"><span style="display:none;"><?php e($filename); ?></span><img src="<?php e(DIR_HOST); ?>/app/webroot/img/loading_ei.gif" width="130" height="98" /><?php if ($i['Image']['is_video']): ?><img src="<?php e(DIR_HOST); ?>/app/webroot/img/vid_overlay.png" class="video-overlay" width="32" height="32" alt="" /><?php endif; ?></div></div>
+					
+					<div class="counter"><span><?php e(ife(($n > $total), 'Inactive', "$n/$total")); ?></span></div>
+				</li>
+			<?php $n++; endforeach; ?>
+		</ul>
+		<?php endif; ?>
+	</div>
+
+</div> <!--close module wrap-->
+
+<div class="module-footer">
+	<div>&nbsp;</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	var edit_images = true;
+	var smart_album = true;
+</script>

@@ -1,0 +1,12 @@
+<div id="footer">
+	<span>
+	<strong>SlideShowPro Director <?php e(DIR_VERSION); ?><?php if (TRIAL_STATE): ?> TRIAL<?php endif; ?></strong>
+	<?php if (isset($version_link) && AUTO_UPDATE): ?>
+		<a href="#" onclick="
+		window.scrollTo(0,0); Messaging.dialogue('update'); return false;" title="<?php __('New Version Available'); ?>" style="color:#fafafa;" target="_blank"><?php __('New Version Available'); ?></a>
+	<?php endif; ?>
+	&copy; 2005-<?php e(date('Y')); ?> SlideShowPro. <?php __('All Rights Reserved'); ?>. 
+	<a href="http://wiki.slideshowpro.net/SSPdir/UG-UserGuide" title="<?php __('User Guide'); ?>" target="_blank"><?php __('User Guide'); ?></a> / 
+	<a href="http://forums.slideshowpro.net/" title="<?php __('Forums'); ?>" target="_blank"><?php __('Forums'); ?></a> / <a href="http://slideshowpro.net" title="SlideShowPro" target="_blank">SlideShowPro</a>
+	</span>
+</div>

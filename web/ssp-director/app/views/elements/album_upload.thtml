@@ -1,0 +1,251 @@
+<?php e($this->renderElement('album_head')); ?>
+
+<script type="text/javascript">
+	var aid = <?php e($html->value('Album.id')); ?>;
+	var webroot = '<?php e($this->webroot); ?>';
+</script>
+<?php
+	e($asset->js('upload'));
+?>
+
+<div id="container-wrap">
+	
+	<div class="col-wrap">
+		
+		<?php e($this->renderElement('album_subnav')); ?>
+	
+	<?php if (TRIAL_STATE == 3): ?>
+		
+		<div class="module" style="clear:left;">
+
+			<div class="module-head">
+				<h3><?php __('Trial complete'); ?></h3>
+			</div>
+
+			<div class="wrap">
+			
+				<div class="content">
+
+					<p><?php printf(__('The Director trial only allows 50 uploads. To upload more content, %s.', true), '<a href="#">' . __('purchase and unlock Director', true) . '</a>'); ?></p>
+				
+				</div> <!--close content-->
+			
+			</div> <!--close module wrap-->
+
+			<div class="module-footer">
+				<div>&nbsp;</div>
+			</div>
+
+		</div> <!--close module-->
+		
+	<?php elseif (!empty($noobs)) :?>				                        
+	
+				<div class="module" style="clear:left;">
+	
+					<div class="module-head">
+						<h3><?php __('New content found!'); ?></h3>
+					</div>
+	
+					<div class="wrap">
+					
+						<div class="content">
+	
+							<p><?php printf(__('Director has found %s new uploads in this album\'s directory and automatically added them for you.', true), '<strong>' . count($noobs) . '</strong>'); ?></p>
+							
+							<p>							
+								<?php printf(__('%s your new content, or %s to the uploader', true), $html->link(__('Edit', true), "/albums/edit/{$album['Album']['id']}/content", array('title' => __('Proceed to Content', true))), '<a href="' . $this->here . '">' . __('proceed', true) . '</a>'); ?>
+							</p>
+							
+					
+						</div> <!--close content-->
+					
+					</div> <!--close module wrap-->
+		
+					<div class="module-footer">
+						<div>&nbsp;</div>
+					</div>
+
+				</div> <!--close module-->
+	
+
+	<?php else: ?>
+
+	<?php if ($writable && $other_writable): ?>
+			
+				<div id="uploader" style="display:none;">   
+					
+					<div class="module" style="clear:left;">
+
+						<div class="module-head">
+							<h3><?php __('Add content'); ?></h3>
+						</div>
+
+						<div class="wrap">
+
+							<div class="content">
+
+							<p><?php __('Click the "Browse" button below to select one or more files to upload.'); ?></p>
+                           
+							<fieldset>
+								<div style="float:left">
+									<?php __('Browse for'); ?>:
+									<select id="upload_type">
+										<option value="1"><?php __('Content'); ?></option>
+										<option value="3"><?php __('Album preview'); ?></option>
+										<option value="4"><?php __('Album audio'); ?></option>
+									</select> 
+									&nbsp;
+								</div>
+								
+							  	<div id="browse_wrapper" style="display:block;float:left;position:relative;"><button id="browser" type="button" title="<?php __('Browse'); ?>" class="primary_lg" onclick="return false;"><?php __('Browse'); ?></button><div id="flash_target" style="position:absolute;top:0;left:0;z-index:1000;"><div id="flash_target_swf"></div></div></div>
+							
+							</fieldset>
+							
+							<div class="divider"></div>
+							
+
+							<span class="note"><strong><?php __('Note'); ?></strong>: <?php __('Your server limits the size of uploaded files to'); ?> <?php e(ini_get('upload_max_filesize')); ?><?php __('B per file.'); ?> <?php printf(__('%s to find out how to increase your upload limit.', true), $html->link(ucfirst(__('click here', true)), 'http://wiki.slideshowpro.net/SSPdir/CP-ImageUploadsDenied')) ?></span>
+
+							</div> <!--close content-->
+
+						</div> <!--close wrap-->
+
+						<div class="module-footer">
+							<div>&nbsp;</div>
+						</div>
+
+					</div> <!--close module-->
+
+				</div> 
+				<!--close uploader-->
+
+				
+				
+				<div id="files" style="display:none;">
+		
+					<div class="module">
+
+						<div class="module-head">
+							<h3><?php __('File list'); ?></h3>
+						</div>
+
+						<div class="wrap">
+
+							<div class="content">
+								
+							<div style="width:250px;float:left;display:block;">
+                                								
+							  <fieldset>
+								 <label><?php __('Add tags'); ?>: <span class="help"><span><?php __('Tags are keywords or labels you can add to your slideshow content for better organization and search. Enter tags here (with a space between each) and they\'ll be applied to all content in this upload. You can always edit these later.'); ?></span></span></label>
+									<div class="input-wrap"><?php e($form->textarea('Image.tags', array('cols' => 40, 'rows' => 2, 'class' => 'wide'))); ?></div>
+								</fieldset>
+                                
+								 <span class="note"><strong><?php __('Note'); ?></strong>: <?php __('Optional. Insert a space between each tag.'); ?> </span>
+                                                                                                                           
+							  
+
+								<fieldset><button id="upload_btn" type="button" class="primary_lg" onclick="upload();"><?php __('Upload'); ?></button></fieldset>
+								
+								
+								</div>
+								
+								<div style="margin-left:280px;">
+									<h5 style="margin-bottom:6px;"><?php __('Files to upload'); ?>:</h5>  
+									<div class="embed"><div id="file_list"></div></div>
+								</div>
+
+							</div> <!--close content-->
+
+						</div> <!--close wrap-->
+
+						<div class="module-footer">
+							<div>&nbsp;</div>
+						</div>
+
+					</div> <!--close module-->
+			
+				</div> <!--close files-->
+				
+				<!-- Do not add white space between these two divs, it will break the Flash detection hack -->
+				<div id="alert"><div class="warn">
+						<div class="tr"></div>
+						<div class="content">
+							<div class="fixed icon"><button id="suppress_button" title="<?php __('Install the latest flash player'); ?>" onclick="location.href='http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash';return false;" class="primary_sm right"><?php __('Install the latest flash player'); ?></button>
+								<?php __('Director\'s uploader requires you have version 9 (or higher) of the Flash plugin installed.'); ?>
+							</div>
+						</div>
+						<div class="bl"><div class="br"></div></div>
+					</div>
+				</div>
+					
+		<script type="text/javascript">
+			// <![CDATA[
+			function afterSwfTest(e) {				
+				if (e.success) {      
+					$('browser').disabled = false;        
+					Element.show('uploader');
+					var h = Element.getHeight('browse_wrapper');
+					var w = Element.getWidth('browse_wrapper');  
+					var flashvars = {
+						aid: "<?php e($html->value('Album.id')); ?>",
+						dash: "0",
+						max_size: "<?php e(MAX_SIZE); ?>",
+						upload_url: "<?php e($html->url('/uploads/image/' . CUR_USER_ID)); ?>"  
+					}
+					var params = {  
+						allowScriptAccess: "always",
+						bgcolor: "#292929",
+						wmode: "transparent"      
+					}
+					var attributes = {
+						id: "_uploader"
+					}
+					swfobject.embedSWF("<?php e($this->webroot . 'swf/upload.swf?' . md5(DIR_VERSION)); ?>", "flash_target_swf", w, h, "9", false, flashvars, params, attributes);
+				}    
+			}
+			
+			var flashvars = {}
+			var params = {
+				bgcolor: "#292929"
+			}
+			var attributes = {
+				id: "_uploadertest"
+			}
+			swfobject.embedSWF("<?php e($this->webroot . 'swf/upload.swf?' . md5(DIR_VERSION)); ?>", "alert", "1", "1", "9", false, flashvars, params, attributes, afterSwfTest);  
+			// ]]>
+		</script>
+
+		<?php else: ?>
+					
+					<div class="module">
+
+						<div class="module-head">
+							<h3 class="error"><?php __('Error'); ?></h3>
+						</div>
+		
+						<div class="wrap">
+						
+							<div class="content">
+
+							<p><?php __('Before uploading, Director must have the necessary permissions to place files on your server. Please make sure the following folders (and any folders they contain) are writable by the web server'); ?>: <strong>album-audio, <?php e('albums' . DS . 'album-' . $album['Album']['id']); ?></strong></p>
+
+							<p><?php printf(__('%s when you have properly set these permissions.', true), '<a href="<?php e($this->here); ?>">' . ucfirst(__('click here', true)) . '</a>'); ?></p>
+			
+							</div> <!--close content-->
+			
+						</div> <!--close wrap-->
+		
+						<div class="module-footer">
+							<div>&nbsp;</div>
+						</div>
+		
+					</div> <!--close module-->
+									
+
+			<?php endif; ?>
+
+		<?php endif; ?>
+		
+	</div> <!--close col-wrap-->
+
+</div> <!--close container-wrap-->

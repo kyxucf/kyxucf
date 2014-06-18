@@ -1,0 +1,47 @@
+<div id="header-links">
+	<div class="wrap">
+	<?php __('Hello, '); ?> <?php e($html->link($user['usr'], '/users/profile', array('title' => __('Edit your user profile', true)))); ?>
+	<?php if ($user['perms'] > 2): ?>
+		&nbsp;/&nbsp; 
+		<?php e($html->link(__('System info', true), '/accounts/info', array('title' => __('View system info', true)))); ?>
+		&nbsp;/&nbsp; 
+		<?php e($html->link(__('Settings', true), '/accounts/settings', array('title' => __('Edit settings', true)))); ?>
+		&nbsp;/&nbsp;
+		<?php e($html->link(__('Bookmarks', true), '/bookmarks', array('title' => __('Edit bookmarks', true)))); ?>
+	<?php endif; ?>
+	&nbsp;/&nbsp;
+	<?php e($html->link(__('Sign out', true), '/users/logout', array('title' => __('Sign out', true)))); ?>
+	</div>
+</div>
+
+<div id="header">
+	
+	<div class="top-half">
+	
+		<div id="header-logo"><a href="<?php e($html->url('/snapshot')); ?>" title="<?php __('Home'); ?>" class="img"></a></div>
+		
+	</div>
+	
+	<div id="header-nav">
+		
+		<?php if (!empty($shows)): ?>
+		<div id="header-slideshow">
+			<div class="wrap">
+			<div>
+			
+			<select id="ss_select" onchange="toggle_view_btn(this.value)">
+				<option value="0"><?php __('Bookmarks'); ?></option>
+				<?php foreach ($shows as $s): ?>
+					<option value="<?php e($s['Slideshow']['url']); ?>"><?php e($s['Slideshow']['name']); ?></option>
+				<?php endforeach; ?>
+			</select>&nbsp;<button id="view_ss_btn" type="button" title="<?php __('[#Action. Example: View the slideshow#]View'); ?>" onclick="fetch_slideshow()" class="primary_sm nudgeL" disabled="true"><?php __('[#Action. Example: View the slideshow#]View'); ?></button>           
+			</div>
+			</div>
+		</div>
+		<?php endif; ?>
+	
+		<ul id="main-nav"><li class="<?php $controller->name == 'Site' ? e('selected ') : ''; ?>first"><?php e($html->link(__('Snapshot', true), '/snapshot', array('title' => __('Snapshot', true)))); ?></li><li<?php $controller->name == 'Albums' ? e(' class="selected"') : ''; ?>><?php e($html->link(__('Albums', true), '/albums', array('title' => __('Albums', true)))); ?></li><li<?php $controller->name == 'Galleries' ? e(' class="selected"') : ''; ?>><?php e($html->link(__('Galleries', true), '/galleries', array('title' => __('Galleries', true)))); ?></li><li<?php $controller->name == 'Users' ? e(' class="selected"') : ''; ?>><?php e($html->link(__('Users', true), '/users', array('title' => __('Users', true)))); ?></li><li<?php $controller->name == 'Help' ? e(' class="selected"') : ''; ?>><?php e($html->link(__('Help', true), 'http://wiki.slideshowpro.net/SSPdir/SSPdir', array('title' => __('SlideShowPro Director Wiki', true), 'target' => '_blank'))); ?></li></ul>
+	
+	</div>
+	
+</div>

@@ -1,0 +1,79 @@
+<?php
+	$tag = $date = $created = $date = $default = false;
+	$bool = true;
+	if (isset($conditions)) {
+		switch($conditions['type']) {
+			case 'tag':
+				$tag = true;
+				break;
+			default:
+				$date = true;
+				$created = true;
+				break;
+		}
+	} else {
+		$default = true;
+	} 
+	
+	if (!$tag) {
+		$conditions['input'] = '';
+	} 
+	if (!$date) {
+		$conditions['start'] = $conditions['end'] = '';
+	}
+	if (!isset($conditions['within'])) {
+		$conditions['within'] = '';
+	}
+	if (!isset($conditions['bool'])) {
+		$conditions['bool'] = true;
+	}
+	$random = $controller->Director->randomStr(8);
+?><li id="rule_<?php e($random); ?>"<?php e(ife(isset($noob), ' style="display:none"')) ?>>
+	
+	 <button type="button" title="<?php __('Add another rule'); ?>" class="primary_sm right" style="margin-top:2px;" onclick="add_smart_rule(); return false;"><?php __('Add another rule'); ?></button><button type="button" title="<?php __('Remove this rule'); ?>" class="primary_sm right" style="margin:2px 4px 0 0;" onclick="remove_smart_rule(this); return false;"><?php __('Remove this rule'); ?></button>       
+	
+	<select name="data[conditions][c_<?php e($random); ?>][bool]" onchange="update_smart();">
+	<option value="1"><?php __('Is'); ?></option>
+	<option value="0"<?php e(ife(!$conditions['bool'], ' selected="selected"')); ?>><?php __('Not'); ?></option>
+</select>&nbsp;&nbsp;<select name="data[conditions][c_<?php e($random); ?>][switch]" id="switch_<?php e($random); ?>" onchange="swap_rule('switch_<?php e($random); ?>');update_smart();">
+	<option value="tag"><?php __('tagged with'); ?></option>
+	<option value="created"<?php e(ife($created, ' selected="selected"')); ?>><?php __('created'); ?></option>
+	</select>
+	<span id="tag_wrap_<?php e($random); ?>"<?php e(ife(!$tag && !$default, ' style="display:none"')) ?>>&nbsp;&nbsp;<input type="text" id="tag_input_<?php e($random); ?>" name="data[conditions][tag_<?php e($random); ?>][tag]" onkeyup="watch_smart();" <?php e(ife($tag, ' value="' . $conditions['input'] . '"')); ?> /></span> 
+	
+	<span id="date_wrap_<?php e($random); ?>"<?php e(ife(!$date, ' style="display:none"')) ?>>
+		&nbsp;
+		<select id="datemod_<?php e($random); ?>" name="data[conditions][date_<?php e($random); ?>][modifier]" onchange="process_date(this); update_smart();">
+			<option value="on"><?php __('[#Used to specify date. Example: on September 1st#]on'); ?></option>
+			<option value="between"<?php e(ife($date && $conditions['modifier'] == 'between', ' selected="selected"')); ?>><?php __('[#Used to specify a date range. Example: between September 1st and September 10th#]between'); ?></option>
+			<option value="before"<?php e(ife($date && $conditions['modifier'] == 'before', ' selected="selected"')); ?>><?php __('[#Used to specify a date range. Example: before September 1st#]before'); ?></option>
+			<option value="after"<?php e(ife($date && $conditions['modifier'] == 'after', ' selected="selected"')); ?>><?php __('[#Used to specify a date range. Example: after September 1st#]after'); ?></option>
+			<option value="within"<?php e(ife($date && $conditions['modifier'] == 'within', ' selected="selected"')); ?>><?php __('[#Used to specify a date range. Example: within the last 2 years#]within the last'); ?></option>
+		</select> 
+		&nbsp;&nbsp;
+		<span id="date_reg_<?php e($random); ?>"<?php e(ife(isset($conditions['modifier']) && $conditions['modifier'] == 'within', ' style="display:none;"')) ?>>
+			<input type="text" name="data[conditions][date_<?php e($random); ?>][filter_start]" class="date-pick"<?php e(ife($date, ' value="' . $conditions['start'] . '"')); ?> /><span id="dateend_span_<?php e($random); ?>"<?php e(ife($date && $conditions['modifier'] != 'between', ' style="display:none;"')); ?>>&nbsp;&nbsp;<?php __('and'); ?>&nbsp;&nbsp;<input type="text" name="data[conditions][date_<?php e($random); ?>][filter_end]" class="date-pick"<?php e(ife($date && $conditions['modifier'] == 'between', ' value="' . $conditions['end'] . '"')); ?> /></span>
+		</span>
+		<span id="date_within_<?php e($random); ?>" <?php e(ife(isset($conditions['modifier']) && $conditions['modifier'] != 'within', ' style="display:none;"')) ?>>
+			<input type="text" id="within_input_<?php e($random); ?>" name="data[conditions][date_<?php e($random); ?>][filter_within]" size="3" onkeyup="watch_smart();" <?php e(ife($date, ' value="' . $conditions['within'] . '"')); ?> />&nbsp;&nbsp;
+			<select id="datewith_filter_<?php e($random); ?>" name="data[conditions][date_<?php e($random); ?>][modifier_within]" onchange="update_smart();">
+				<option value="day"><?php __('day(s)'); ?></option>
+				<option value="month"<?php e(ife(isset($conditions['within_modifier']) && $conditions['within_modifier'] == 'month', ' selected="selected"')); ?>><?php __('month(s)'); ?></option>
+				<option value="year"<?php e(ife(isset($conditions['within_modifier']) && $conditions['within_modifier'] == 'year', ' selected="selected"')); ?>><?php __('year(s)'); ?></option>
+			</select>
+		</span>
+	</span>
+	<script type="text/javascript" charset="utf-8">
+		Date.format = 'mm/dd/yyyy';
+		jQuery('.date-pick').datePicker({startDate:'01/01/1950',clickInput:true,createButton:false}).bind(
+					'dateSelected',
+					function(e, selectedDate, $td)
+					{
+						update_smart();
+					}
+				);
+		<?php if (isset($noob)): ?>
+			Effect.Appear('rule_<?php e($random); ?>', {duration: 0.4});
+		<?php endif; ?>
+	</script>	
+</li>

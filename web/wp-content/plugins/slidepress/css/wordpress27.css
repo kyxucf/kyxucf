@@ -1,0 +1,54 @@
+.ssp_form-table {
+/*	margin: 13px 0 0px;*/
+/*	border-collapse:separate;*/
+/*	border-spacing:0 8px;*/
+}
+
+.ssp_noborder {
+	border-collapse:collapse;
+}
+
+.ssp_form-table label {
+/*	font-weight:bold;*/
+}
+
+.ssp_form-table tr {
+/*	background-color:#EAF3FA;*/
+}
+
+.ssp_form-table td {
+/*	padding:10px !important;*/
+}
+
+.ssp_form-table td, .ssp_form-table th {
+/*	margin:8px 0;*/
+}
+
+.ssp_form-table td.spacing, .ssp_form-h2, .ssp_form-update, .ssp_nobackground th, .ssp_nobackground td, .ssp_nobackground_ th, .ssp_nobackground_ td {
+/*	background-color:#f9f9f9 !important;*/
+}
+
+.ssp_form-table-highlight {
+	margin:45px 0;
+}
+
+.ssp_form-table-highlight, .ssp_form-table-highlight h2, .ssp_form-table-highlight td, .ssp_form-table-highlight th {
+	background-color:#FFFAD4 !important;
+}
+
+#toc ul {
+	padding-left:40px;
+}
+
+#ssp_help_content h2, #ssp_help_content h3 {
+	margin:0;
+}
+
+#ssp_help_content h3 {
+	padding-top:7px;
+}
+
+#ssp_help_content img {
+	border:1px solid;
+	padding:3px;
+}

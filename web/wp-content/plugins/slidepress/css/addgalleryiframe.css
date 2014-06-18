@@ -1,0 +1,6 @@
+html,body { height:auto; }
+h2 { padding-top:0; }
+#wphead, #adminmenu, #update-nag, #screen-meta-links, #footer { display:none; }
+#wpbody { margin:0; }
+#wpcontent { padding-bottom:0; }
+#wpwrap { min-height:0; }

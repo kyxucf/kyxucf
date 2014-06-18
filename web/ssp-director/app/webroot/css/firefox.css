@@ -1,0 +1,35 @@
+ol.photo-thumbs-list li {margin-bottom:8px;}
+
+div#header-links span {padding:3px 9px 8px 5px;}
+
+option {padding-right:8px;}
+
+optgroup {padding-left:12px;} 
+
+a.icon {-moz-border-radius:3px;}
+button.primary_sm, button.primary_sm_alt { padding:0 5px 3px 5px;-moz-border-radius:3px; }
+button.primary_lg, button.primary_lg_alt { padding:0 6px 2px 6px;-moz-border-radius:3px; }
+button.nudge {margin-top:0;}
+button.progress, button.finished {padding-left:20px;}
+
+div.dialogue-content { -moz-border-radius:6px; }
+div.dialogue-content div.wrap { -moz-border-radius:6px; }    
+
+div#browse_wrapper {margin-top:-2px;}
+
+ul#rule-target li {-moz-border-radius:4px;}
+
+div#edit-box-wrap {-moz-border-radius:8px;}  
+span.top-bump, fieldset.top-bump {display:block;}
+
+input {
+	height:auto;
+}
+
+input.small {
+	padding:3px 2px;  
+}      
+
+span.context {
+ -moz-border-radius:3px;
+}

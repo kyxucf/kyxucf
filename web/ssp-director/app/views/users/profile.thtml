@@ -1,0 +1,283 @@
+<?php
+	e($asset->js('upload'));
+?>
+
+<script type="text/javascript">
+	var aid = 0;
+	var user_id = <?php e($this->data['User']['id']); ?>;
+	var here = '<?php e(DIR_HOST . $this->here); ?>';
+	var empty_display_name = <?php e(ife(empty($this->data['User']['display_name']), 'true', 'false')); ?>;
+</script>
+
+<div id="page">
+	
+	<div id="container">
+		
+		<div id="head">
+			<h1 class="profile"><?php __('Profile'); ?>: <?php e($html->link($this->data['User']['usr'], '/users/profile')); ?></h1>
+		</div>
+		
+		<div id="container-wrap">
+			
+			<div class="col-wrap"> 
+				
+				   <div class="header-radius">
+						<div class="tr"></div>
+						<div class="content">     
+			   				<?php if (!empty($this->data['User']['anchor'])): ?><a href="#" onclick="Messaging.dialogue('avatar-2'); return false;"><?php endif; e($director->avatar($this->data['User']['id'], 43, 43, $this->data['User']['anchor'], null, true)); if (!empty($this->data['User']['anchor'])): ?></a><?php endif; ?>
+			   
+						   <p style="padding-top:4px;padding-bottom:0;margin-bottom:2px;"><?php __('Your current profile photo.'); ?></p>
+							<div style="margin-bottom:4px;">
+							<button class="primary_sm nudgeR" onclick="set_av_upload(); return false;" title="<?php __('Change'); ?>"><?php __('Change'); ?></button>   <?php if (!empty($this->data['User']['anchor'])): ?>   <button class="primary_sm nudgeR" onclick="Messaging.dialogue('avatar-2');" title="<?php __('Edit'); ?>"><?php __('Edit'); ?></button>   <button class="primary_sm" onclick="location.href='<?php e(DIR_HOST); ?>/index.php?/users/clear_avatar/<?php e($this->data['User']['id']); ?>'" title="<?php __('Clear'); ?>"><?php __('Clear'); ?></button><?php endif; ?>
+								</div>   
+				 		</div>
+					  <div class="bl"><div class="br"></div></div>
+					</div> 
+					
+					<form action="#" id="profile_form" onsubmit="update_profile(this, <?php e($html->value('User.id')); ?>); return false;">
+					
+					<table cellspacing="0" cellpadding="0" class="sortable">
+
+					 	<tr>
+							<th colspan="2" style="text-align:left;" class="hide-border">
+								<h3><?php __('Account settings'); ?></h3>
+							</th>
+							<th class="tr"></th>
+						</tr>
+
+						<tr>
+							<td class="row-label"><?php __("Username") ?></td>
+							<td colspan="2" class="lalign">
+								<?php e($form->text('User.usr', array('class' => 'wide-row'))); ?>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="row-label"><?php __("Email") ?></td>
+							<td colspan="2" class="lalign">
+								<?php e($form->text('User.email', array('class' => 'wide-row'))); ?>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="row-label"><?php __("Role") ?></td>
+							<td colspan="2" class="lalign">
+								<?php if (($this->data['User']['id'] != CUR_USER_ID) && (($this->data['User']['role'] < 3 && $viewer['perms'] == 3) || $viewer['perms'] == 4)): ?>
+										<?php e($form->select('User.perms', 
+																	array(1 => __('Editor', true), 
+																		  2 => __('Contributor', true), 
+																		  3 => __('Administrator', true)),
+																	$this->data['User']['perms'], 
+																	null,
+																	null, 
+																	false)); ?>
+								<?php else: ?>
+								<?php e($this->data['User']['role_label']); ?>
+								<?php endif; ?>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="row-label"><?php __("Password") ?></td>
+							<td colspan="2" class="lalign">
+								<span id="password_viewer"><a href="#" title="<?php __('Show/hide password'); ?>" onclick="swap_passwords(this); return false;"><span><?php e(str_repeat('*', strlen($this->data['User']['pwd']))); ?></span><span style="display:none;"><?php e($this->data['User']['pwd']); ?></span></a></span> <small>(Click to view)</small>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="row-label"><?php __("New password") ?></td>
+							<td colspan="2" class="lalign">
+								<input type="password" name="pass1" value="" id="pass1" />
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="row-label"><?php __("Confirm new password") ?></td>
+							<td colspan="2" class="lalign">
+								<input type="password" name="pass2" value="" id="pass2" />
+							</td>
+						</tr>
+						
+							
+						 	<tr> 
+								<th colspan="2" style="text-align:left;" class="hide-border">
+									<?php __('Personality'); ?> <span class="help"><span><?php __('Data below is published by SlideShowPro Director\'s API.'); ?></span></span>
+								</th> 
+								<th></th>
+						   	</tr>
+						
+						 	 <tr>
+									<td class="row-label"><?php __("First name") ?></td>
+									<td colspan="2" class="lalign">
+										<?php e($form->text('User.first_name', array('class' => 'wide-row', 'onkeyup' => 'update_display_name()'))); ?>
+									</td>
+								</tr> 
+								
+								<tr>
+										<td class="row-label"><?php __("Last name") ?></td>
+										<td colspan="2" class="lalign">
+											<?php e($form->text('User.last_name', array('class' => 'wide-row', 'onkeyup' => 'update_display_name()'))); ?>
+										</td>
+									</tr>  
+									
+				   				<tr>
+										<td class="row-label"><?php __("Display name") ?></td>
+										<td colspan="2" class="lalign">
+											<?php e($form->text('User.display_name', array('class' => 'wide-row', ))); ?>
+										</td>
+									</tr> 
+									
+									             
+				 			 <tr>
+										<td class="row-label"><?php __("About me") ?></td>
+										<td colspan="2" class="lalign">
+											<?php e($form->textarea('User.profile', array('rows' => 5, 'cols' => 50))); ?>
+										</td>
+									</tr>
+									
+							 	<tr>
+									<td class="row-label"><?php __("Elsewhere") ?></td>
+									<td colspan="2" class="lalign">
+										<?php $externals = unserialize($this->data['User']['externals']); ?>
+										<?php __('Name'); ?>: <?php e($form->text('User.externals_1_name', array('value' => $externals[0]['name']))); ?>&nbsp;&nbsp;<?php __('URL'); ?>: <?php e($form->text('User.externals_1_url', array('value' => $externals[0]['url'], 'class' => 'wide-row'))); ?><br /><br />
+										<?php __('Name'); ?>: <?php e($form->text('User.externals_2_name', array('value' => $externals[1]['name']))); ?>&nbsp;&nbsp;<?php __('URL'); ?>: <?php e($form->text('User.externals_2_url', array('value' => $externals[1]['url'], 'class' => 'wide-row'))); ?><br /><br />
+										<?php __('Name'); ?>: <?php e($form->text('User.externals_3_name', array('value' => $externals[2]['name']))); ?>&nbsp;&nbsp;<?php __('URL'); ?>: <?php e($form->text('User.externals_3_url', array('value' => $externals[2]['url'], 'class' => 'wide-row'))); ?><br />
+									</td>
+								</tr>
+								
+								<tr>
+									 <td colspan="3" style="text-align:right;" class="hide-border">
+										<button id="save-button" type="submit" title="<?php __('Save'); ?>" class="primary_lg"><?php __('Save'); ?></button>                             
+									 </td>
+								</tr>    
+						
+					</table>
+					
+					</form>
+					
+					
+				   	<table cellspacing="0" cellpadding="0" class="sortable">
+
+					 	<tr>
+							<th colspan="2" style="text-align:left;" class="hide-border">
+								<h3><?php __('Preferences'); ?></h3>
+							</th>
+							<th class="tr"></th>
+						</tr>
+
+						<tr> 
+							<td class="row-label"><?php __("Snapshot page") ?></td>
+							<td colspan="2" class="lalign">
+								<?php if ($account['Account']['externals']): ?>
+								<input type="checkbox" <?php e($this->data['User']['news'] ? ' checked="checked"' : ''); ?> onchange="update_user_options(this.checked, 'news', <?php e($this->data['User']['id']); ?>)" /> <?php __('Show SlideShowPro news'); ?>
+								<?php endif; ?>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="checkbox" <?php e($this->data['User']['help'] ? ' checked="checked"' : ''); ?> onchange="update_user_options(this.checked, 'help', <?php e($this->data['User']['id']); ?>)" /> <?php __('Show recent help document links'); ?>
+						    </td>
+						</tr>
+						
+						<tr>
+						  <td class="row-label"><?php __("Theme") ?></td>
+							<td colspan="2" class="lalign">
+								<?php e($this->renderElement('theme_select')); ?>
+							</td>
+						 </tr>
+						
+						<tr>
+							<td class="row-label"><?php __("[#In this case, Language is not the name of your language, rather it is meant to be translated literally. This message is used to label a dropdown menu that contains all the different languages that Director's interface is available in.#]Language"); ?></td>
+							<td colspan="2" class="lalign">
+								<?php e($this->renderElement('lang_select')); ?>
+							</td> 
+						</tr>
+						
+				   </table>
+               
+				
+				
+		</div> <!--close col-wrap-->
+		
+	</div> <!--close container-wrap-->
+	
+	<div id="container-footer">
+		<div>&nbsp;</div>
+	</div>
+	
+	</div> <!--close container-->
+
+</div> <!--close page-->
+
+<?php e($director->preDialogue('avatar-1')); ?>
+		
+	<h1><?php __('Upload a new profile photo'); ?></h1>
+
+	<p><?php __('You may upload a jpeg, png or gif (no animated gifs). Upload as large as you like, Director will resize it as needed.'); ?></p>
+	
+	<p id="av-feedback" style="display:none;" class="dialogue-spacer"></p> 
+	 
+	<fieldset class="nopad">
+		<button class="primary_lg right" id="av-upload" type="button" title="<?php __('Upload'); ?>" onclick="upload_avatar();" disabled="true"><?php __('Upload'); ?></button> 
+		<div id="browse_wrapper" style="float:right;position:relative;"><button id="browse-button" class="primary_lg right" type="button" title="<?php __('Choose file'); ?>" onclick="return false;"><?php __('Choose file'); ?></button><div id="flash_target" style="position:absolute;top:0;left:0;z-index:1000;"></div></div> 
+		<button class="primary_lg right" type="button" onclick="cancel_av_upload();" title="<?php __('Cancel'); ?>"><?php __('Cancel'); ?></button>							
+     </fieldset>
+
+<?php e($director->postDialogue()); ?>
+
+<?php e($director->preDialogue('avatar-2', false, null, '', false)); ?>
+		
+	<h1><?php __('Assign focal point'); ?></h1>
+
+	<p><?php __('Drag the focal point to the area you wish to maintain when cropping.'); ?></p>
+
+	<div class="dialogue-spacer" style="text-align:center;">
+		<div id="img_wrapper">
+			<?php
+				
+				$original = glob(AVATARS . DS . $this->data['User']['id'] . DS . 'original.*');
+				if (count($original) !== 0) {
+					$t = filemtime($original[0]);
+					$src = __p(array(	'src' => basename($original[0]), 
+										'album_id' => 'avatar-' . $this->data['User']['id'],
+										'width' => 200, 
+										'height' => 200,
+										'square' => 0));
+					$anchor = unserialize($this->data['User']['anchor']);
+					$x = $anchor['x']; $y = $anchor['y'];
+				} else {
+					$src = '#';
+				}
+				
+			?>
+			<img id="anchor" src="<?php e(DIR_HOST); ?>/app/webroot/img/focal_point.png" /><img id="set_focus" onload="setAnchorAvatar(<?php if (!empty($this->data['User']['anchor'])): e($x . ', ' . $y); endif; ?>);" src="<?php e($src); ?>" />
+		</div>
+	</div>
+
+	<fieldset class="nopad">
+		<button class="primary_lg right" type="button" title="<?php __('Click to assign focal point'); ?>" onclick="avatar_step_3(<?php e($this->data['User']['id']) ?>);"><?php __('Assign focal point'); ?></button><button id="step-2-cancel-button" class="primary_lg right" type="button" title="<?php __('Cancel'); ?>" onclick="Messaging.kill('avatar-2')"><?php __('Cancel'); ?></button>
+	</fieldset>    
+	
+<?php e($director->postDialogue()); ?>
+
+<?php e($director->preDialogue('avatar-3')); ?>
+		
+	<h1><?php __('Your new profile photo'); ?></h1>
+
+	<p><?php __('Here\'s a preview of your new profile photo.'); ?></p>
+	
+	<div class="dialogue-spacer">
+	<div id="new_avatar" style="text-align:center;"></div>
+	</div>
+	
+	<fieldset class="nopad">
+		<button class="primary_lg right" type="button" title="<?php __('Done'); ?>" onclick="location.href='<?php e(DIR_HOST); ?>/index.php?/users/profile';"><?php __('Done'); ?></button>
+		<button class="primary_lg right" type="button" title="<?php __('Reset focal point'); ?>" onclick="avatar_step_back();"><?php __('Reset focal point'); ?></button>
+	</fieldset>
+
+<?php e($director->postDialogue()); ?>
+
+<script type="text/javascript">
+	// <![CDATA[
+	swf_path = "<?php e($this->webroot . 'swf/upload.swf?' . md5(DIR_VERSION)); ?>";
+	upload_url = '<?php e($html->url('/uploads/avatar/' . $this->data['User']['id'])); ?>'
+	max_size = <?php e(MAX_SIZE); ?>;
+</script>      
+

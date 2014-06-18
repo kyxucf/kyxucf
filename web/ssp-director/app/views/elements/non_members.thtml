@@ -1,0 +1,34 @@
+<?php 
+    $paginator->options( 
+            array('update' => 'page-target',  
+                    'url' => array('controller' => 'galleries', 'action' => 'page_non_members', 'id' => $gallery['Gallery']['id']),
+					'before' => "pagination_spinner()")); 
+?>
+           
+<div class="dialogue-scroll-head">
+				
+	<div class="pag"><span class="refresh_spin" style="display:none;"><?php __('Refreshing...'); ?></span><span class="spin_off"><?php echo $paginator->prev('<button class="primary_sm">' . __('Previous', true) . '</button>', array('escape' => false)); ?>&nbsp;&nbsp;<?php echo $paginator->numbers(array('separator' => '&nbsp;&nbsp;')); ?>&nbsp;&nbsp;<?php echo $paginator->next('<button class="primary_sm">' . __('Next', true) . '</button>', array('escape' => false)); ?></span></div>  
+
+	<?php __('Search') ?>: 
+	
+	<form id="albums-filter-form" action="#" method="post" style="display:inline;" onsubmit="search_non_members(<?php e($gallery['Gallery']['id']); ?>); return false;"><input id="non_member_search" type="text" value="<?php e(ife(!empty($this->data['search']), @$this->data['search'])); ?>" class="small" />&nbsp;&nbsp;<button type="submit" class="primary_sm"><?php __('Search') ?></button><?php if (isset($this->data['search']) && !empty($this->data['search'])): ?>&nbsp;<button type="button" class="primary_sm" onclick="$('non_member_search').value = '';search_non_members(<?php e($gallery['Gallery']['id']); ?>);"><?php __('Clear'); ?></button><?php endif; ?></form>
+			
+</div>
+
+<div class="wrap">                                                                
+	
+	<ul class="dialogue-options">
+		<?php foreach($non_members as $a): ?>
+			<li>
+				<!-- <a href="#" class="info">More info</a>  -->
+				
+				<a class="icon inactive nudgeR" style="margin-top:7px;" href="#" onclick="add_gallery_link(<?php e($gallery['Gallery']['id'] . ', ' . ($a['Album']['id'])); ?>, this); return false"></a>
+		
+				<?php e($director->albumBg($a['Album']['aTn'], $a['Album']['id'])); ?>
+		
+				<?php e($a['Album']['name']); ?>
+				<br /><small><?php e($director->albumCounts($a)); ?></small>
+		   </li>
+		<?php endforeach; ?>
+	</ul>            
+</div>

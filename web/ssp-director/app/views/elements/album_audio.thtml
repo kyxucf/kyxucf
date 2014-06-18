@@ -1,0 +1,76 @@
+<div class="module">
+
+	<div class="module-head">
+		
+		<?php if (count($mp3s) > 0): ?>
+		<button type="button" title="<?php __('Manage'); ?>" class="primary_sm right" onclick="Messaging.dialogue('manage-audio');"><?php __('Manage'); ?></button>
+		<?php endif; ?>
+		
+		<div id="browse_wrapper" style="float:right;position:relative;margin-top:0px"><button id="browse-button" type="button" title="<?php __('Upload mp3'); ?>" class="primary_sm right" onclick="return false;"><?php __('Upload'); ?></button><div id="flash_target" style="position:absolute;top:0;left:0;z-index:1000;"><div id="flash_target_audio_swf"></div></div></div>
+		<h3><?php __('Album audio'); ?>&nbsp;<span class="help"><span>
+		<?php __('Uploading and assigning a MP3 file to this album will playback the audio in SlideShowPro\'s media player interface when this album is viewed. Click the "Manage" button to delete audio files previously uploaded.'); ?>
+		</span></span></h3>
+	</div>
+
+	<div class="wrap">
+
+		<div class="content">
+
+			<form action="#" id="theForm" name="theForm" onsubmit="update_audio(<?php e($album['Album']['id']); ?>); return false;">
+				<fieldset>
+					<label class="inline"><?php __('File'); ?>:</label>&nbsp;&nbsp;
+						<?php if (count($mp3s) == 0): ?>
+							<?php __('No MP3 assigned.'); ?>
+						<?php else: ?>
+							<select name="data[Album][audioFile]">
+								<option value="0"><?php __('No audio for this album'); ?></option>
+								<?php foreach($mp3s as $mp3): ?>
+									<option<?php e($album['Album']['audioFile'] == $mp3 ? ' selected="selected"' : ''); ?>><?php e($mp3); ?></option>
+								<?php endforeach; ?>
+							</select>
+						<?php endif; ?>
+					&nbsp;&nbsp;
+					<label class="inline"><?php __('Caption'); ?>: <span class="help"><span><?php __('Leave blank to allow the MP3\'s id3 metadata to be used by SlideShowPro. If edited, your caption will override the metatada.'); ?></span></span></label>&nbsp;&nbsp;
+
+						<?php e($form->text('Album.audioCap', array('size' => 40))); ?>
+
+					&nbsp;
+
+					<button id="audio-button" type="submit" title="<?php __('Save'); ?>" class="primary_lg"><?php __('Save'); ?></button>  
+				</fieldset>
+
+			</form>
+
+		</div> <!--close content-->
+
+	</div> <!--close wrap-->
+
+	<div class="module-footer">
+		<div>&nbsp;</div>
+	</div>
+
+</div> <!--close module-->
+
+<?php e($director->preDialogue('manage-audio')); ?>
+
+	<h1><?php __('Manage account audio'); ?></h1>
+	<p><?php __('To delete audio files from this account, check which files you wish to delete.'); ?></p>
+	
+	<form action="#" onsubmit="delete_audio(this, <?php e($album['Album']['id']) ?>); return false;">
+		
+	<div class="dialogue-scroll">     
+		<div class="wrap">
+	 		<ul class="dialogue-options">
+				<?php foreach($mp3s as $mp3): ?>
+					<li><input name="data[delete][<?php e($mp3); ?>]" type="checkbox" value="<?php e($mp3); ?>" /> <?php e($mp3); ?></li>
+				<?php endforeach; ?>
+			</ul>            
+		</div>
+	</div>
+	
+	<fieldset class="nopad">	
+		<button class="primary_lg_mod right" type="submit" title="<?php __('Delete') ?>"><?php __('Delete') ?></button> 
+		<button class="primary_lg_mod right" type="button" title="<?php __('Cancel') ?>" onclick="Messaging.kill('manage-audio');"><?php __('Cancel') ?></button> 
+	</fieldset>
+	</form>
+<?php e($director->postDialogue()); ?>

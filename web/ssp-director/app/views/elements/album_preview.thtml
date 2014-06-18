@@ -1,0 +1,31 @@
+<?php if (empty($album['Album']['aTn'])): ?>
+	
+<div id="empty-ap-settings"></div>
+	
+	<p class="halfstep"><?php __('No preview image assigned. Click the Edit button above to assign one.'); ?>
+	   </p>
+
+<?php else: ?>
+	
+	<?php
+		
+			list($src, $path, $x, $y) = explode(':', $album['Album']['aTn']);
+			$original = ALBUMS . DS . 'album-' . $path . DS . 'lg' . DS . $src;
+			$specs = getimagesize($original);
+	?>
+	<img id="preview" width="216" height="144" src="<?php e(__p(array(	'src' => $src, 
+												'album_id' => $path, 
+												'width' => 216,
+												'height' => 144,
+												'quality' => 85,
+												'anchor_x' => $x,
+												'anchor_y' => $y))); ?>" alt="Album preview image" style="margin-bottom:12px;" />
+
+	<p class="halfstep">
+		<?php if (isset($album['Album']['preview_sub'])): ?>
+			<?php printf(__("No preview image assigned. We've selected the above image for you. %s to keep it, or %s.", true), '<a href="#" onclick="assign_preview(' . $album['Album']['id'] . ', \'' . $album['Album']['aTn'] . '\', ' . $album['Album']['preview_sub'] . '); return false;">' . ucfirst(__('click here', true)) . '</a>', '<a href="#" onclick="set_prv_upload(' . $album['Album']['id'] . '); return false;">' . __('select another preview', true) . '</a>'); ?>
+		<?php else: ?>
+			<strong><?php __('Original size'); ?>:</strong> <?php e($specs[0] . 'x' . $specs[1]); ?>
+		<?php endif; ?>
+	</p>
+<?php endif; ?>

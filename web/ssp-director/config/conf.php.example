@@ -1,0 +1,34 @@
+<?php
+
+	////
+	// If you are having trouble with the Director installation,
+	// you may need to create the conf.php file by hand. Edit 
+	// this file to contain the correct credentials to connect
+	// to your MySQL host.
+	////
+	
+	// MySQL interface (mysql or mysqli). Only change if you know what you are doing.
+	$interface = 'mysql';
+	
+	// MySQL Hostname (ex: mysql.yourserver.com or localhost)
+	$host = '';
+	
+	//  The name of the database to install Director in (you must create this first)
+	$db = '';
+	
+	// Your username and password for the database
+	$user = '';
+	$pass = '';
+
+	// Database table prefix
+	// You should only change this if it conflicts with existing tables in your database
+	$pre = 'ssp_';
+	
+	// INI settings
+	// If your database runs on a non-standard port of socket, uncomment the appropriate line
+	// below and fill in the value.
+	//ini_set("$interface.default_port", '3306');
+    //ini_set("$interface.default_socket", '/tmp/mysql.sock');
+
+	// IMPORTANT: Save this file as conf.php in this directory, then restart the install process
+?>

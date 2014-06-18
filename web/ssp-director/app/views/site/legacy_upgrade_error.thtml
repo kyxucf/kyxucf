@@ -1,0 +1,43 @@
+<div id="login-container">
+	
+	<div id="login-content" style="width:300px;">
+	
+		<div class="module">
+			
+			<div class="module-head">
+				<h3 class="logo"></h3>
+			</div>
+			
+			<div class="wrap">
+				
+				<div class="content">
+							
+						<div id="alert">
+							<div class="error">
+								<div class="tr"></div>
+								<div class="content">
+									<div class="fixed icon">
+										<?php __('Upgrade error'); ?>
+									</div>
+								</div>
+								<div class="bl"><div class="br"></div></div>
+							</div>
+						</div>
+			
+					<p><?php printf(__('This version of Director cannot be upgraded directly to %s. You first need to upgrade to 1.1.9, then you can upgrade to %s.', true), DIR_VERSION, DIR_VERSION); ?></p>
+					
+					<p><?php printf(__('More information can be found %s.', true), $html->link('here', 'http://wiki.slideshowpro.net/SSPdir/UP-Legacy')); ?></p>
+		
+				</div> <!--close content-->
+		
+			</div> <!--close module wrap-->
+		
+			<div class="module-footer">
+				<div>&nbsp;</div>
+			</div>
+					
+		</div> <!--close module-->
+		
+	</div> <!--close login-content-->
+
+</div> <!--close login-container-->

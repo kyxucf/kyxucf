@@ -1,0 +1,108 @@
+<div id="login-container">
+	
+	<div id="login-content">
+	
+		<div class="out-module">
+			               
+			<div class="wrap"> 
+				
+				<div class="out-module-logo"></div>    
+			
+				<div class="content">
+
+					<h1><?php __('Upgrade'); ?></h1>
+
+					<?php if ($error): ?> 
+					<div id="alert">
+						<div class="error">
+							<div class="tr"></div>
+							<div class="content">
+								<div class="fluid icon">
+									<?php __('Error!'); ?><br />
+									<p><?php __('Director now requires PHP 4.3.7 or higher. Your installation of PHP is not adequate for this version of Director. You will need to contact your host to request an upgrade.'); ?></p>   
+					   		 	</div>
+							</div>
+							<div class="bl"><div class="br"></div></div>
+						</div>
+					</div>          
+											
+					<?php else: ?>
+							
+						<?php if ($dated): ?>
+							
+							<div id="alert">
+								<div class="error">
+									<div class="tr"></div>
+									<div class="content">
+										<div class="fluid icon">
+							
+						   					 <?php __('Error!'); ?><br />
+												 <p><?php printf(__('In order to upgrade to Director %s, you must be already running a 1.2.x or 1.1.x install. This install is at version %s. Please upgrade to 1.1.9, then upgrade to %s.', true), DIR_VERSION, $version, DIR_VERSION); ?></p>    
+										  
+										 </div>
+									</div>
+									<div class="bl"><div class="br"></div></div>
+								</div>
+							</div>  	
+										 	
+							<?php elseif ($alter): ?> 
+								
+							   	<div id="alert">
+									<div class="error">
+										<div class="tr"></div>
+										<div class="content">
+											<div class="fluid icon">
+								
+							  					<?php __('Error!'); ?><br />
+												<p><?php __('In order to upgrade Director, your database user must have ALTER privileges. Contact your host or system administrator for more information.'); ?></p>     
+												
+												
+										 	 </div>
+										</div>
+										<div class="bl"><div class="br"></div></div>
+									</div>
+								</div>
+								
+							<?php else: ?>  
+								
+								<script type="text/javascript" charset="utf-8">
+									<?php foreach($migrations as $m): ?>
+										migrations.push(<?php e($m); ?>)
+									<?php endforeach; ?>      
+								</script>  
+								
+								<div id="step1">
+									<p><?php printf(__('Welcome to %s. Upgrading will just take a moment, and it will be broken into steps to ensure it all completes successfully.', true), '<strong>SlideShowPro Director v' . DIR_VERSION . '</strong>'); ?></p>
+							
+									<form action="#" method="post" onsubmit="Messaging.hello(__('Upgrading Director...'), 1, false, true); upgrade(); return false;">
+										<p class="install-bttn">
+											<button class="primary_lg" type="submit" title="<?php __('Start upgrade'); ?>"><?php __('Start upgrade'); ?></button>
+										</p>
+									</form>
+								</div>
+								
+								<div id="finished" style="display:none">
+									<p><?php printf(__('Success! Director has been upgraded to v%s', true), DIR_VERSION); ?>.</p>
+
+									<form action="<?php e($html->url('/users/login')); ?>" method="get">
+										<p class="install-bttn">
+											<button class="primary_lg" type="submit" title="<?php __('Sign in'); ?>"><?php __('Sign in'); ?></button>
+										</p>
+									</form>   
+								</div>
+							
+								<div id="dummy" style="display:none"></div>  
+								
+							<?php endif; ?>
+
+					<?php endif; ?>
+					
+				</div> <!--close content-->
+
+			</div> <!--close wrap-->
+
+		</div> <!--close module-->
+
+	</div> <!--close login-content-->
+
+</div> <!--close login-container-->

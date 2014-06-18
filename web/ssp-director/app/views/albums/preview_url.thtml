@@ -1,0 +1,13 @@
+<?php
+	
+	list($src, $path) = explode(':', $album['Album']['aTn']);
+	e(__p(array(
+		'src' => $src,
+		'album_id' => $path,
+		'width' => 216,
+		'height' => 216,
+		'square' => 0,
+		'anchor_x' => $this->data['x'], 
+		'anchor_y' => $this->data['y']))); 
+
+?>

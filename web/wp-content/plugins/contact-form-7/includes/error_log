@@ -1,0 +1,2 @@
+[29-Jan-2013 07:10:27 America/New_York] PHP Fatal error:  Call to undefined function add_action() in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/includes/controller.php on line 3
+[23-Aug-2013 18:17:11 America/New_York] PHP Fatal error:  Call to undefined function add_action() in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/includes/controller.php on line 3

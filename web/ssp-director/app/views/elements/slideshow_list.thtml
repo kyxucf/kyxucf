@@ -1,0 +1,28 @@
+	<?php if (count($shows) === 0): ?>  
+		
+		<div id="alert">
+			<div class="warn">
+				<div class="tr"></div>
+				<div class="content">
+					<div class="fixed icon">
+<?php __('No bookmarks. Click "Add bookmark" above to add one.'); ?>
+					</div>
+				</div>
+				<div class="bl"><div class="br"></div></div>
+			</div>
+		</div>
+		
+	<?php else: ?>
+		<ul class="dash-strip module-first">
+		
+			<?php $i = 1; $count = count($shows); foreach($shows as $show): ?>
+				<li> 
+					<?php if ($user['perms'] > 1): ?>                               						
+						<button type="button" class="primary_sm right" title="<?php __('Delete'); ?>" onclick="delete_slideshow(<?php e($show['Slideshow']['id']) ?>); return false;"><?php __('Delete'); ?></button>   
+					<?php endif; ?>  
+						
+					<button type="button" class="primary_sm right nudgeR" title="<?php __('[#Action. Example: View the slideshow#]View'); ?>" onclick="fetch_slideshow('<?php e($show['Slideshow']['url']); ?>')"><?php __('[#Action. Example: View the slideshow#]View'); ?></button><h4 class="icon_label_slideshow"><?php e(htmlspecialchars($show['Slideshow']['name'])); ?></h4>	
+				</li>
+			<?php $i++; endforeach; ?>
+			</ul>
+	<?php endif; ?>

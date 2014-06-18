@@ -1,0 +1,123 @@
+<div id="login-container">
+	
+	<div id="login-content" style="width:450px;">
+	
+		<div class="out-module">
+			
+			<div class="wrap">
+
+				<div class="out-module-logo"></div>    
+				
+				<div class="content">
+				
+					<?php if (isset($error)): ?>
+					
+						<?php if (preg_match('/^TRANSFER/', $error)): $bits = explode('||', $error); ?>
+							
+							<p><?php printf(__('This key has already been used at the following domain: %s. Would you like to transfer this key from %s to this domain?', true), '<strong>' . $bits[1] . '</strong>', $bits[1]); ?></p>
+							
+							<p><em><?php printf(__('WARNING: This will disable the installation of Director at %s', true), $bits[1]); ?></em>.</p>
+							
+							<form action="<?php e($html->url('/accounts/activate')); ?>" method="post">
+
+							<input type="hidden" name="data[transfer]" value="1" />
+							<input type="hidden" name="data[Account][activation_key]" value="<?php e($this->data['Account']['activation_key']); ?>" />
+							
+							<fieldset class="install-button">
+								<button type="submit" title="<?php __('Transfer key'); ?>" class="primary_lg right"><?php __('Transfer key'); ?></button>
+							</fieldset>
+							
+							</form>
+							
+						<?php else: ?>
+						
+						<div id="alert">
+							<div class="error">
+								<div class="tr"></div>
+								<div class="content">
+									<div class="fluid icon">
+										<?php e($error); ?>
+									</div>
+								</div>
+								<div class="bl"><div class="br"></div></div>
+							</div>
+						</div>
+												
+						<form action="<?php e($html->url('/accounts/activate')); ?>" method="post">
+							<fieldset>
+								<label><?php __('Activation key'); ?>:</label>
+								<div class="input-wrap"><?php e($form->text('Account.activation_key', array('size' => 40, 'class' => 'wide big'))); ?></div>
+							</fieldset>
+
+							<fieldset class="install-button">
+								<button type="submit" title="<?php __('Activate'); ?>" class="primary_lg right"><?php __('Activate'); ?></button> <button type="button" onclick="location.href='<?php e(DIR_HOST); ?>/index.php?/accounts/info'" title="<?php __('Cancel'); ?>" class="primary_lg right"><?php __('Cancel'); ?></button>
+							</fieldset>
+						</form>
+						
+						<?php endif; ?>
+					
+					<?php elseif (isset($success)): ?>
+					
+						<p><?php printf(__('Director has now been activated. %s', true), $html->link(__('Return to the snapshot', true), '/snapshot')); ?>.</p>
+					
+					<?php else: ?>
+					
+						<?php if (empty($account['Account']['last_check'])): ?>
+						
+							<p><?php __('Director now requires activation using the activation key found in your user profile at slideshowpro.net. Enter the key below to activate this copy of Director. You may only activate one domain per license.'); ?></p>
+							
+						<?php elseif ($action == 'edit'): ?>
+						
+							<?php if (TRIAL_STATE): ?>
+							
+							<p><?php printf(__('To unlock your Director trial, enter your activation key below. To purchase an activation key, %s.', true), '<a href="https://slideshowpro.net/account_center/signup.php" target="_blank">' . __('visit slideshowpro.net', true) . '</a>'); ?></p>
+								
+							<?php else: ?>
+								
+							<p><?php __('Your installation is currently activated using the key below. To change to a different key, enter it below and click activate.'); ?></p>
+							
+							<?php endif; ?>
+							
+						<?php else: ?>
+							
+							<div id="alert">
+								<div class="error">
+									<div class="tr"></div>
+									<div class="content">
+										<div class="fixed icon">
+											<?php __('Activation error'); ?>
+										</div>
+									</div>
+									<div class="bl"><div class="br"></div></div>
+								</div>
+							</div>
+							
+							<p><?php __('There is a problem with your activation key. Please make sure the key below matches the one found in your user profile at slideshowpro.net. You may only activate one domain per license. If your domain has changed and you would like to transfer the key, simply resubmit it below and confirm the transfer on the next screen.'); ?></p>
+
+						<?php endif; ?>
+						<form action="<?php e($html->url('/accounts/activate')); ?>" method="post">
+							<fieldset>
+								<label><?php __('Activation key'); ?>:</label>
+								<div class="input-wrap"><?php e($form->text('Account.activation_key', array('size' => 40, 'class' => 'wide big'))); ?></div>
+							</fieldset>
+							
+							<fieldset><button type="submit" title="<?php __('Activate'); ?>" class="primary_lg right"><?php __('Activate'); ?></button><?php if ($action == 'edit'): ?> <button type="button" onclick="location.href='<?php e(DIR_HOST); ?>/index.php?/accounts/info'" title="<?php __('Cancel'); ?>" class="primary_lg right"><?php __('Cancel'); ?></button><?php endif; ?></fieldset>
+						</form>
+					
+					<?php endif; ?>
+					
+				</div> <!--close content-->
+		
+			</div> <!--close module wrap-->
+					
+		</div> <!--close module-->
+		
+		<br clear="all" />
+		
+		<div id="simple-footer">
+			<span>SlideShowPro Director <?php e(DIR_VERSION); ?></span> 
+		</div>
+		
+	</div> <!--close login-content-->
+
+</div> <!--close login-container-->

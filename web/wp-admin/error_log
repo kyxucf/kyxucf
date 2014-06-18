@@ -1,0 +1,185 @@
+[23-Apr-2009 08:42:05] PHP Fatal error:  Out of memory (allocated 46137344) (tried to allocate 11392 bytes) in /home/turner/public_html/kyxucf.com/wp-admin/includes/image.php on line 147
+[07-May-2009 15:28:58] not well-formed (invalid token) at line 37, column 54
+[07-May-2009 15:28:59] not well-formed (invalid token) at line 53, column 54
+[10-Jun-2009 16:46:08] not well-formed (invalid token) at line 130, column 23
+[10-Jun-2009 21:55:10] not well-formed (invalid token) at line 130, column 23
+[17-Jan-2011 17:11:59] WordPress database error Multiple primary key defined for query ALTER TABLE wp_ssp_galleries ADD PRIMARY KEY	 (id) made by activate_plugin, do_action, call_user_func_array, SlidePress->action_activate, dbDelta
+[17-Jan-2011 17:11:59] WordPress database error Multiple primary key defined for query ALTER TABLE wp_ssp_galleries ADD PRIMARY KEY	 (id) made by activate_plugin, do_action, call_user_func_array, SlidePress->action_activate, SlidePress->update_database, dbDelta
+[14-Jan-2013 20:14:59 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/admin-header.php on line 109
+[14-Jan-2013 20:14:59 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/general-template.php on line 1809
+[14-Jan-2013 20:14:59 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/list-table.php on line 42
+[14-Jan-2013 15:14:59 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[14-Jan-2013 15:14:59 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[14-Jan-2013 20:14:59 UTC] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/post.php on line 274
+[14-Jan-2013 15:14:59 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[14-Jan-2013 15:14:59 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[14-Jan-2013 15:15:10 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[14-Jan-2013 20:15:10 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/admin-ajax.php on line 33
+[01-May-2013 02:41:28 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/admin/admin.php on line 190
+[20-May-2013 16:25:21 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[20-May-2013 16:25:21 America/New_York] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/post.php on line 12
+[20-May-2013 20:25:21 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/admin.php on line 106
+[20-May-2013 20:25:21 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/menu.php on line 244
+[20-May-2013 16:25:21 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[20-May-2013 16:25:21 America/New_York] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/post.php on line 12
+[20-May-2013 20:25:21 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/admin.php on line 106
+[20-May-2013 20:25:21 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/menu.php on line 244
+[20-May-2013 20:25:21 UTC] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/post.php on line 185
+[20-May-2013 20:25:21 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/media.php on line 1555
+[20-May-2013 20:25:21 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/edit-form-advanced.php on line 104
+[20-May-2013 20:25:21 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/edit-form-advanced.php on line 283
+[20-May-2013 20:25:21 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/admin-header.php on line 109
+[20-May-2013 20:25:21 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/general-template.php on line 1809
+[20-May-2013 20:25:21 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/list-table.php on line 42
+[20-May-2013 20:25:22 UTC] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/post.php on line 274
+[29-May-2013 17:03:18 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[29-May-2013 21:03:18 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/list-table.php on line 42
+[29-May-2013 17:03:19 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[29-May-2013 17:03:20 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[29-May-2013 21:03:20 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/list-table.php on line 42
+[29-May-2013 17:03:26 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[29-May-2013 21:03:26 UTC] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/post-new.php on line 54
+[29-May-2013 21:03:26 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/media.php on line 1555
+[29-May-2013 21:03:26 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/edit-form-advanced.php on line 104
+[29-May-2013 21:03:26 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/general-template.php on line 1809
+[29-May-2013 21:03:27 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/list-table.php on line 42
+[29-May-2013 17:03:27 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[29-May-2013 17:03:27 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[29-May-2013 17:03:28 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[29-May-2013 17:03:28 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[29-May-2013 17:03:55 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[29-May-2013 17:04:06 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[29-May-2013 17:04:06 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[29-May-2013 21:04:06 UTC] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/post.php on line 185
+[29-May-2013 21:04:06 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/media.php on line 1555
+[29-May-2013 21:04:06 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/edit-form-advanced.php on line 104
+[29-May-2013 21:04:06 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/general-template.php on line 1809
+[29-May-2013 21:04:06 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/list-table.php on line 42
+[29-May-2013 17:04:06 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[07-Sep-2013 10:58:44 America/New_York] PHP Warning:  Unknown: Unable to allocate memory for pool. in Unknown on line 0
+[07-Sep-2013 10:58:44 America/New_York] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/index.php on line 12
+[07-Sep-2013 10:58:44 America/New_York] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/admin.php on line 30
+[07-Sep-2013 10:58:44 America/New_York] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-load.php on line 29
+[07-Sep-2013 10:58:44 America/New_York] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-config.php on line 75
+[07-Sep-2013 10:58:44 America/New_York] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 21
+[07-Sep-2013 10:58:44 America/New_York] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 22
+[07-Sep-2013 10:58:44 America/New_York] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 23
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 64
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 65
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/functions.php on line 8
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 66
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 67
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 68
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 69
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/pomo/mo.php on line 10
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/pomo/translations.php on line 10
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/pomo/mo.php on line 11
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/load.php on line 329
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/load.php on line 392
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 82
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 99
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 105
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 106
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 107
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 108
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 109
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 110
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 111
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 112
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 113
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 114
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 115
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 116
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 117
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 118
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 119
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 120
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 121
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 122
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 123
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 124
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 125
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 126
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 127
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 128
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 129
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 130
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 131
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 132
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/script-loader.php on line 25
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/script-loader.php on line 28
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/script-loader.php on line 31
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/script-loader.php on line 34
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/script-loader.php on line 37
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 133
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 134
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 135
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 136
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 137
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 138
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 139
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 140
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 141
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 142
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 143
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 144
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 183
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 195
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/akismet/akismet.php on line 49
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/akismet/akismet.php on line 52
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 195
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/wp-contact-form-7.php on line 74
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 3
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 4
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 5
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 6
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 7
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 8
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 9
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 12
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/admin/admin.php on line 3
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 195
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 195
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 199
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 200
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/functions.php on line 2675
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 28
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 28
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 28
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 28
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 28
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 28
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 28
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 28
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 28
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 28
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 28
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 28
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 28
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include_once() [<a href='function.include-once'>function.include-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/plugins/contact-form-7/settings.php on line 28
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 277
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-settings.php on line 291
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/themes/modularity-lite-custom/functions.php on line 7
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/themes/modularity-lite-custom/functions.php on line 10
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/themes/modularity-lite-custom/functions.php on line 13
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-content/themes/modularity-lite-custom/functions.php on line 16
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require() [<a href='function.require'>function.require</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-includes/admin-bar.php on line 25
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/admin.php on line 67
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/admin.php on line 17
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/admin.php on line 20
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/admin.php on line 23
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/admin.php on line 26
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/admin.php on line 29
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/admin.php on line 32
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/admin.php on line 35
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/admin.php on line 38
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/admin.php on line 41
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/admin.php on line 44
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/admin.php on line 47
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/admin.php on line 50
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/admin.php on line 53
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/admin.php on line 54
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/admin.php on line 57
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/admin.php on line 60
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/admin.php on line 63
+[07-Sep-2013 14:58:44 UTC] PHP Warning:  require_once() [<a href='function.require-once'>function.require-once</a>]: Unable to allocate memory for pool. in /home/kyxucf/www/web/wp-admin/includes/admin.php on line 66

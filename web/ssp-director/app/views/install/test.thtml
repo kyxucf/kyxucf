@@ -1,0 +1,89 @@
+<div id="login-container">
+	
+	<div id="login-content">
+	
+		<div class="out-module">   
+			
+			<div class="wrap">
+			
+				<div class="out-module-logo"></div>    
+			
+				<ul id="process">
+					<li class="first prevactive"><span><?php __('Step 1'); ?></span></li>
+					<li class="active"><span><?php __('Step 2'); ?>: <?php __('Server test'); ?></span></li>
+					<li class=""><span><?php __('Step 3'); ?></span></li>
+					<li class=""><span><?php __('Step 4'); ?></span></li>
+					<li class=""><span><?php __('Step 5'); ?></span></li>
+					<li class="last"><span><?php __('Step 6'); ?></span></li>
+				</ul>  
+				
+				<br clear="all" />
+				
+				<div class="content">        
+			
+					<h1><?php __('Installation: Running server test...'); ?></h1>
+						
+				
+						<?php if ($success): ?>
+												
+
+							<p class="success"><?php __("Congratulations! Your server meets the basic software requirements."); ?></p>
+									 
+							<form action="<?php e($html->url('/install/activate')); ?>" method="post">
+
+								<input type="hidden" name="data[dummy]" value="1" />
+					
+							<?php umask(0); ?>
+						
+							<?php if (is_writable($config_path) || @chmod($config_path, 0777)): ?>
+
+							<?php else: ?>
+							
+								<div id="alert">
+									<div class="error">
+										<div class="tr"></div>
+										<div class="content">
+											<div class="fixed icon">
+												<?php __("Uh oh. There's a permissions issue. See below."); ?>
+											</div>
+										</div>
+										<div class="bl"><div class="br"></div></div>
+									</div>
+								</div>   
+							
+								<p><?php printf(__('Please set the permissions on the %s folder to %s before continuing this installation. The full path to the config folder on your server is %s.', true), '<strong>config</strong>', '<strong>777</strong>', '<strong>' . $config_path . '</strong>'); ?></p>
+							<?php endif; ?>
+
+							<p class="install-bttn">
+								<button id="agree-btn" class="primary_lg" type="submit" title="<?php __('Continue'); ?>"><?php __('Continue'); ?></button>
+							</p>      
+							
+							</form>
+
+						<?php else: ?>   
+						
+							 <div id="alert">
+								<div class="error">
+									<div class="tr"></div>
+									<div class="content">
+										<div class="fixed icon">
+											<?php __("Uh oh. There's a server compatibility issue. See below."); ?>
+										</div>
+									</div>
+									<div class="bl"><div class="br"></div></div>
+								</div>
+							</div>
+						
+						
+							<p><?php printf(__('Your server does not meet the basic requirements. For more information, run the %s provided on our site. This installation cannot continue.', true), '<a href="http://www.slideshowpro.net/downloads/director_test/director_test.zip">' . __('full test suite', true) . '</a>'); ?></p>
+						<?php endif; ?>         
+						
+				  </div>
+
+			</div> <!--close module wrap-->
+		
+		</div> <!--close module-->
+
+	</div> <!--close login-content-->
+
+</div> <!--close login-container-->

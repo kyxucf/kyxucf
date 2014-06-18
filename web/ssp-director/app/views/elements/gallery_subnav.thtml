@@ -1,0 +1,20 @@
+<div id="sub-nav">
+	
+	<ul>
+	<li class="title" id="title-description">
+		<?php e($this->renderElement('gallery_title')) ?>
+	</li>
+	<li class="spacer">&nbsp;</li>
+	<li class="<?php e($tab == 'settings' ? 'selected first' : 'first'); ?>">
+		<?php e($html->link(__('Settings', true), "/galleries/edit/{$gallery['Gallery']['id']}")); ?>
+	</li>
+	<li<?php e($tab == 'albums' ? ' class="selected"' : ''); ?>>
+		<?php e($html->link(__('Manage albums', true), "/galleries/edit/{$gallery['Gallery']['id']}/albums")); ?>
+	</li>
+	<li>
+		<a href="#" onclick="embed.id = <?php e($html->value('Gallery.id')) ?>; embed.type = 'gallery'; open_embed_dialogue();"><?php __('Publish'); ?></a>
+	</li>
+	
+</ul>
+
+</div>

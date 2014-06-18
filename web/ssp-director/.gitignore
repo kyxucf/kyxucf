@@ -1,0 +1,6 @@
+album-audio/*
+albums/*
+app/tmp/*
+config/conf.php
+xml_cache/*
+

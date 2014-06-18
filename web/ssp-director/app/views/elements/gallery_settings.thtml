@@ -1,0 +1,178 @@
+<?php e($this->renderElement('gallery_head')); ?>
+
+<div id="container-wrap">
+
+	<div class="col-wrap">
+		
+		<?php e($this->renderElement('gallery_subnav')); ?>
+		
+	    <div id="dash-left-col">
+			
+			<div class="inner-left">
+   	       	
+				<!-- ALBUM PREVIEW -->   
+				
+				<div class="module">
+
+					<div class="module-head">
+						
+						<button class="primary_sm right" onclick="location.href='<?php e($html->url('/galleries/edit/' . $gallery['Gallery']['id'] . '/albums')); ?>'" title="<?php __('Manage') ?>"><?php __('Manage') ?></button>   
+						
+						<h3><?php __('Albums'); ?></h3>
+						
+					</div>
+
+					<div class="wrap">
+
+						<div class="content">
+							
+							<?php if (count($albums) == 0): ?>
+								<p class="halfstep"><?php __('No albums have been assigned to this gallery. Click the "Manage" button to add albums.'); ?>
+								   </p>
+							<?php else: ?>
+							<div style="width:216px;margin-bottom:12px">
+								<?php 
+									$limit = 6;
+									if (count($albums) < $limit) {
+										$limit = count($albums);
+									}
+									for ($i = 0; $i < $limit; $i++) {
+										$album = $albums[$i];
+										e($director->albumBgImg($album['Album']['aTn'], $album['Album']['id'], 72, 72));
+									}
+									
+								?>
+							</div>
+
+							<p class="halfstep">
+
+								<strong><?php __('Total albums'); ?>:</strong> <?php e(count($albums)); ?>
+
+							</p>
+							
+							<?php endif; ?>
+
+						</div> <!--close content--> 
+						
+					</div> <!--close wrap-->
+
+					<div class="module-footer">
+						<div>&nbsp;</div>
+					</div>
+
+				</div> <!--close module--> 
+
+		    </div>
+				
+			<div class="inner-right">
+				
+				<div class="module">
+
+					<div class="module-head">
+						<h3><?php __('Gallery information'); ?></h3>
+					</div>
+
+					<div class="wrap">
+
+						<div class="content">      
+							
+							 <fieldset>
+								<label class="inline"><?php __('Gallery id'); ?>:</label> gallery-<?php e($html->value('Gallery.id')); ?>
+                                 </fieldset>
+
+						   	<?php if ($is_main): ?>
+
+							<fieldset>
+								<label><?php __('Gallery title'); ?>:</label>
+				   				<?php __($gallery['Gallery']['name']); ?>
+				   			</fieldset>
+
+							<fieldset>
+								<label><?php __('Gallery description'); ?>:</label>
+				   				<?php __($gallery['Gallery']['description']); ?>
+				   			</fieldset>
+
+							<?php else: ?>
+
+							<form name="gallery_name_form" action="#" onsubmit="update_dg_name(this, <?php e($html->value('Gallery.id')); ?>); return false;">
+								<fieldset>
+									<label><?php __('Gallery title'); ?>:</label>
+					   				<div class="input-wrap"><?php e($form->text('Gallery.name', array('class' => 'wide'))); ?></div>
+					   			</fieldset>
+
+								<fieldset>
+									<label><?php __('Gallery description'); ?>:</label>
+					   				<div class="input-wrap"><?php e($form->textarea('Gallery.description', array('rows' => 5, 'class' => 'wide'))); ?></div>
+					   			</fieldset>
+
+								<fieldset>							
+									 <button id="save-button" type="submit" title="<?php __('Save'); ?>" class="primary_lg right"><?php __('Save'); ?></button>        
+								</fieldset>   
+							</form>
+
+							<?php endif; ?>
+
+						</div> <!--close content-->
+
+					</div> <!--close wrap-->
+
+					<div class="module-footer">
+						<div>&nbsp;</div>
+					</div>
+
+				</div> <!--close module-->
+				
+			</div>  
+			
+		</div> <!--close left-col-->
+		                           
+		<div id="dash-right-col">
+
+			<div class="inner">          
+			
+				<div class="module">
+
+					<div class="module-head">
+						<h3><?php __('Publishing'); ?></h3>
+					</div>
+
+					<div class="wrap">
+
+						<div class="content">
+								
+							<form name="publish_state" action="#" onsubmit="Director.Utilities.copyToClipboard('xml_path'); return false;">
+															
+								<?php $id = 'clip_wrap_gallery_' . $html->value('Gallery.id'); ?>
+								<div id="<?php e($id); ?>" class="copier" style="float:right;"><span id="<?php e($id); ?>_tocopy" style="display:none;"><?php e(DATA_LINK . '?gallery=' . $html->value('Gallery.id')) ?></span><button id="<?php e($id) ?>_button" type="button" title="<?php __('Copy'); ?>" class="primary_sm"><?php __('Copy'); ?></button><div id="<?php e($id) ?>_target" style="position:absolute;top:0;left:0;z-index:1500;"></div></div><span id="xml_path" style="display:none;"><?php e(DATA_LINK . '?gallery=' . $html->value('Gallery.id')); ?></span>
+								
+								<label><?php __('XML file path'); ?>: <span class="help"><span><?php __('For loading this content remotely in the SlideShowPro Player.'); ?></span></span></label>
+								
+													
+						</form>
+							
+							<div class="divider">&nbsp;</div>   
+							 
+							<div style="margin-bottom:8px;">
+							
+								<button onclick="embed.id = <?php e($html->value('Gallery.id')) ?>; embed.type = 'gallery'; open_embed_dialogue();" type="button" title="<?php __('Embed'); ?>" class="primary_sm right"><?php __('Embed'); ?></button>
+								<h5 style="margin:0;padding:0;"><?php __('Embed slideshow'); ?>:</h5>                 
+                                                       
+					        </div>
+					
+					 </div> <!--close content-->
+
+					</div> <!--close wrap-->
+
+					<div class="module-footer">
+						<div>&nbsp;</div>
+					</div>
+
+				</div> <!--close module-->
+			
+	   		</div>
+
+		</div> <!--close right-col-->
+		
+	</div> <!--close col-wrap-->
+	
+</div> <!--close container-wrap-->

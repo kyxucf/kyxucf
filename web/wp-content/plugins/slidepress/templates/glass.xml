@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<params>
+<customParams
+	navButtonStyle = "Quartz Small"
+/>
+<nativeParams
+	albumBackgroundAlpha = ".7"
+	captionBackgroundAlpha = ".6"
+	contentAreaBackgroundColor = "0x222222"
+	contentAreaStrokeAppearance = "Visible"
+	galleryBackgroundAlpha = ".7"
+	galleryRows = "3"
+	mediaPlayerButtonColor = "0xFFFFFF"
+	mediaPlayerProgressColor = "0xCCCCCC"
+	mediaPlayerTextColor = "0xEEEEEE"	
+	mediaPlayerVolumeHighlightColor = "0xEEEEEE"
+	navBackgroundAlpha = ".7"
+	navButtonGlowAlpha = ".6"
+	navLinksBackgroundAlpha = ".2"
+	navLinksBackgroundShadowAlpha = ".6"
+	navThumbLinkSize = "13,13"
+/>
+</params>

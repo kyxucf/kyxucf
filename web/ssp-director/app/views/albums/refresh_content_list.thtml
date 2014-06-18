@@ -1,0 +1,21 @@
+<?php
+
+	$sort = $album['Album']['sort_type'];
+	
+	if ($sort == 'manual') {
+		$sorting = true;
+		$sort_s = 'true';
+	} else {
+		$sorting = false;
+		$sort_s = 'false';
+	}
+
+	if (isset($_COOKIE['hide_inactive']) && $_COOKIE['hide_inactive'] == 'true') {
+		$hide = $_COOKIE['hide_inactive'];
+	} else {
+		$hide = false;
+	}
+	
+	e($this->renderElement('album_image_view', array('sort' => $sort, 'sorting' => $sorting, 'hide' => $hide, 'sort_s' => $sort_s))); 
+
+?>

@@ -1,0 +1,34 @@
+<?php e($this->renderElement('gallery_head')); ?>
+
+<div id="container-wrap">
+	
+	<div class="col-wrap">
+		
+		<?php e($this->renderElement('gallery_subnav')); ?>
+		
+		<div class="clear"></div>
+		
+		<?php if($gallery['Gallery']['smart'] && !$gallery['Gallery']['main']): ?>
+
+			<?php e($asset->js('picker')); ?> 
+			<?php e($this->renderElement('gallery_albums_smart')); ?>
+			
+		<?php else: ?>
+		
+			<?php if ($gallery['Gallery']['main'] && empty($gallery['Tag'])): ?>
+				<p><?php __('No albums have been added to the "All albums" feed. To add an album to this gallery, set its publish state to "Active".'); ?></p>
+			<?php elseif (!$gallery['Gallery']['main'] && empty($gallery['Tag']) && empty($non_members)): ?>
+				<p><?php __('There are no active albums available for this gallery. To make an album available, set its publish state to "Active".'); ?></p>
+			<?php else: ?>
+			
+				<div id="fill">
+					<?php e($this->renderElement("galleries_edit_pane")); ?>
+				</div>
+		
+			<?php endif; ?>
+		
+		<?php endif; ?>
+
+	</div>
+	
+</div>

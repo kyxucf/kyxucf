@@ -1,0 +1,91 @@
+<div class="module">
+	
+<div class="module-head">
+	<h3><?php __('Publishing'); ?>
+	</h3>
+</div>
+
+<div class="wrap">
+
+	<div class="content">
+		<form action="#" method="post" onsubmit="toggle_album_active(this, <?php e($album['Album']['id']); ?>); return false;">
+				<fieldset>
+					<button id="state-button" type="submit" title="<?php __('Save'); ?>" class="primary_sm right"><?php __('Save'); ?></button>      
+				<label class="inline"><?php __('Status'); ?>:</label>  <span class="help"><span><?php __('Albums with an "Active" status can be included in galleries. They are "Inactive" by default.'); ?></span></span> &nbsp;
+				<?php e($form->select('Album.active', array(0 => __('Inactive', true), 1 => __('Active', true)), null, null, null, false)) ?>
+			</fieldset>
+		</form>  
+		
+		<?php if ($album['Album']['active']): ?>  
+			<fieldset>
+				<button onclick="Messaging.dialogue('edit-galleries'); return false;" title="<?php __('Edit'); ?>" class="primary_sm right"><?php __('Edit'); ?></button> 
+	
+				<label class="inline"><?php __('Galleries'); ?>:</label>
+				<?php if (empty($album['Tag'])): ?><?php __('Not active in any galleries.'); ?>
+				<?php else: ?>
+					<span id="fill"><?php printf(__('Active in %s.', true), '<strong>' . count($album['Tag']) . '</strong> ' . ife(count($album['Tag']) > 1, __('galleries', true), __('gallery', true))); ?></span>
+				<?php endif; ?>             
+			</fieldset>
+		<?php endif; ?>
+			
+			<div class="divider">&nbsp;</div>   
+			
+			<div style="margin-bottom:8px;">
+			<?php $id = 'clip_wrap_album_' . $html->value('Album.id'); ?>
+		       
+			<div id="<?php e($id); ?>" class="copier" style="float:right;"><span id="<?php e($id); ?>_tocopy" style="display:none;"><?php e(DATA_LINK . '?album=' . $html->value('Album.id')) ?></span><button id="<?php e($id) ?>_button" type="button" title="<?php __('Copy'); ?>" class="primary_sm"><?php __('Copy'); ?></button><div id="<?php e($id) ?>_target" style="position:absolute;top:0;left:0;z-index:1500;"></div></div>
+			<h5 style="margin:0;padding:0;"><?php __('XML file path'); ?>: <span class="help"><span><?php __('For loading this content remotely in the SlideShowPro Player.'); ?></span></span></h5>
+			</div> 
+			
+			<div class="divider">&nbsp;</div>   
+			
+			<div style="margin-bottom:8px;">
+				<button onclick="embed.id = <?php e($html->value('Album.id')) ?>; embed.type = 'album'; open_embed_dialogue();" type="button" title="<?php __('Embed'); ?>" class="primary_sm right"><?php __('Embed'); ?></button>
+			<h5 style="margin:0;padding:0;"><?php __('Embed slideshow'); ?>:</h5>
+			</div>
+	</div>
+
+</div>
+
+<div class="module-footer">
+	<div>&nbsp;</div>
+</div>
+
+</div>
+
+<?php e($director->preDialogue('edit-galleries')); ?>
+
+	<h1><?php __('Add/remove from galleries'); ?></h1>
+	<p><?php __('Click the switch to the left of each gallery title to include or exclude this album from a gallery.'); ?></p>
+	
+	<div class="dialogue-scroll">
+		
+		<div class="wrap">
+			
+ 			<ul class="dialogue-options">
+				<li class="active"><a title="All active albums" class="icon smart nudgeR" onclick="$('all-albums-info').toggle(); return false;"></a><?php __('All albums'); ?><span style="display:none" id="all-albums-info"><?php __('The "All albums" smart gallery contains all active albums. To remove this album from that smart gallery (and all other galleries), set its status to inactive.'); ?> <a href="#" onclick="$('all-albums-info').toggle(); return false;" title="Hide"><?php __('Hide'); ?></a></span></li>
+				<?php
+					$parents = array();
+					foreach ($album['Tag'] as $t):
+						$parents[] = (int) $t['did'];
+					endforeach;
+				?>
+				<?php foreach($galleries as $g): ?>
+					<?php 
+						if (in_array($g['Gallery']['id'], $parents)): 
+							$a_str = 'active';
+						else:
+							$a_str = 'inactive';
+						endif;
+					?><li class="<?php e($a_str); ?>"><a class="icon <?php e($a_str); ?> nudgeR" href="#" onclick="toggle_album_links(<?php e($g['Gallery']['id']); ?>, <?php e($album['Album']['id']); ?>, this); return false"></a> <?php e($g['Gallery']['name']); ?></li>
+				<?php endforeach; ?>
+			</ul>         
+			
+		</div>
+			
+	</div>
+	
+	<fieldset class="nopad">	
+		<button class="primary_lg_mod right"  type="button" title="<?php __('Done') ?>" onclick="Messaging.kill('edit-galleries');"><?php __('Done') ?></button>
+	</fieldset>
+<?php e($director->postDialogue()); ?>

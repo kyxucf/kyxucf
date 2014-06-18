@@ -1,0 +1,30 @@
+<?php
+
+	if (isset($this->data['User'])) {
+		$current = $this->data['User']['lang'];
+	} else {
+		$current = $account['Account']['lang'];
+	}
+
+?>
+
+	<select id="lang-switcher" onchange="change_language()">
+	<?php foreach($langs as $lang): 
+		if (is_dir(APP . DS . 'locale' . DS . $lang) && strtolower($lang) != 'sample' && $lang != '.svn'):
+			$val = r('_', '-', $lang);
+			$welcome = APP . DS . 'locale' . DS . $lang . DS . 'LC_MESSAGES' . DS . 'welcome.po';
+			if ($lang == 'eng') {
+				$name = 'English';
+			} else if (file_exists($welcome)) {
+				$contents = file_get_contents($welcome);
+				preg_match_all('/msgstr "(.*)"/', $contents, $matches);
+				$name = $matches[1][2];
+				if (empty($name)) {
+					$name = $lang;
+				}
+			}
+	?>
+			<option<?php e(ife(($val == $current), ' selected="selected"')) ?> value="<?php e($val); ?>"><?php e($name); ?></option>
+	<?php endif; endforeach; ?>	
+	</select>&nbsp;&nbsp;<button type="button" onclick="window.open('http://translation.slideshowpro.com','_blank');" title="<?php __('Help translate Director'); ?>" class="primary_sm"><?php __('Help translate Director'); ?></button>          
+	   

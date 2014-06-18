@@ -1,0 +1,16 @@
+<?php if (empty($previews)): ?>
+	<script type="text/javascript" charset="utf-8">
+		$('counter_<?php e($i['id']); ?>').select('SPAN')[0].removeClassName('is-vid-preview');
+		renum_counters();
+	</script>
+<?php else: ?>
+	<?php e($this->renderElement('assigned_previews')); ?>
+<?php endif; ?>
+<?php if ($update_lg): ?>
+<script type="text/javascript" charset="utf-8">
+	$('url_<?php e($video['Image']['id']); ?>').update('<?php e($director->getVidThumb($video['Image']['src'], $video['Image']['lg_preview'], $video['Image']['aid'], 176, 132, 1, 70, 1, false)); ?>');
+	var parent = $$('li#image_<?php e($video['Image']['id']); ?> div.thumbimg')[0];
+	Element.addClassName(parent, 'loadme');
+	do_img_load();
+</script>
+<?php endif; ?>

@@ -1,0 +1,50 @@
+div.dialogue {
+	position:absolute;
+	display:block;
+	top:20%;
+}
+
+div.scale-image {
+	display:block; 
+	position:relative;
+	text-align:left;
+}                     
+
+div.scale-image div { 
+	display:block;
+	position:absolute;
+	text-align:center;
+}
+
+button.primary_sm, button.primary_sm_alt {
+	line-height:1.4;
+	overflow:visible;
+	padding:0 6px;
+	margin:0;
+	font-size:10px; 
+}
+     
+button.primary_lg, button.primary_lg_alt {
+	overflow:visible;
+	padding:0 8px 2px 8px; 
+	line-height:1;
+	vertical-align:top;
+}
+
+div#multi-footer ul {width:460px;}
+
+a.nudgeR {margin-right:4px;}
+
+div.copier {margin-right:10px;}
+
+img.fluid {
+	-ms-interpolation-mode:bicubic;
+}     
+
+span.help {
+	display:inline;
+}
+
+div.slideshow-embed-w {
+	width:100%;
+}

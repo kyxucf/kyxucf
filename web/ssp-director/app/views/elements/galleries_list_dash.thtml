@@ -1,0 +1,5 @@
+<ul class="dash-strip module-first">
+	<?php foreach ($galleries as $gallery): ?>
+	<li class="clearfix"><span style="float:left;" class="<?php e(ife($gallery['Gallery']['smart'], 'icon_label_smartgallery', 'icon_label_gallery')) ?>"><?php e($html->link(__($gallery['Gallery']['name'], true), "/galleries/edit/{$gallery['Gallery']['id']}")); ?></span><button onclick="publish_it('gallery', <?php e($gallery['Gallery']['id']); ?>, '<?php e(addslashes($gallery['Gallery']['name'])); ?>');" type="button" title="<?php __('Publish'); ?>" class="primary_sm right"><?php __('Publish'); ?></button></li>	
+	<?php endforeach; ?>
+</ul>

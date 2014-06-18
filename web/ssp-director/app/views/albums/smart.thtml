@@ -1,0 +1,1 @@
+<?php e($this->renderElement('smart_album_content', array('images' => $images))); ?>

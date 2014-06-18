@@ -1,0 +1,16 @@
+<?php e($this->renderElement('vid_previews')); ?>
+
+<script type="text/javascript" charset="utf-8">
+	$('url_<?php e($i['id']); ?>').update('<?php e($director->getVidThumb($i['src'], $i['lg_preview'], $i['aid'], 176, 132, 1, 70, 1, false)); ?>');
+	var parent = $$('li#image_<?php e($i['id']); ?> div.thumbimg')[0];
+	
+	Element.addClassName(parent, 'loadme');
+	do_img_load();
+	
+	Director.Interface.clearClasses('is-vid-preview');
+	<?php foreach($preview_ids as $p): if (is_numeric($p)): ?>
+		$('counter_<?php e($p); ?>').select('SPAN')[0].addClassName('is-vid-preview');
+	<?php endif; endforeach; ?>
+	renum_counters();
+	
+</script>

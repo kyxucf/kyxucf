@@ -1,0 +1,406 @@
+<?php
+	$arr = unserialize($i['anchor']);
+	if (empty($arr)) {
+		$arr['x'] = $arr['y'] = 50; 
+	}
+?>
+<script type="text/javascript">
+	anc_x = <?php e($arr['x']); ?>;
+	anc_y = <?php e($arr['y']); ?>;
+</script>
+<?php
+
+	////
+	// Form the display depending on file type
+	////
+	
+	if (isSwf($i['src'])) {
+		$i_str = '
+		<div id="mov_swf" style="width:100%;height:400px;"><div id="mov_cont"></div></div>
+		<script type="text/javascript">
+			var flashvars = {}
+			var params = {
+				bgcolor: "#303030"
+			}
+			var attributes = {
+				id: "ei_video",
+				name: "ei_video"
+			}
+			swfobject.embedSWF("' . $rel_path . '", "mov_cont", "100%", "100%", "9.0.115.0", false, flashvars, params, attributes);
+		</script>';
+	} elseif ($i['is_video']) {
+			$i_str = '<div id="edit-box-img-bttns">';
+			
+			$i_str .= '<button type="button" title="' . __('View', true) . '" class="primary_sm right pull-right" onclick="launch_video(' . $i['id'] . '); return false;">' . __('View', true) . '</button>';
+			
+			$i_str .= '<div id="vembed" class="copier"><textarea id="vembed_tocopy" style="display:none;"></textarea><button id="vembed_button" style="display:none" type="button" title="' . __('Embed', true) . '" class="primary_sm right">' . __('Embed', true) . '</button><div id="vembed_target" style="position:absolute;top:0;left:0;z-index:1000;"></div></div>';
+			
+			$full_path = DIR_HOST . '/albums/album-' . $i['aid'] . '/lg/' . $i['src'];
+			
+			$i_str .= '<div id="c_' . $i['id'] . '" class="copier"><span id="c_' . $i['id'] . '_tocopy" style="display:none;">' . $full_path . '</span><button id="c_' . $i['id'] . '_button" type="button" title="' . __('Copy link', true) . '" class="primary_sm right">' . __('Copy link', true) . '</button><div id="c_' . $i['id'] . '_target" style="position:absolute;top:0;left:0;z-index:1001;"></div></div><span style="float:right">' . __('Original', true) . ': </span></div>';
+			
+			
+			
+			
+			
+			$i_str .= '
+			<div id="mov_cont" style="width:100%;height:300px;"><div id="mov_swf"></div></div>
+			<script type="text/javascript">
+				var flashvars = {
+					xmlfile: "' . DIR_HOST . '/index.php?/pics/vxml/' . $i['id'] . '",
+					full: "false" 
+				}              
+				var params = {
+					allowScriptAccess: "always",
+					wmode: "transparent",
+					bgcolor: "#303030"
+				}                  
+				var attributes = {
+					id: "ei_video",
+					name: "ei_video"
+				}
+				swfobject.embedSWF("' . DIR_HOST . '/app/webroot/swf/vp.swf?fagsas", "mov_swf", "100%", "100%", "9.0.115.0", false, flashvars, params, attributes);
+			</script>
+			';
+			
+			$i_str .= '<div class="img-meta">';
+			$i_str .= '<ul>';
+			$i_str .= '<li><strong>' . __('Date uploaded', true) . ':</strong> ' . $director->_date(__('%B %e, %Y %I:%M%p', true), $i['created_on']) . '</li>'; 
+			$i_str .= '<li><strong>' . __('Size', true) . ':</strong> <span id="w_tgt"></span><span id="h_tgt"></span></li>'; 
+			$i_str .= '<li><strong>' . __('Content ID', true) . ':</strong> content-' . $i['id'] . '</li>'; 
+			$i_str .= '<li style="padding-top:4px;"><button type="button" title="' . __('More info', true) . '" class="primary_sm" onclick="Messaging.dialogue(\'image-info\')">' . __('More info', true) . '</button></li>'; 
+			$i_str .= '</ul>';
+			$i_str .= '</div>';
+	} else {
+		if ((function_exists('imagerotate') || DIR_GD_VERSION >= 3) && !isNotImg($i['src'])):
+			$rotate = true;
+		else:
+			$rotate = false;
+		endif;
+		
+		$info = getimagesize($full_path);
+		if ($info[0] >= $info[1])
+			$attr = ' class="edit-wide fluid"';
+		else
+			$attr = ' class="edit-tall fluid"';
+	     	   
+		$i_str = '<div id="edit-box-img-bttns">';
+			
+		$orig = "window.open('$rel_path','myWindow','width={$info[0]},height={$info[1]},toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,titlebar=no'); void(0);";
+		
+		$i_str .= '<div style="float:right;">';
+				
+		$i_str .= __('Original', true) . ': <button type="button" title="' . __('Download', true) . '" class="primary_sm nudgeR" onclick="location.href=\'' . DIR_HOST . '/popup.php?src=/albums/album-' . $i['aid'] . '/lg/' . $i['src'] . '&dl=true\'">' . __('Download', true) . '</button>';
+		
+		$i_str .= '<button type="button" title="' . __('[#Action. Example: View the slideshow#]View', true) . '" class="primary_sm" onclick="' . $orig . '">' . __('[#Action. Example: View the slideshow#]View', true) . '</button>';
+		
+		$i_str .= '</div>';
+		
+		$focal = '<a title="' . __('Toggle focal point selection',true) . '" class="icon fp nudgeR" href="#" onclick="toggleAnchor(); return false;"></a>';
+		
+		if ($rotate):
+			$i_str .= '<a title="' . __('Rotate image counter-clockwise', true) . '" class="icon rotleft nudgeR" href="#" onclick="rotate_img(' . $i['id'] . ', ' . $a['id'] . ', 90); return false"></a>' . $focal . '<a title="' . __('Rotate image clockwise', true) . '" class="icon rotright nudgeR" href="#" onclick="rotate_img(' . $i['id'] . ', ' . $a['id'] . ', -90); return false"></a>';
+		else:
+			$i_str .= $focal;
+		endif;
+
+		$i_str .= '</div>';
+		
+		$i_str .= '<div id="the_img" style="position:relative"><div id="map_wrapper" style="display:none;position:absolute;width:100%;height:100%"></div><div id="img_wrapper">';
+		
+		$i_str .= '<img id="anchor" src="' . DIR_HOST . '/app/webroot/img/focal_point.png" style="display:none" /><img id="img_edit" src="' . __p(array('src' => $i['src'], 
+										'album_id' => $a['id'], 
+										'width' => 500,
+										'height' => 300,
+										'square' => 0)) . '"' . $attr . ' onload="window.setTimeout(function() { setAnchor(' . $arr['x'] . ', ' . $arr['y'] . '); }, 50);" /></div></div>';
+		
+		
+		$i_str .= '<div class="img-meta">';
+		$i_str .= '<ul>';
+		$i_str .= '<li><strong>' . __('Date uploaded', true) . ':</strong> ' . $director->_date(__('%B %e, %Y %I:%M%p', true), $i['created_on']) . '</li>'; 
+		$i_str .= '<li><strong>' . __('Size', true) . ':</strong> ' . $info[0] . 'x' . $info[1] . '</li>'; 
+		$i_str .= '<li><strong>' . __('Content ID', true) . ':</strong> content-' . $i['id'] . '</li>'; 
+		$i_str .= '<li style="padding-top:4px;"><button type="button" title="' . __('More info', true) . '" class="primary_sm nudgeR" onclick="Messaging.dialogue(\'image-info\');">' . __('More info', true) . '</button><button style="display:none" id="map-bttn" type="button" title="' . __('Map', true) . '" class="primary_sm" onclick="toggle_map();">' . __('Map', true) . '</button></li>'; 
+		$i_str .= '</ul>';
+		$i_str .= '</div>';
+		       
+			
+	}
+	                                     
+?><div id="edit-box-head">
+	
+	<button type="button" title="<?php __('Close'); ?>" class="primary_sm right" style="margin-top:4px;" onclick="hide_image_edit(); return false;"><?php __('Close'); ?></button>
+
+	<div class="circle-nav">
+   	 	<a href="#" onclick="prev_image(); return false" class="circle-bttn chev-left"></a>
+		<span><?php e($i['src']); ?></span>
+		<a href="#" onclick="next_image(); return false"  class="circle-bttn chev-right"></a> 
+	</div>   
+	
+</div>
+
+<form id="image_form" method="post" action="#" onsubmit="save_image(this, <?php e($html->value('Image.id')); ?>); return false;">
+	
+<div id="edit-box-wrap"> 
+	
+	<div class="inner-pad">
+
+		<div id="edit-box-left-col">
+			<?php e($i_str); ?>
+		</div>  
+
+		<div id="edit-box-right-col">
+	
+			<div class="half-col-left">
+	
+				<fieldset>
+					<label><?php __('Title'); ?>:</label>
+					<div class="input-wrap"><?php e($form->text('Image.title', array('size' => 50,'class' => 'wide'))); ?></div>
+				</fieldset>
+	
+				<fieldset>
+					<label><?php __('Hyperlink'); ?>:</label>
+					<div class="input-wrap"><?php e($form->text('Image.link', array('size' => 50,'class' => 'wide','style' => 'margin-bottom:6px;'))); ?></div>
+					<?php e($form->select('Image.target', array(0 => __('Open link in new browser window', true), 1 => __('Open link in same browser window', true), 2 => __('Open link in parent frame', true)), null, array(), false)); ?>
+				</fieldset>
+	
+			
+	
+				<fieldset>
+					<label><?php __('Caption'); ?>:</label>
+					<div class="input-wrap"><?php e($form->textarea('Image.caption', array('cols' => 40, 'rows' => 5, 'class' => 'wide'))); ?></div>
+				</fieldset>
+	
+				<fieldset>
+					<label><?php __('Tags'); ?>:</label>
+					<div class="input-wrap"><?php e($form->textarea('Image.tags', array('cols' => 40, 'rows' => 2, 'class' => 'wide'))); ?></div>
+				</fieldset>
+	
+				<?php if (!$i['is_video']): ?>
+				<fieldset><label><?php __('Transition pause'); ?>: <span class="help"><span><?php __('0 is default. Only modify this if you want SlideShowPro to pause on this image (before loading the next) for a period of time that\'s different than SlideShowPro\'s global "Transition Pause" parameter setting.'); ?></span></span></label>
+					<?php e($form->text('Image.pause', array('size' => 2))); ?>
+				</fieldset>
+				<?php endif; ?>
+	
+		
+			
+			<!-- close first half-col-->
+			</div>
+		
+		
+			<!-- start second half-col -->
+			<div class="half-col-right">
+
+				<?php if (isImage($i['src'])): ?>
+					<fieldset>
+						<label><?php __('Album preview'); ?>: <span class="help"><span><?php __('This allows you to choose one of your uploaded images as the album preview. The image will then be used in Director\'s interface, as well as the gallery window in SlideShowPro.'); ?></span></span></label>
+						<?php e($form->select('album-thumb', array(0 => __('Do not use as album preview', true), 1 => __('Use as album preview', true)), $is_album_thumb, array(), false)); ?>
+					</fieldset>
+				<?php endif; ?>
+	
+				<fieldset>
+					<label><?php __('Appearance'); ?>: <span class="help"><span><?php __('This setting controls when the content will appear in the album.'); ?></span></span></label>
+					<?php
+			
+					if ($i['active']) {
+						$val = '1';
+					} else {
+						$val = '0';
+					}
+		
+					$start = $end = '';
+					if (is_numeric($i['start_on'])) {
+						if (is_numeric($i['end_on'])) {
+							$val = 4;
+							$end = date('m/d/Y', $i['end_on']);
+						} else {
+							$val = 2;
+						}
+						$start = date('m/d/Y', $i['start_on']);
+					} else if (is_numeric($i['end_on'])) {
+						$val = 3;
+						$start = date('m/d/Y', $i['end_on']);
+					}
+		
+					?>
+					<?php __('Show in album'); ?>: <?php e($form->select('schedule', array(1 => __('Always', true), 0 => __('Never', true), 2 => __('[#Used to specify a date range. Example: Starting on September 1st#]Starting ...', true), 3 => __('[#Used to specify a date range. Example: Until September 1st#]Until ...', true), 4 => __('[#Used to specify a date range. Example: Between September 1st and September 10th#]Between ...', true)), $val, array('onchange' => 'update_scheduler();'), false)); ?>
+					<span id="datespan"<?php e(ife($val < 2, ' style="display:none"')); ?>><div style="margin-top:8px;line-height:26px;"><span id="start_label"><?php e(ife($val == 3, __('End date', true), __('Start date', true))); ?></span>: <input type="text" id="filter_start" name="data[scheduling][filter_start]" size="12" class="date-pick" value="<?php e($start); ?>" /><span id="dateend"<?php e(ife($val != 4, ' style="display:none;margin-top:12px;"')); ?>><br /><?php __('End date'); ?>: <input type="text" id="filter_end" name="data[scheduling][filter_end]" size="12" class="date-pick" value="<?php e($end); ?>" /></span></div></span>
+				</fieldset>
+				
+				
+				<?php if (isNotImg($i['src'])):  ?>
+				
+				<fieldset> 
+					  
+					<label><?php __('Video previews'); ?>: <span class="help"><span><?php __('This assigns a pair of images to be used in conjunction with the video. "Large" is used inside a slideshow when auto start is turned off, while "Thumb" is used for smaller thumbnail navigations. Click on an image to select an existing image from this album or upload a custom image.'); ?></span></span></label>
+					
+					<div id="vid-previews">
+						<?php e($this->renderElement('vid_previews')); ?>
+					</div>
+					
+				</fieldset>
+				<?php elseif (!empty($previews)): ?>
+					<div id="vid-previews">
+						<?php e($this->renderElement('assigned_previews')); ?>
+					</div>
+				<?php endif; ?>
+		
+			<!-- close second half-col-->
+			</div>
+		
+		<!-- close edit-box-right-col-->
+		</div>
+		
+	 <!-- close inner-pad-->
+	</div>
+
+<!-- close edit-box-wrap-->
+</div>
+
+
+<div id="edit-box-foot">
+
+ <fieldset>
+		<button id="save-button" type="submit" title="<?php __('Save'); ?>" class="primary_lg right"><?php __('Save'); ?></button> 
+		<button type="button" onclick="hide_image_edit(); return false;" title="<?php __('Cancel'); ?>" class="primary_lg right"><?php __('Cancel'); ?></button>           
+	</fieldset>
+
+</div>
+
+</form>
+<?php
+	
+	$modal_w = 600;
+	if ($i['is_video']) {
+		$modal_w = 350;
+	}
+
+?>
+<script type="text/javascript">
+	Helper.init();
+	Date.format = 'mm/dd/yyyy';
+	jQuery('.date-pick').datePicker({startDate:'01/01/1950',clickInput:true,createButton:false});
+</script>
+
+<?php e($director->preDialogue('image-info', false, $modal_w, 'dark-modal')); ?>
+	<h1><?php __('Embedded metadata'); ?></h1>
+	<?php $exif_col =  $iptc_col = '' ?>
+	
+	<?php
+		list($data, $dummy) = $controller->Director->imageMetadata($full_path);
+		$iptc_found = false;
+		foreach($controller->Director->iptcTags as $meta):
+			$value = $controller->Director->parseMetaTags("iptc:$meta", $data);
+			if (!empty($value)):
+				$iptc_col .= "<strong>IPTC $meta</strong>: $value" . '<br />';
+			endif;
+		endforeach;                
+				
+		foreach($controller->Director->exifTags as $meta): if ($meta !== 'flash simple'):
+			$value = $controller->Director->parseMetaTags("exif:$meta", $data);
+			if (!empty($value) && trim(strtolower($value)) != 'unknown'):
+				switch($meta):
+					case 'aperture':
+						$value = "f/$value";
+						break;
+					case 'focal length':
+						$value = "$value mm";
+						break;
+					case 'exposure':
+						list($x,$y) = explode('/', $value);
+						$value = round((int) $x / (int) $y, 3);
+						$value = "{$value} sec ($x/$y)";
+						break;
+					case 'iso':
+						$meta = "ISO";
+						break;
+				endswitch;
+				$exif_col .= "<strong>EXIF $meta</strong>: $value" . '<br />';
+				if ($meta == 'latitude') {
+					$latitude = $value;
+				} else if ($meta == 'longitude') {
+					$longitude = $value;
+				}
+			endif;
+		endif; endforeach;
+	?>
+	
+	<?php if ($i['is_video']): ?>
+		
+		<div id="video_meta_tgt">
+			<p id="videocodecid" style="display:none"><strong><?php __('Video codec'); ?></strong>: <span></span></p>
+			<p id="audiocodecid" style="display:none"><strong><?php __('Audio codec'); ?></strong>: <span></span></p>
+			<p id="audiodatarate" style="display:none"><strong><?php __('Audio data rate'); ?></strong>: <span></span></p>
+			<p id="audiodelay" style="display:none"><strong><?php __('Audio delay'); ?></strong>: <span></span></p>
+			<p id="duration" style="display:none"><strong><?php __('Duration'); ?></strong>: <span></span></p>
+			<p id="framerate" style="display:none"><strong><?php __('Framerate'); ?></strong>: <span></span></p>
+			<p id="videodatarate" style="display:none"><strong><?php __('Video data rate'); ?></strong>: <span></span></p>
+			<p id="audiosamplerate" style="display:none"><strong><?php __('Audio sample rate'); ?></strong>: <span></span></p>
+			<p id="audiochannels" style="display:none"><strong><?php __('Audio channels'); ?></strong>: <span></span></p>
+		</div>
+		
+	<?php elseif (empty($iptc_col) && empty($exif_col)): ?>
+	
+		<p style="text-align:left"><?php __('This image does not contain any IPTC or EXIF metadata.'); ?></p>
+	
+	<?php else: ?>
+		
+	<div class="col-iptc">
+		<?php if(empty($iptc_col)): ?>
+			<p><?php __('This image does not contain IPTC metadata.'); ?></p>
+		<?php else: ?>
+			<?php e($iptc_col); ?>
+		<?php endif; ?>
+	</div>
+	
+	<div class="col-exif">
+		<?php if(empty($exif_col)): ?>
+			<p><?php __('This image does not contain EXIF metadata.'); ?></p>
+		<?php else: ?>
+			<?php e($exif_col); ?>
+		<?php endif; ?>
+	</div>
+	
+	<?php endif; ?>
+	
+	<script type="text/javascript" charset="utf-8">
+		mapped = false;
+		<?php if (isset($latitude) && isset($longitude)): ?>
+		myLatlng = new google.maps.LatLng(<?php e($latitude); ?>,<?php e($longitude); ?>);
+		$('map-bttn').show();
+		<?php else: ?>
+		myLatlng = false;
+		<?php endif; ?>
+	</script>
+
+<?php e($director->postDialogue()); ?>
+
+<?php
+	
+	if ($i['is_video']) {
+		$frames = glob(ALBUMS . DS . 'album-' . $i['aid'] . DS . 'lg' . DS . '__vidtn__' . $i['id'] . '_*.jpg');
+
+?>
+		<ol class="photo-thumbs-list" style="display:none" id="frame_source">
+			
+			<?php foreach($frames as $frame):
+					$str = basename($frame);
+			?>
+				<li>
+					<span style="display:none"><?php e(__p(array(	'src' => $str,
+					 												'album_id' => $i['aid'],
+					 												'force' => true))); ?></span>
+					<img class="fluid" style="cursor:pointer;" width="120" height="90" onclick="assign_vid_preview_frame('<?php e($str); ?>');" src="<?php e(DIR_HOST); ?>/app/webroot/img/loading_ei.gif" />
+				</li>
+			<?php endforeach; ?>
+		</ol>   
+		   
+	<script type="text/javascript" charset="utf-8">
+		$('frames_tgt').update($('frame_source').innerHTML);
+		window.setTimeout(do_prv_load, 250);
+	</script>
+<?php
+
+	}
+
+?>

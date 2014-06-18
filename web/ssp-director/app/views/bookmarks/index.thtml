@@ -1,0 +1,80 @@
+<div id="page">
+	
+	<div id="container">
+		
+		<div id="head">
+			<h1 class="slideshow"><?php __('Slideshow Bookmarks'); ?></h1>
+		</div>
+		
+		<div id="container-wrap">
+			
+			<div class="col-wrap">
+		
+				<div class="left-col">
+					
+					<div class="left-col-inside">
+					
+						<div class="module">
+				
+							<div class="module-head">
+								
+								<?php if ($user['perms'] > 1): ?>   
+									
+									 <button type="button" class="primary_sm right" title="<?php __('Add bookmark'); ?>" onclick="Director.Interface.toggle('add-show'); Director.Interface.focusDelay('SlideshowName', 500); return false;"><?php __('Add bookmark'); ?></button>   
+									
+									
+								<?php endif; ?>
+								
+								<h3><?php __('Bookmarks'); ?> <span class="help"><span><?php __('This utility is for bookmarking hyperlinks to slideshows for convenient access while using SlideShowPro Director. "Name" is how the link will appear in Director, and "URL" is an absolute URL to the HTML document containing your slideshow.'); ?></span></span></h3>
+								
+							</div>
+				
+							<div class="wrap">
+								
+								<div class="content">
+			
+									<div id="add-show" class="embed" style="display:none;">
+										<form name="show_form" action="#" onsubmit="add_slideshow(this); return false;">
+											<fieldset>
+												<label><?php __('Name'); ?>: <span class="info">(e.g., Home page slideshow)</span></label>
+												<div class="input-wrap"><?php e($form->text('Slideshow.name', array('size' => 20,'class' => 'wide'))); ?></div>
+											</fieldset>
+											<fieldset>
+												<label><?php __('URL'); ?>: <span class="info">(e.g., http://yourdomain.com/slideshow.html)</span></label>
+												<div class="input-wrap"><?php e($form->text('Slideshow.url', array('size' => 20,'class' => 'wide'))); ?></div>
+											</fieldset>
+											<fieldset>
+												 <button type="button" onclick="Director.Interface.toggle('add-show');" class="primary_lg right" title="<?php __('Cancel'); ?>"><?php __('Cancel'); ?></button>                                       <button type="submit" class="primary_lg right" title="<?php __('Save'); ?>"><?php __('Save'); ?></button>                             
+											</fieldset>
+										</form>
+									</div>
+									
+									<div id="slideshows">
+										<?php e($this->renderElement('slideshow_list')); ?>
+									</div>
+								
+								</div> <!--close content-->
+						
+							</div> <!--close module wrap-->
+						
+							<div class="module-footer">
+								<div>&nbsp;</div>
+							</div>
+				
+						</div> <!--close module-->
+					
+					</div> <!--close left-col-inside-->
+						
+				</div> <!--close left-col-->
+				
+			</div> <!--close col-wrap-->
+		
+		</div> <!--close container-wrap-->
+	
+		<div id="container-footer">
+			<div>&nbsp;</div>
+		</div>
+	
+	</div> <!--close container-->
+
+</div> <!--close page-->

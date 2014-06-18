@@ -1,0 +1,28 @@
+<div id="sub-nav">
+	
+	<div class="wrap">
+
+	<ul>
+	<li class="title" id="title-description">
+		<?php e($this->renderElement('album_title')) ?>
+	</li>
+	<li class="spacer">&nbsp;</li>
+	<li<?php e($tab == 'settings' ? ' class="selected"' : ''); ?>>
+		<?php e($html->link(__('Settings', true), "/albums/edit/{$album['Album']['id']}/settings", array('title' => __('Edit settings for this album', true)))); ?>
+	</li>
+	<li<?php e($tab == 'content' ? ' class="selected"' : ''); ?>>
+		<?php e($html->link(__('Content', true), "/albums/edit/{$album['Album']['id']}/content", array('title' => __('Edit content in this album', true)))); ?>
+	</li>
+	<?php if (!$album['Album']['smart']): ?>
+	<li<?php e($tab == 'upload' ? ' class="selected"' : ''); ?>>
+		<?php e($html->link(__('Upload', true), "/albums/edit/{$album['Album']['id']}/upload", array('title' => __('Upload content to this album', true)))); ?>
+	</li>
+	<?php endif; ?>
+	<li>
+		<a href="#" onclick="embed.id = <?php e($html->value('Album.id')) ?>; embed.type = 'album'; open_embed_dialogue();"><?php __('Publish'); ?></a>
+	</li>
+</ul>
+
+	</div>
+
+</div>

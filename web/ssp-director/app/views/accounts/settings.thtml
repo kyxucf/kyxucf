@@ -1,0 +1,376 @@
+<script type="text/javascript" charset="utf-8">
+	account_settings = true;
+</script>
+
+<div id="page">
+	
+	<div id="container">
+		
+		<div id="head">
+			<h1 class="settings" style="padding-left:38px;"><?php __('Settings'); ?></h1>
+		</div>
+	
+		<div id="container-wrap">
+
+			<div class="col-wrap"> 
+	
+				<table cellspacing="0" cellpadding="0" class="sortable">
+					
+				 	<tr>
+						<th colspan="2" style="text-align:left;" class="hide-border">
+							<h3><?php __('User preferences'); ?> <?php __('(defaults)'); ?>
+							<span class="help"><span>
+								<?php __('New users will assigned the following preferences when created. They can modify these individually on their profile page.'); ?>
+							</span></span>
+							</h3>
+						</th>
+						<th class="tr"></th>
+					</tr>
+				
+					<tr>
+						<td class="row-label"><?php __("Theme") ?></td>
+						<td colspan="2" class="lalign">
+							<?php e($this->renderElement('theme_select')); ?>
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="row-label"><?php __("[#In this case, Language is not the name of your language, rather it is meant to be translated literally. This message is used to label a dropdown menu that contains all the different languages that Director's interface is available in.#]Language"); ?></td>
+						<td colspan="2" class="lalign">
+							<?php e($this->renderElement('lang_select')); ?>          
+						</td> 
+					</tr>   
+			   
+
+					<tr> 
+						<th colspan="2" style="text-align:left;" class="hide-border">
+							<?php __('Content metadata'); ?> <?php __('(defaults)'); ?>
+							<span class="help"><span>
+							<?php __('By default, no titles, links or captions are assigned to newly uploaded content. You may however change the default settings here so that all uploads are automatically assigned metadata.'); ?>
+							</span></span>    
+						</th> 
+						<th></th>
+				   	</tr>
+					
+				 	<tr>
+						<td class="row-label">
+							<?php __('Title'); ?>: <span id="title-desc"><?php empty($account['Account']['title_template']) ? __('None') : __('Custom title'); ?></span> 
+						</td>
+						<td colspan="2" class="lalign">
+							<button type="button" onclick="Messaging.dialogue('edit-titles'); return false;" title="<?php __('Edit title settings'); ?>" class="primary_lg"><?php __('Edit'); ?></button>    
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="row-label">
+							<?php __('Link'); ?>: <span id="link-desc"><?php empty($account['Account']['link_template']) ? __('None') : __('Custom links'); ?></span> 
+						</td>
+						<td colspan="2" class="lalign">
+							<button type="button" onclick="Messaging.dialogue('edit-links'); return false;" title="<?php __('Edit link settings'); ?>" class="primary_lg"><?php __('Edit'); ?></button>
+						</td>
+					</tr> 
+					
+					<tr>
+						<td class="row-label">
+							<?php __('Caption'); ?>: <span id="caption-desc"><?php empty($account['Account']['caption_template']) ? __('None') : __('Custom caption'); ?></span> 
+						</td>
+						<td colspan="2" class="lalign">
+							<button type="button" onclick="Messaging.dialogue('edit-captions'); return false;" title="<?php __('Edit caption settings'); ?>" class="primary_lg"><?php __('Edit'); ?></button>  
+						</td>
+					</tr>  
+					
+					
+					<tr>
+						<th colspan="2" style="text-align:left;" class="hide-border">
+							 <?php __('Content archive size'); ?>
+								<span class="help"><span>
+								<?php __('This allows you to limit the size of the original files you upload to a custom dimension for a smaller image archive. Only edit this if you will never need images published at a size that is larger than the entered values.'); ?>
+								</span></span>							
+						</th>
+						<th></th>
+					</tr>
+				
+					<tr>
+						<td class="row-label">
+							<?php __('Archive size'); ?>: <span id="archive-tgt">
+							<?php e(ife(is_numeric($account['Account']['archive_w']), "{$account['Account']['archive_w']}x{$account['Account']['archive_w']}", __('No limit', true))); ?>
+							</span>
+						</td>
+						<td colspan="2" class="lalign">
+							<button type="button" onclick="Messaging.dialogue('edit-archives');" title="<?php __('Edit archive size'); ?>" class="primary_lg"><?php __('Edit'); ?></button> 
+						</td>
+					</tr>
+
+
+				</table>
+				
+				<div id="watermark-fill">
+					<?php e($this->element('watermark_list')); ?>
+				</div>				
+			
+			</div> <!--close col-wrap-->
+	
+		</div> <!--close container-wrap-->
+		
+		<div id="container-footer">
+			<div>&nbsp;</div>
+		</div>
+	
+	</div> <!--close container-->
+
+</div> <!--close page-->
+
+<?php e($director->preDialogue('edit-archives')); ?>
+			
+	<h1><?php __('Edit archive size'); ?></h1>
+
+	<form action="#" onsubmit="archive_size(this, <?php e($account['Account']['id']); ?>); return false;">
+		
+		<p><?php __('By modifying archive size, duplicates of newly uploaded images will be created that are no larger than the maximum dimension assigned below. The original uploaded files will then be deleted. We recommend editing this setting only if disk space is limited, or you will never need images published that are larger than the maximum dimension.'); ?></p>
+		
+		<?php if (DIR_GD_VERSION < 3): ?>
+			<p class="warning"><?php __('Because ImageMagick was not available on your server, Director is using the GD Graphics Library. This library is incapable of retaining photo metadata (EXIF/IPTC) when creating optimized duplicates. Setting an archive size will remove all embedded metadata from your content.'); ?></p>  
+		<?php endif; ?>
+		
+	<div class="dialogue-spacer">
+			
+	  <strong><?php __('Maximum dimension (longest side)'); ?></strong>:&nbsp;&nbsp;<?php e($form->text('Account.archive_w', array('size' => 10))); ?>&nbsp;px
+	</div>
+
+	<fieldset class="nopad">
+		<button type="submit" class="primary_lg_mod right" title="<?php __('Save') ?>"><?php __('Save') ?></button>
+		<button type="button" class="primary_lg_mod right" title="<?php __('Clear') ?>" onclick="clear_archive_size(<?php e($account['Account']['id']); ?>)"><?php __('Clear') ?></button>		
+		<button class="primary_lg_mod right"  type="button" title="<?php __('Cancel') ?>" onclick="Messaging.kill('edit-archives');"><?php __('Cancel') ?></button>
+	</fieldset>
+	</form>
+<?php e($director->postDialogue()); ?>
+
+<?php e($director->preDialogue('edit-captions')); ?>
+			
+	<h1><?php __('Edit default caption'); ?></h1>
+
+	<p><?php __('All newly created albums will use the caption entered below when assigning metadata to uploaded content. The application default is no caption. You may override this on an album-by-album basis in the Content Metadata module displayed on each album\'s "Settings" screen.'); ?></p>
+	<form id="caption_form" action="#" onsubmit="prefill_captions(<?php e($html->value('Account.id')) ?>); return false;">
+	<div class="dialogue-spacer">
+	<fieldset class="embed" style="text-align:center;">
+		<table cellspacing="0" cellpadding="0" class="dialogue-table-macro">
+			<tr>
+				<td style="text-align:right"><?php __('Director data'); ?>:</td>
+				<td style="width:155px"><select id="dir_tags_select">
+				<?php foreach($dirs as $key => $dir): ?>
+					<option value="[director:<?php e($key); ?>]"><?php e(ucfirst($dir)); ?></option>
+				<?php endforeach; ?>
+				</select></td>
+				<td>
+					 <button type="button" onclick="fill_cap_tag('dir_tags_select')" title="<?php __('Insert') ?>" class="primary_sm_mod"><?php __('Insert') ?></button>   
+					</td>
+			</tr>
+			
+			<?php if (is_callable('iptcparse')): ?>
+			<tr>
+				<td style="text-align:right"><?php __('IPTC data'); ?>:</td>
+				<td><select id="iptc_tags_select">
+				<?php foreach($iptcs as $iptc): ?>
+					<option value="[iptc:<?php e($iptc); ?>]"><?php e(ucfirst($iptc)); ?></option>
+				<?php endforeach; ?>
+				</select></td>
+				<td>
+					 <button type="button" onclick="fill_cap_tag('iptc_tags_select')" title="<?php __('Insert') ?>" class="primary_sm_mod"><?php __('Insert') ?></button>    
+				</td>
+			</tr>
+			<?php endif; ?>
+			
+			<?php if (is_callable('exif_read_data')): ?>
+			<tr>
+				<td style="text-align:right"><?php __('EXIF data'); ?>:</td>
+				<td><select id="exif_tags_select">
+				<?php foreach($exifs as $exif): ?>
+					<option value="[exif:<?php e($exif); ?>]"><?php e(ucfirst($exif)); ?></option>
+				<?php endforeach; ?>
+				</select></td>
+				<td>
+					  <button type="button" onclick="fill_cap_tag('exif_tags_select')" title="<?php __('Insert') ?>" class="primary_sm_mod"><?php __('Insert') ?></button>   
+				</td>
+			</tr>
+			<?php endif; ?>
+		</table>
+	</fieldset>
+	
+	<fieldset class="nopad">
+		<div class="input-wrap"><?php e($form->textarea('Account.caption_template', array('cols' => 40, 'rows' => 5, 'class' => 'wide'))); ?></div>
+	</fieldset>
+	
+	</div>
+	
+	<fieldset class="nopad">
+		<button id="captions-button" type="submit" title="<?php __('Save'); ?>" class="primary_lg_mod right"><?php __('Save'); ?></button>
+		<button id="captions-clear-button" type="button" onclick="clear_captions(<?php e($html->value('Account.id')) ?>)" title="<?php __('Clear caption'); ?>" class="primary_lg_mod right"><?php __('Clear caption'); ?></button> 
+   	 	<button type="button"  onclick="Messaging.kill('edit-captions');" title="<?php __('Cancel'); ?>" class="primary_lg_mod right"><?php __('Cancel'); ?></button> 
+   	</fieldset>
+	</form>
+
+<?php e($director->postDialogue()); ?>
+
+<?php e($director->preDialogue('edit-titles')); ?>
+			
+	<h1><?php __('Edit default title'); ?></h1>
+
+	<p><?php __('All newly created albums will use the title entered below when assigning metadata to uploaded content. The application default is no title. You may override this on an album-by-album basis in the Content Metadata module displayed on each album\'s "Settings" screen.'); ?></p>
+	<form id="title_form" action="#" onsubmit="prefill_titles(<?php e($html->value('Account.id')) ?>); return false;">
+	<div class="dialogue-spacer">
+	<fieldset class="embed" style="text-align:center;">            
+
+		<table cellspacing="0" cellpadding="0" class="dialogue-table-macro">
+			<tr>
+				<td style="text-align:right"><label><?php __('Director data'); ?>:</label></td>
+				<td style="width:155px"><select id="dir_tags_select_title">
+				<?php foreach($dirs as $key => $dir): ?>
+					<option value="[director:<?php e($key); ?>]"><?php e(ucfirst($dir)); ?></option>
+				<?php endforeach; ?>
+				</select></td>
+				<td><button class="primary_sm_mod" type="button" title="<?php __('Insert') ?>" onclick="fill_title_tag('dir_tags_select_title')"><?php __('Insert') ?></button></td>
+			</tr>
+			
+			<?php if (is_callable('iptcparse')): ?>
+			<tr>
+				<td style="text-align:right"><label><?php __('IPTC data'); ?>:</label></td>
+				<td><select id="iptc_tags_select_title">
+				<?php foreach($iptcs as $iptc): ?>
+					<option value="[iptc:<?php e($iptc); ?>]"><?php e(ucfirst($iptc)); ?></option>
+				<?php endforeach; ?>
+				</select></td>
+				<td><button class="primary_sm_mod" type="button" title="<?php __('Insert') ?>" onclick="fill_title_tag('iptc_tags_select_title')"><?php __('Insert') ?></button></td>
+			</tr>
+			<?php endif; ?>
+			
+			<?php if (is_callable('exif_read_data')): ?>
+			<tr>
+				<td style="text-align:right"><label><?php __('EXIF data'); ?>:</label></td>
+				<td><select id="exif_tags_select_title">
+				<?php foreach($exifs as $exif): ?>
+					<option value="[exif:<?php e($exif); ?>]"><?php e(ucfirst($exif)); ?></option>
+				<?php endforeach; ?>
+				</select></td>
+				<td><button class="primary_sm_mod" type="button" title="<?php __('Insert') ?>" onclick="fill_title_tag('exif_tags_select_title')"><?php __('Insert') ?></button></td>
+			</tr>
+			<?php endif; ?>
+		</table>
+	</fieldset> 
+	
+	<fieldset class="nopad">
+		<div class="input-wrap"><?php e($form->text('Account.title_template', array('class' =>'wide'))); ?></div>
+	</fieldset>
+	
+	</div>
+
+	<fieldset class="nopad">
+		<button type="submit" class="primary_lg_mod right" title="<?php __('Save') ?>"><?php __('Save') ?></button>
+		&nbsp;&nbsp;
+		<button type="button" class="primary_lg_mod right" title="<?php __('Clear title') ?>" onclick="clear_titles(<?php e($html->value('Account.id')) ?>)"><?php __('Clear title') ?></button>		
+		<button class="primary_lg_mod right"  type="button" title="<?php __('Cancel') ?>" onclick="Messaging.kill('edit-titles');"><?php __('Cancel') ?></button>
+	</fieldset>
+	</form>
+<?php e($director->postDialogue()); ?>
+
+<?php e($director->preDialogue('edit-links', false, 450)); ?>
+	
+		<h1><?php __('Edit default link'); ?></h1>
+	    
+		<p><?php __('All newly created albums will use the link entered below when assigning metadata to uploaded content. The application default is no link. You may override this on an album-by-album basis in the Content Metadata module displayed on each album\'s "Settings" screen.'); ?></p>           
+
+			<fieldset>
+				<select id="AlbumLink" onchange="if ($F('AlbumLink') == 'c') { $('custom-link').show(); } else { $('custom-link').hide(); }">
+					<option value=""><?php __('No links'); ?></option>
+					<optgroup label="Link templates">
+				<?php $selected = false; $has_select = false; if (!empty($link_templates)): foreach ($link_templates as $link): ?>
+					<?php include(PLUGS . DS . 'links' . DS . $link); ?>
+					<?php 
+							$value = $template . '__~~__' . $target; 
+							if ($value == urldecode($account['Account']['link_template'])) {
+								$selected = $has_select = true;
+							} else { $selected = false; }
+					?>
+					<option value="<?php e(htmlentities(urlencode($value)) . ife($selected, '" selected="selected', '')); ?>"><?php e($displayName); ?></option>
+				<?php endforeach; endif; ?>
+					</optgroup>
+					<?php if (!empty($custom_link_templates)): ?>
+					<optgroup label="User supplied link templates">	
+						<?php foreach ($custom_link_templates as $link): if ($link != 'sample' && $link != '.svn'): ?>
+							<?php include(CUSTOM_PLUGS . DS . 'links' . DS . $link . DS . 'template.php'); ?>
+							<?php 
+									$value = $template . '__~~__' . $target; 
+									if ($value == urldecode($album['Album']['link_template'])) {
+										$selected = $has_select = true;
+ 									} else { $selected = false; }
+							?>
+							<option value="<?php e(htmlentities(urlencode($value)) . ife($selected, '" selected="selected', '')); ?>"><?php e($displayName); ?></option>
+						<?php endif; endforeach; ?>
+					</optgroup>
+					<?php endif ?>
+					<option value="c"<?php e(ife(!$has_select && !empty($account['Account']['link_template']), ' selected="selected"', '')); ?>><?php __('Static link'); ?></option>
+				</select>
+			</fieldset> 
+			
+		<div id="custom-link"<?php e(ife(!$has_select && !empty($account['Account']['link_template']), '', ' style="display:none;"')); ?>>
+                     
+
+		<p class="halfstep"><?php __('Enter a static URL and target below.'); ?></p>
+
+
+		<div class="dialogue-spacer">
+		
+		<fieldset class="embed">
+			<?php @list($val, $target) = explode('__~~__', urldecode($account['Account']['link_template'])); ?> 
+			<table cellspacing="0" cellpadding="0" width="100%">
+				<tr>
+					<td style="width:60px;"><?php __('URL'); ?>:</td>
+					<td><?php e($form->text('Account.link_template', array('style' => 'width:100%;', 'value' => ife(empty($album['Album']['link_template']), 'Your URL', $val)))); ?>
+						</td>
+				 </tr>
+                <tr><td colspan="2" style="height:15px;"></td></tr>
+				<tr>
+					<td>
+			<?php __('Target'); ?>:
+			</td>
+			<td><select id="static_target"><option value="0"><?php __('Open in new window'); ?></option><option value="1"<?php if ($target == 1): ?> selected="selected"<?php endif; ?>><?php __('Open in same window'); ?></option></select></td>
+				</tr>
+				</table>
+		</fieldset> 
+		
+			</div>
+		</div>
+
+		<fieldset class="nopad">
+			<button type="button" onclick="prefill_links(<?php e($html->value('Account.id')); ?>)" title="<?php __('Save'); ?>" class="primary_lg_mod right"><?php __('Save'); ?></button>  
+
+			<button type="button" onclick="clear_links(<?php e($html->value('Account.id')); ?>)" title="<?php __('Clear link'); ?>" class="primary_lg_mod right nudgeR"><?php __('Clear link'); ?></button> 
+			
+			<button class="primary_lg_mod right"  type="button" title="<?php __('Cancel') ?>" onclick="Messaging.kill('edit-links');"><?php __('Cancel') ?></button>
+		</fieldset>
+        
+<?php e($director->postDialogue()); ?>
+
+<!-- Upload watermark dialogue (1) --> 
+
+<?php e($director->preDialogue('upload-watermark')); ?>
+			
+	<h1><?php __('Upload a new watermark'); ?></h1>
+
+	<p><?php __('To upload a watermark, click "Choose file" below then select a single transparent PNG or GIF from your computer.'); ?></p>
+     
+	<fieldset class="nopad">
+		<div id="browse_wrapper" style="float:right;position:relative;"><button id="browse-button" class="primary_lg_mod right" type="button" title="<?php __('Choose file'); ?>" onclick="return false;"><?php __('Choose file'); ?></button><div id="flash_target" style="position:absolute;top:0;left:0;z-index:1000;"></div></div>
+		<button type="button" onclick="Messaging.kill('upload-watermark')" class="primary_lg_mod right" title="Cancel"><?php __('Cancel'); ?></button>
+	</fieldset>
+	
+<?php e($director->postDialogue()); ?> 
+
+<?php
+	e($asset->js('upload'));
+?>
+
+<script type="text/javascript">
+	swf_path = "<?php e($this->webroot . 'swf/upload.swf?' . md5(DIR_VERSION)); ?>";
+	upload_url = '<?php e($html->url('/uploads/watermark')); ?>';
+	max_size = <?php e(MAX_SIZE); ?>;
+</script>

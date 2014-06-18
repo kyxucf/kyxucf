@@ -1,0 +1,75 @@
+<div id="login-container">
+	
+	<div id="login-content" class="signin">
+	
+		<div class="out-module">
+			
+			<div class="wrap">
+				
+				<div class="out-module-logo"></div>    
+				
+				<div class="content">
+				
+					<?php if (isset($error)): ?>
+						<?php if ($error == 'session'): ?>
+						<div id="alert">
+							<div class="error">
+								<div class="tr"></div>
+								<div class="content">
+									<div class="fluid icon">
+										<?php printf(__('Session creation failed. Check with your host to ensure the session_save_path is set correctly. %s for more informaiton.', true), $html->link(ucfirst(__('click here', true)), 'http://wiki.slideshowpro.net/SSPdir/CP-LoginFailsAfterInstall', array('target' => '_blank'))); ?>
+									</div>
+								</div>
+								<div class="bl"><div class="br"></div></div>
+							</div>
+						</div>	
+						<?php else: ?>
+						<div id="alert">
+							<div class="error">
+								<div class="tr"></div>
+								<div class="content">
+									<div class="fixed icon">
+										<?php e($error); ?>
+									</div>
+								</div>
+								<div class="bl"><div class="br"></div></div>
+							</div>
+						</div>
+						<?php endif; ?>
+					<?php endif; ?>
+			
+					<form method="post" action="<?php e($html->url('/users/login')); ?>">
+						
+						<fieldset>
+							<div style="float:right;"><?php e($html->link(__('Lost username?', true), '/users/password', array('title' => __('Click here to retrieve login', true)))); ?></div> 
+							<label><?php __('Username'); ?>:</label>
+							<div class="input-wrap"><?php echo $form->text('User.usr', array('class' => 'wide big')); ?></div>
+						</fieldset>
+						
+						<fieldset>
+							<label><?php __('Password'); ?>:</label>
+							<div class="input-wrap"><?php echo $form->password('User.pwd', array('class' => 'wide big')); ?></div>
+						</fieldset>
+												
+						<fieldset><button type="submit" title="<?php __('Sign in'); ?>" class="primary_lg right"><?php __('Sign in'); ?></button><input type="checkbox" id="data[remember]" name="data[remember]" /> <label for="data[remember]" class="chkbox inline"><?php __('Remember me'); ?></label></fieldset></form>
+
+					
+					<script type="text/javascript">
+						Field.activate('UserUsr');
+					</script>
+		
+				</div> <!--close content-->
+		
+			</div> <!--close wrap-->
+					
+		</div> <!--close module-->
+		                    
+		<br clear="all" />
+		
+		<div id="simple-footer">
+			<span>SlideShowPro Director <?php e(DIR_VERSION); ?></span> 
+		</div>
+		
+	</div> <!--close login-content-->
+
+</div> <!--close login-container-->

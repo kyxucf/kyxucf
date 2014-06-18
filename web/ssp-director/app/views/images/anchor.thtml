@@ -1,0 +1,12 @@
+<script type="text/javascript" charset="utf-8">
+	$('url_<?php e($image['Image']['id']); ?>').update('<?php e(__p(array('src' => $image['Image']['src'], 'album_id' => $image['Album']['id'], 'anchor_x' => $this->data['x'], 'anchor_y' => $this->data['y'], 'force' => true))); ?>');
+	var parent = $$('li#image_<?php e($image['Image']['id']); ?> div.thumbimg')[0];
+	Element.addClassName(parent, 'loadme');
+<?php if (!empty($previews)): foreach($previews as $p): ?>
+	$('url_<?php e($p['Image']['id']); ?>').update('<?php e($director->getVidThumb($p['Image']['src'], $p['Image']['lg_preview'], $p['Image']['aid'], 176, 132, 1, 70, 1, false)); ?>');
+	var parent = $$('li#image_<?php e($p['Image']['id']); ?> div.thumbimg')[0];
+	parent.removeChild(parent.getElementsByTagName('IMG')[2]);
+	Element.addClassName(parent, 'loadme');
+<?php endforeach; endif; ?>
+	do_img_load();
+</script>

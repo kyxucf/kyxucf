@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title><?php __('Original video'); ?></title>
+	<?php e($asset->js('base')); ?>
+	<style type="text/css" media="screen">
+		/* hide from ie5 mac \*/
+		html {
+		  height: 100%;
+		  overflow: hidden;
+		}
+		#mov_cont {
+			width:100%;
+		  height: 100%;
+		}
+		/* end hide */
+		body {
+		  height: 100%;
+		  margin: 0;
+		  padding: 0;
+		  background-color: #000;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="mov_cont"></div>  
+	
+	<script type="text/javascript">
+		var flashvars = {
+			xmlfile: "<?php e(DIR_HOST); ?>/index.php?/pics/vxml/<?php e($id); ?>"
+		}
+		var params = {  
+			allowScriptAccess: "always",
+			full: "true"      
+		}
+		var attributes = {
+			id: "ei_video"
+		}
+		swfobject.embedSWF("<?php e(DIR_HOST); ?>/app/webroot/swf/vp.swf?ashsadgsd", "mov_cont", "100%", "100%", "9.0.115.0", false, flashvars, params, attributes);
+	</script>
+</body>
+</html>

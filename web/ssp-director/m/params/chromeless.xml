@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<params>
+<customParams
+	navButtonStyle = "Default"
+/>
+<nativeParams
+	contentAreaAction = "Toggle Display Mode"
+	contentAreaInteractivity = "Action Area and Navigation"
+	feedbackPreloaderAlign = "Bottom Center"
+	feedbackPreloaderAppearance = "Line"
+	galleryRows = "3"
+	navAppearance = "Hidden"
+	toolAppearanceContentArea = "Visible"
+/>
+</params>

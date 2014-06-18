@@ -1,0 +1,13 @@
+<script type="text/javascript" charset="utf-8">
+<?php if (!empty($previews)): foreach($previews as $image): ?>
+	$('url_<?php e($image['Image']['id']); ?>').update('<?php e($director->getVidThumb($image['Image']['src'], $image['Image']['lg_preview'], $image['Image']['aid'], 176, 132, 1, 70, 1, false)); ?>');
+	var parent = $$('li#image_<?php e($image['Image']['id']); ?> div.thumbimg')[0];
+	Element.addClassName(parent, 'loadme');
+<?php endforeach; endif; ?>
+	do_img_load();
+	
+<?php foreach($prvs as $p): ?>
+	$('counter_<?php e($p); ?>').select('SPAN')[0].removeClassName('is-vid-preview');
+<?php endforeach;  ?>
+	renum_counters();
+</script>

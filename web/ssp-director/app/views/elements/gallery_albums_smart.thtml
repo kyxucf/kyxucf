@@ -1,0 +1,83 @@
+<script type="text/javascript" charset="utf-8">
+	var gallery_id = <?php e($gallery['Gallery']['id']); ?>;
+</script>    
+
+<div class="module">
+	
+	<div class="module-head">
+		<h3><?php __('Album rules'); ?> <span class="help"><span><?php __('The criteria used to dynamically populate this smart gallery.'); ?></span></span></h3>
+	</div>
+	<?php $options = unserialize($gallery['Gallery']['smart_query']); ?>
+	<div class="wrap">
+		<div class="content">
+			<form id="mother" action="#" onsubmit="return false" method="post">		
+			<p><?php __('Match'); ?>&nbsp;&nbsp;<select id="any_all" name="data[any_all]" onchange="update_smart();">
+				<option value="1"><?php __('all'); ?></option>
+				<option value="0"<?php e(ife(isset($options['any_all']) && !$options['any_all'], ' selected="selected"')); ?>><?php __('any'); ?></option>
+			</select>&nbsp;&nbsp;<?php __('of the following rules'); ?>:</p>
+			<ul class="dash-strip module-first" id="rule-target">
+				<?php if (empty($options['conditions'])): ?>
+					<?php e($this->renderElement('gallery_rule')); ?>
+				<?php else: ?>
+					<?php foreach($options['conditions'] as $c): ?>
+						<?php e($this->renderElement('gallery_rule', array('conditions' => $c))); ?>
+					<?php endforeach; ?>
+				<?php endif; ?>
+			</ul>
+			<ul class="dash-strip" style="margin-top:-4px;">
+				<li><input type="checkbox" name="data[limit_on]" id="limit_check" onchange="update_smart();"<?php e(ife(is_numeric($options['limit']), ' checked="checked"')); ?> />&nbsp;&nbsp;<?php printf(__('Limit to %s albums', true), '&nbsp;&nbsp;<input type="text" name="data[limit]" id="limit_input" size="3" onkeyup="watch_smart();" value="' . $options['limit'] . '" />&nbsp;&nbsp;'); ?>
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					<input type="checkbox" name="data[limit_to]" id="limit_to_check" onchange="update_smart();"<?php e(ife(isset($options['limit_to']) && is_numeric($options['limit_to']), ' checked="checked"')); ?> />&nbsp;&nbsp;<?php __('Limit albums to'); ?>&nbsp;&nbsp;<select id="limit_to_filter" name="data[limit_to_filter]" onchange="update_smart();"><option value="0"><?php __('custom albums'); ?></option><option value="1"<?php e(ife(isset($options['limit_to']) && $options['limit_to'], ' selected="selected"')); ?>><?php __('smart albums'); ?></option></select>
+					
+				</li>
+				
+				<?php
+					
+					if (isset($options['order'])) {
+						$order = $options['order'];
+					} else {
+						$order = 'date';
+					}
+					
+					if (isset($options['order_direction'])) {
+						$order_direction = $options['order_direction'];
+					} else {
+						$order_direction = 'DESC';
+					}
+					
+					if (isset($options['media'])) {
+						$media = $options['media'];
+					} else {
+						$media = 'all';
+					}
+				
+				?>
+				
+				<li><?php __('Order albums by'); ?>&nbsp;&nbsp;<select id="order_select" name="data[order]" onchange="update_smart();">
+					<option value="date"><?php __('Date created'); ?></option>
+					<option value="file"<?php e(ife($order == 'file', ' selected="selected"')); ?>><?php __('Album name'); ?></option>
+					<option value="captured"<?php e(ife($order == 'captured', ' selected="selected"')); ?>><?php __('Date modified'); ?></option>
+				</select>&nbsp;&nbsp;<select id="order_direction_select" name="data[order_direction]" onchange="update_smart();">	
+					<option value="DESC"><?php __('Descending'); ?></option>
+					<option value="ASC"<?php e(ife($order_direction == 'ASC', ' selected="selected"')); ?>><?php __('Ascending'); ?></option>
+				</select></li>
+			</ul>
+			</form>
+		</div>
+
+	</div> <!--close module wrap-->
+
+	<div class="module-footer">
+		<div>&nbsp;</div>
+	</div>
+
+</div> <!--close module-->
+
+<div id="update-target" class="module">
+	
+	<?php e($this->renderElement('smart_gallery_content', array('albums' => $albums, 's', 'order' => $options['order']))); ?>
+
+</div> <!--close module-->

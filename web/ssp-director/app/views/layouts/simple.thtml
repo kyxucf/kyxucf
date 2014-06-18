@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="login" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>SlideShowPro Director &raquo; <?php e($title_for_layout); ?></title>
+		<script type="text/javascript" charset="utf-8">
+			var base_url = '<?php e($html->url('/')); ?>';
+		</script>
+		<?php
+			// Grab CSS and JS files
+			e($asset->css('base'));
+			
+			// Apply theme CSS
+			if (isset($account)) {
+				e($director->css($account['Account']['theme']));
+				$lang = $account['Account']['lang'];
+			} else {				
+				e($director->css('/app/webroot/styles/default/default.css'));
+				if (isset($controller) && $controller->Session) {
+					if ($controller->Session->read('Language')) {
+						$lang = $controller->Session->read('Language');
+					} else {
+						$lang = 'eng';
+					}
+				} else {
+					$lang = 'eng';
+				}
+			}
+			
+			/// Bring in extra sheets if necessary
+			$agent = env('HTTP_USER_AGENT');
+			if (strpos($agent, 'MSIE 7.0') !== false):
+				e($html->css('ie7.css?' . DIR_VERSION) . "\n");
+			elseif (strpos($agent, 'MSIE 6.0') !== false):
+				e($html->css('ie6.css?' . DIR_VERSION) . "\n");
+			elseif (strpos($agent, 'Firefox') !== false):
+				e($html->css('firefox.css?' . DIR_VERSION) . "\n");
+			endif;
+			
+			if (isset($javascript)):
+				e('<script type="text/javascript" src="' . DIR_HOST . '/index.php?/js/translate/' . $lang . '"></script>');
+				e($asset->js('base'));
+			endif;
+
+		?>
+		
+	</head>
+
+	<body id="login">
+		<?php e($this->element('messenger')); ?>
+		
+		<?php echo $content_for_layout ?>
+	</body>
+
+</html>

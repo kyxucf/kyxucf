@@ -1,0 +1,28 @@
+<?php
+	
+	$lg_id = $tn_id = 0;
+	
+	if (is_numeric($i['lg_preview_id'])) {
+		$lg_id = $i['lg_preview_id'];
+	}
+	
+	if (is_numeric($i['tn_preview_id'])) {
+		$tn_id = $i['tn_preview_id'];
+	}
+
+?>
+
+<div class="lg">
+	<img style="cursor:pointer;" class="fluid" onclick="init_vid_prv(<?php e($i['id']); ?>, <?php e($lg_id); ?>, 1);" src="<?php e($director->getVidThumb($i['src'], $i['lg_preview'], $i['aid'], 176, 132, 1, 70, 1, false)); ?>"  /><br /><?php __('Large') ?> <?php if ($i['lg_preview_id'] > 0): ?>(<a href="#" onclick="vid_prv_lg = 1; clear_vid_preview(); return false;"><?php __('Remove'); ?></a>)<?php endif; ?>
+</div> 
+<?php if ($tn_id == 0): ?>
+	<?php if ($lg_id != 0): ?>
+<div class="sm">
+	<img style="cursor:pointer;" class="fluid" onclick="init_vid_prv(<?php e($i['id']); ?>, <?php e($lg_id); ?>, 0);" src="<?php e($director->getVidThumb($i['src'], $i['lg_preview'], $i['aid'], 176, 132, 1, 70, 1, false)); ?>"  /><br /><?php __('Thumb') ?>             
+</div>
+	<?php endif; ?>
+<?php else: ?>
+	<div class="sm">
+		<img style="cursor:pointer;" class="fluid" onclick="init_vid_prv(<?php e($i['id']); ?>, <?php e($tn_id); ?>, 0);" src="<?php e($director->getVidThumb($i['src'], $i['tn_preview'], $i['aid'], 176, 132, 1, 70, 1, false)); ?>" /><br /><?php __('Thumb') ?> <?php if ($i['tn_preview_id'] > 0): ?>(<a href="#" onclick="vid_prv_lg = 0; clear_vid_preview(); return false;"><?php __('Remove'); ?></a>)<?php endif; ?>            
+	</div>
+<?php endif; ?>

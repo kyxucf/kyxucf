@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<params>
+<customParams
+	navButtonStyle = "Default"
+/>
+<nativeParams
+	captionAppearance = "Inline"
+	captionBackgroundAlpha = ".75"
+	captionBackgroundColor = "0xF3F3F3"
+	captionElements = "Header and Caption"
+	captionHeaderBackgroundAlpha = ".8"
+	captionHeaderTextColor = "0x333333"
+	captionTextColor = "0x333333"
+	contentAreaAction = "Toggle Display Mode"
+	contentAreaBackgroundColor = "0xF3F3F3"
+	contentAreaInteractivity = "Action Area and Navigation"
+	contentFrameColor = "0xFFFFFF"
+	contentFramePadding = "4"
+	contentFrameStrokeAppearance = "Visible"
+	contentFrameStrokeColor = "0xCCCCCC"
+	contentScalePercent = ".95"
+	feedbackPreloaderPosition = "Inside Content"
+	feedbackTimerPosition = "Inside Content"
+	galleryAppearance = "Hidden"
+	navBackgroundColor = "0xF3F3F3"
+	navButtonColor = "0x666666"
+	navButtonGlowAlpha = ".6"
+	navButtonRolloverColor = "0x888888"
+	navButtonShadowAlpha = ".2"
+	navGradientAlpha = "0"
+	navLinkAppearance = "Thumbnails"
+	navLinkActiveColor = "0xFFFFFF"
+	navLinkInactiveColor = "0x666666"
+	navLinkPreviewShadowAlpha = ".3"
+	navLinksBackgroundAlpha = "0"
+	navLinksBackgroundShadowAlpha = ".6"
+	navLinkShadowAlpha = "0"
+	toolColor = "0x5d5d5d"
+	transitionLength = "1"
+	transitionPause = "5"
+	transitionStyle = "Push"
+/>
+</params>

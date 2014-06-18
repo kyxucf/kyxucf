@@ -1,0 +1,169 @@
+<div class="module">
+
+	<div class="module-head">
+		
+		<h3 class="yanker">&nbsp;</h3>
+		
+		<div id="edit-head">      
+			
+			
+			<button class="primary_sm right"  type="button" title="<?php __('Add albums') ?>" onclick="Messaging.dialogue('add-albums')"><?php __('Add albums') ?></button>   
+			
+			<?php if (empty($gallery['Tag'])): ?>
+			
+				<div id="sort_type">
+
+					<h3><?php __('Manage albums'); ?></h3>
+					
+				</div>
+			<?php else: ?>
+				
+			<div id="sort_type">
+				
+				<ul class="small-nav">
+					
+					<li class="title"><?php __('Album order'); ?>:</li>
+					
+					<li>&nbsp;<select id="sort_data" onchange="update_gallery_sort_preset(false);">
+					
+					<?php 
+						$sort = $gallery['Gallery']['sort_type']; 
+						preg_match('/\((.*)\)/', $sort, $matches);
+						if (empty($matches)) {
+							$sort_dir = '';
+						} else {
+							$sort_dir = $matches[1];
+						}
+						$id = $gallery['Gallery']['id'];
+						$options = array(array('manual', __('Manual', true)), array('album title', __('Album title', true)), array('date', __('Date created', true)), array('modified', __('Date modified', true)));
+						$out = '';
+						foreach($options as $option):
+							$out .= '<option value="' . $option[0] . '"';
+							if ($sort == $option[0] || $sort == ($option[0] . " ($sort_dir)")):
+								$out .= ' selected="selected"';
+							endif;
+							$out .= '>' . $option[1] . '</option>'; 
+						endforeach;
+						e($out);
+						$dir_sel = '';
+						if ($sort == 'manual') {
+							$sorting = true;
+							$sort_s = 'true';
+						} else {
+							$sorting = false;
+							$sort_s = 'false';
+						}
+						if (strpos($sort, 'manual') === false) {
+							$display = '';
+							if ($sort_dir == 'oldest first') {
+								$dir_sel = ' selected="selected"'; 
+							}
+						} else {
+							$display = ' style="display:none;"';
+						}
+					?></select>&nbsp;&nbsp;<select id="sort_direction" onchange="update_gallery_sort_preset(true);"<?php e($display); ?>><option id="descender" value="(newest first)"><?php __('Descending'); ?></option><option id="ascender" value="(oldest first)"<?php e($dir_sel); ?>><?php __('Ascending'); ?></option></select>
+						
+						<button id="sort_button" class="primary_sm" type="button" style="display:none" onclick="change_gallery_order_type(<?php e("$id, '$sort'"); ?>)"><?php __('Update order'); ?></button>
+					
+					</li>
+				
+				</ul>
+										
+			</div> <!-- close sort_type-->
+			
+			<?php endif; ?>
+			
+		</div> <!--close edit-head-->
+		
+		<div class="clear"></div>
+		
+	</div> <!--close module-head-->
+	
+	<div class="wrap">
+	
+		<div class="content">
+				<?php if (empty($gallery['Tag'])): ?>
+					
+					<p class="halfstep">
+					<?php printf(__('This gallery contains no albums. %s.', true), '<a href="#" onclick="Messaging.dialogue(\'add-albums\'); return false">' . __('Click here to add', true) . '</a>'); ?>  </p>
+					
+					
+				<?php else: ?>
+					<ul id="galleries-view" class="album-view" style="padding:0;">	
+						<?php $t = count($gallery['Tag']); $n = 1; foreach($gallery['Tag'] as $tag): $tag_id = $tag['id'];
+						 ?>
+						
+						<?php
+
+							if (isset($albums[$n-1])) {
+								$album = $albums[$n-1];
+								if ($album['Album']['id'] != $tag['aid']) {
+									continue;
+								}
+							} else {
+								continue;
+							}
+
+						?>
+					
+						<li id="tag_<?php e($tag_id); ?>"<?php e(ife($sorting, ' class="sort"', '')) ?>>
+						
+							<?php if (!$is_main): ?><div class="editBttns" style="margin:0;">
+								<a title="<?php __('Exclude album from this gallery'); ?>" class="icon active" href="#" onclick="delete_gallery_link(<?php e($tag_id); ?>); return false;"></a>        
+							</div><?php endif; ?> 
+						
+							<h5 class="<?php e(ife($album['Album']['smart'], 'icon_label_smartalbum', 'icon_label_album')); ?>" style="margin-bottom:6px;"><?php e($director->trunc(htmlspecialchars($album['Album']['name']), 22)); ?></h5>
+						
+							
+								<?php e($director->albumBg($album['Album']['aTn'], $album['Album']['id'])); ?>
+							
+								<div class="copy">
+									<?php e($director->albumCounts($album)); ?><br />
+									<?php __('Created'); ?>: <?php e($director->_date(__('%m/%d/%Y', true), $album['Album']['created_on'])); ?><br />
+									<?php __('Modified'); ?>: <?php e($director->_date(__('%m/%d/%Y', true), $album['Album']['modified_on'])); ?>
+								</div>
+							
+								<div id="counter_<?php e($tag_id); ?>" class="counter"><span><?php e("$n/$t") ?></span></div>
+					  
+						
+						</li>
+					
+						<?php $n++; endforeach; ?>
+					
+					</ul>
+				
+					<?php if ($sorting): ?>
+					<script type="text/javascript">
+						gallery_sort_init();
+					</script>		
+					<?php endif; ?>	
+				<?php endif; ?>
+		</div>
+		
+	</div> <!--close module wrap-->
+	
+	<div class="module-footer">
+		<div>&nbsp;</div>
+	</div>
+	
+</div>
+
+<?php if (!isset($show_dialogue)): $show_dialogue = false; endif; ?>
+<?php e($director->preDialogue('add-albums', $show_dialogue, 600)); ?>
+
+	<h1><?php __('Add albums'); ?></h1>
+	
+	<?php if (empty($non_members)): ?>
+		<p><?php __('There are no more albums available to add to this gallery. Before an album can be added to a gallery, its publish status must be set to "Active".'); ?></p>
+	<?php else: ?>
+	<p><?php __('To include albums in this gallery, click the switch button at the beginning of each row. You may also search for a specific album by entering its title in the search field.'); ?></p>
+	
+	<div id="page-target" class="dialogue-scroll" style="height:250px;">    
+		<?php e($this->element('non_members')); ?>
+	</div>
+	
+	<?php endif; ?>
+	<fieldset class="nopad">	
+		<button class="primary_lg_mod right"  type="button" title="<?php __('Done') ?>" onclick="Messaging.kill('add-albums');"><?php __('Done') ?></button>
+	</fieldset>
+<?php e($director->postDialogue()); ?>

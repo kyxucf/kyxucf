@@ -1,0 +1,66 @@
+<?php 
+    if (isset($paginator)) {
+		$paginator->options( 
+            array('update' => 'update-target',  
+                    'url' => array('controller' => 'galleries', 'action' => 'page_smart', 'id' => $gallery['Gallery']['id']),
+					'before' => "pagination_spinner();", "complete" => 'init_copiers(); smart_double();'));
+		$start = (int) $paginator->counter(array('format' => '%start%'));
+		$total = (int) $paginator->counter(array('format' => '%count%'));
+	} else {
+		$start = 1;
+		$total = count($albums);
+	}
+?><div class="module-head">
+	<div class="pagination"><span id="refresh_spin" class="refresh_spin" style="display:none;"><?php __('Refreshing...'); ?></span> <?php if (isset($paginator)): ?>
+		<?php e($paginator->prev('<button class="primary_sm">Previous</button>', array('escape' => false))); ?>
+								&nbsp;
+							<?php echo $paginator->numbers(array('separator' => ' ')); ?>
+							&nbsp; 
+						    <?php echo $paginator->next('<button class="primary_sm">Next</button>', array('escape' => false)); ?>
+	<?php endif; ?>					
+	</div>
+	<h3><?php __('Album rule preview'); ?> <span class="help"><span><?php __('The albums included in this smart gallery are based on the criteria entered in Album Rules above.'); ?></span></span> <?php if (isset($paginator)): e($paginator->counter(array( 
+							        'format' => '<span>Showing %start%-%end% of %count%</span>' 
+							))); endif; ?></h3>
+	
+</div>
+
+<div class="wrap">
+
+	<div class="content">						
+		<?php if (empty($albums)): ?>
+			<p><?php __('No albums found. Refine your rule criteria above.'); ?></p>
+		<?php else: ?>
+			<ul id="galleries-view" class="album-view" style="padding:0;">	
+				<?php $t = $total; $n = $start; foreach($albums as $album): ?>
+			
+				<li>
+				
+					<h5 class="<?php e(ife($album['Album']['smart'], 'icon_label_smartalbum', 'icon_label_album')); ?>" style="margin-bottom:6px;"><?php e($director->trunc(htmlspecialchars($album['Album']['name']), 22)); ?></h5>
+				
+						<?php e($director->albumBg($album['Album']['aTn'], $album['Album']['id'])); ?>
+					
+						<div class="copy">
+							<?php e($director->albumCounts($album)); ?><br />
+							<?php __('Created'); ?>: <?php e($director->_date(__('%m/%d/%Y', true), $album['Album']['created_on'])); ?><br />
+							<?php __('Modified'); ?>: <?php e($director->_date(__('%m/%d/%Y', true), $album['Album']['modified_on'])); ?>
+						</div>
+					
+						<div class="counter"><span><?php e("$n/$t") ?></span></div>				
+				</li>
+			
+				<?php $n++; endforeach; ?>
+			
+			</ul>
+		<?php endif; ?>
+	</div>
+
+</div> <!--close module wrap-->
+
+<div class="module-footer">
+	<div>&nbsp;</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	var smart_gallery = true;
+</script>

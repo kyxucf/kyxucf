@@ -1,0 +1,170 @@
+<?php 
+    $paginator->options( 
+            array('update' => 'container',  
+                    'url' => array('controller' => 'galleries', 'action' => 'index'),
+					'before' => "pagination_spinner();", "complete" => 'init_copiers();')); 
+?><div id="head">
+	
+	<div class="head-wrap">
+		
+		<div id="head-form">
+			
+			<?php if ($user['perms'] > 1): ?>
+			<div class="icon-bump">
+			
+				<form name="album_form" action="#" onsubmit="add_gallery(this); return false;">
+					<label class="inline"><?php __('Create a new gallery'); ?>:</label>&nbsp;&nbsp;
+					<?php e($form->text('Gallery.name', array('size' => 30, 'class' => 'inline med', 'value' => __('Gallery title', true), 'onfocus' => "if (this.value == __('Gallery title')) this.value='';", 'onblur' => "if (this.value == '') this.value = __('Gallery title');"))); ?>&nbsp;&nbsp;
+					<select name="data[Gallery][smart]">
+						<option value="0"><?php __('Standard'); ?></option>
+						<option value="1"><?php __('Smart'); ?></option>
+					</select>&nbsp;&nbsp;<button type="submit" title="<?php __('Create'); ?>" class="primary_lg"><?php __('Create'); ?></button>	 
+			      											
+				</form>
+			
+			</div>
+			<?php endif; ?>
+
+		</div>
+		
+		<h1 class="galleries"><?php __('Galleries'); ?></h1>
+		
+	</div>
+	
+	<div class="clear"></div>
+
+</div>
+
+<div id="container-wrap">
+
+	<div class="col-wrap">
+		
+		<?php if (isset($imports) && $imports): ?>
+		<div id="alert">
+			<div class="warn">
+				<div class="tr"></div>
+				<div class="content">
+					<div class="fixed icon">
+						<?php __('Director has detected new galleries available for importing'); ?>:&nbsp;<form name="import_form" id="import_form" action="#" onsubmit="init_import(); return false" class="inline"><select name="data[Import][folder]">
+								<?php foreach($imports as $import): ?>
+								<option><?php e($import); ?></option>
+								<?php endforeach; ?>
+							</select>&nbsp;&nbsp;<button type="submit" title="<?php __('Import now'); ?>" class="primary_sm"><?php __('Import now'); ?></button></form>
+					</div>
+				</div>
+				<div class="bl"><div class="br"></div></div>
+			</div>
+		</div>
+		<?php endif; ?>
+					
+			<div id="table-sort-wrap">
+
+				<div class="head">
+
+
+					<label class="inline"><?php __('Showing'); ?>:</label>
+					<?php echo $paginator->counter(array( 
+					        'format' => sprintf(__('%s-%s of %s', true), '%start%', '%end%', '%count%') 
+					)); ?>&nbsp;&nbsp;<button class="primary_sm" onclick="toggle_filter_galleries();"><?php __('Filter'); ?></button>
+
+
+					 <div class="pagination"><span class="refresh_spin" style="display:none;"><?php __('Refreshing...'); ?></span> <?php echo $paginator->prev('<button class="primary_sm">Previous</button>', array('escape' => false)); ?>
+							&nbsp;
+						<?php echo $paginator->numbers(array('separator' => ' ')); ?>
+						&nbsp;
+					    <?php echo $paginator->next('<button class="primary_sm">Next</button>', array('escape' => false)); ?></div>
+
+
+				</div> <!-- close head -->
+
+
+				<div id="filter" class="filter"<?php e(ife(!$filtered, ' style="display:none"')) ?>>
+					<form id="galleries-filter-form" action="#" method="post" style="display:inline;" onsubmit="filter_galleries_list(); return false;">
+					<label class="inline"><?php __('Filter'); ?>:</label>&nbsp;&nbsp;<?php __('Show'); ?>&nbsp;<?php e($form->select('Gallery.type', array(2 => __('Any', true), 0 => __('Standard', true), 1 => __('Smart', true)), null, array('onchange' => 'filter_galleries_list()'), false)); ?>&nbsp;&nbsp;&nbsp;&nbsp;
+					<?php e(__('Search') . ': ' . $form->text('Gallery.search', array('size' => 30, 'class' => 'small'))); ?>&nbsp;&nbsp;<button type="submit" class="primary_sm"><?php __('Search'); ?></button><?php if (isset($this->data['Gallery']['search']) && !empty($this->data['Gallery']['search'])): ?>&nbsp;<button type="button" class="primary_sm" onclick="$('GallerySearch').value = '';filter_galleries_list();"><?php __('Clear'); ?></button><?php endif; ?></form>
+
+
+				</div> <!-- close filter -->
+		
+		<?php $sort_key = r('Gallery.', '', $paginator->sortKey()); ?>
+		<table cellspacing="0" cellpadding="0" id="galleries-table" class="sortable">
+			<tr>
+				<th class="tl title<?php if ($sort_key == 'name'): e(' sort' . $paginator->sortDir()); endif; ?>"><?php e($paginator->sort(__('Galleries', true), 'name')); ?></th>
+				<th<?php if ($sort_key == 'smart'): e(' class="sort' . $paginator->sortDir() . '"'); endif; ?>><?php e($paginator->sort(__('Type', true), 'smart')); ?></th>
+				<th<?php if ($sort_key == 'tag_count'): e(' class="sort' . $paginator->sortDir() . '"'); endif; ?>><?php e($paginator->sort(__('Albums', true), 'tag_count')); ?></th>
+				<th<?php if ($sort_key == 'modified_on'): e(' class="sort' . $paginator->sortDir() . '"'); endif; ?>><?php e($paginator->sort(__('Modified', true), 'modified_on')); ?></th>
+				<th<?php if ($sort_key == 'created_on'): e(' class="sort' . $paginator->sortDir() . '"'); endif; ?>><?php e($paginator->sort(__('Created', true), 'created_on')); ?></th>
+				<th><?php __('Publish'); ?></th>
+				<th><?php __('Actions'); ?></th>
+			</tr>
+			
+			<?php if (empty($galleries)): ?>
+				
+				<tr>
+					<td colspan="8" class="title end">
+						<?php __('No galleries that match your query were found.'); ?>
+					</td>
+				</tr>
+				
+			<?php else: ?>
+			
+				<?php foreach ($galleries as $gallery): ?>
+				
+					<tr class="content">
+						<td class="title<?php e(ife($sort_key == 'name', ' sortchild')); ?>">
+							<h4 class="<?php e(ife($gallery['Gallery']['smart'], 'icon_label_smartgallery', 'icon_label_gallery')); ?>"><a href="<?php e($html->url("/galleries/edit/{$gallery['Gallery']['id']}")); ?>" title="<?php __('Edit gallery'); ?>: <?php e($gallery['Gallery']['name']); ?>"><?php e($gallery['Gallery']['name']); ?></a></h4><span><?php e(htmlspecialchars($gallery['Gallery']['description_clean'])); ?></span>
+
+						</td>
+						<td<?php e(ife($sort_key == 'smart', ' class="sortchild"')); ?>>
+							<?php e(ife($gallery['Gallery']['smart'], __('Smart', true), __('Standard', true))); ?>
+						</td>
+						<td<?php e(ife($sort_key == 'tag_count', ' class="sortchild"')); ?>>
+							<?php e($gallery['Gallery']['tag_count']); ?>
+						</td>
+						<!-- Keep whitespace out of the following to cells, messes up sorting -->
+						<td<?php e(ife($sort_key == 'modified_on', ' class="sortchild"')); ?>><?php e($director->_date(__('%m/%d/%Y %I:%M%p', true), $gallery['Gallery']['modified_on'])); ?><span class="sort_this" style="display:none;"><?php e($gallery['Gallery']['modified_on']); ?></span></td>
+						<td<?php e(ife($sort_key == 'created_on', ' class="sortchild"')); ?>><?php e($director->_date(__('%m/%d/%Y %I:%M%p', true), $gallery['Gallery']['created_on'])); ?><span class="sort_this" style="display:none;"><?php e($gallery['Gallery']['created_on']); ?></span></td>
+						
+						<td align="center">
+							<div style="text-align:center;">
+							<button onclick="publish_it('gallery', <?php e($gallery['Gallery']['id']); ?>, '<?php e(addslashes($gallery['Gallery']['name'])); ?>');" type="button" title="<?php __('Publish'); ?>" class="primary_sm"><?php __('Publish'); ?></button>
+							</div>
+						</td>
+						
+						<td align="center" class="end">
+							<div style="margin:0 auto;display:block;width:<?php e(ife($gallery['Gallery']['main'] || $user['perms'] == 1, '22', '44')); ?>px;">
+						
+							<a title="<?php __('Edit gallery'); ?>" class="icon edit left nudgeR" href="<?php e($html->url ("/galleries/edit/{$gallery['Gallery']['id']}")); ?>"></a>
+						
+							<?php if ($user['perms'] > 1 && !$gallery['Gallery']['main']): ?><a title="<?php __('Delete gallery'); ?>" class="icon delete left" href="#" onclick="delete_gallery(<?php e($gallery['Gallery']['id']); ?>); return false;"></a><?php endif; ?>
+							
+							</div>
+						</td>
+					</tr>
+					
+				<?php endforeach; ?>
+
+			<?php endif;?>
+			
+		</table>
+		
+		<?php if ($paginator->hasPage(null, 2)): ?>
+		<div class="foot">
+			<div class="pagination"><span class="refresh_spin" style="display:none;"><?php __('Refreshing...'); ?></span> <?php echo $paginator->prev('<button class="primary_sm">Previous</button>', array('escape' => false)); ?>
+					&nbsp;
+				<?php echo $paginator->numbers(array('separator' => ' ')); ?>
+				&nbsp; 
+			    <?php echo $paginator->next('<button class="primary_sm">Next</button>', array('escape' => false)); ?></div>
+		</div>
+		<?php endif; ?>
+		
+	
+	</div>
+		
+	</div>
+
+</div> <!--close container-wrap-->
+
+<div id="container-footer">
+	<div>&nbsp;</div>
+</div>

@@ -1,0 +1,151 @@
+<div id="image-view-wrap">
+	
+<ul id="image-view">	
+	<?php
+		$eb_width = 132;
+		
+		if ($user['perms'] < 2) {
+			$eb_width -= 21;
+		}
+		
+		if (isset($_COOKIE['v_factor'])) {
+			$v = $_COOKIE['v_factor'];
+		} else {
+			$v = 0.15;
+		}
+		$w = 200*(.74 + ($v*0.3));
+	
+	?>
+	<?php $t = count($images); $n = 0; ?>
+	<?php foreach ($images as $i): ?>
+		<?php 
+			if (!$rotate || $i['is_video']) {
+				$_width = $eb_width - 42;
+				$_rotate = false;
+			} else {
+				$_width = $eb_width;
+				$_rotate = true;
+			}
+			
+			$n++; 
+			$src = $i['src'];
+			$path_to_lg = ALBUMS . DS . 'album-' . $album['Album']['id'] . DS . 'lg' . DS . $i['src'];
+			
+			if ($i['is_video'] || isSwf($i['src'])) {
+				$filename = $director->getVidThumb($i['src'], $i['lg_preview'], $album['Album']['id'], 176, 132, 1, 70, 1, true);
+			} else { 
+				$arr = unserialize($i['anchor']);
+				if (empty($arr)) {
+					$arr['x'] = $arr['y'] = 50;
+				}
+				$filename = __p(array('src' => $i['src'], 
+									'album_id' => $album['Album']['id'],
+									'anchor_x' => $arr['x'], 
+									'anchor_y' => $arr['y'],
+									'force' => true));		
+			}
+
+			if (in_array($sort, array('file name (newest first)', 'file name (oldest first)','manual', ''))) {
+				$sort_text = $i['src'];
+			} else {
+				if (strpos($sort, 'date') !== false) {
+					$c = $i['created_on'];
+					$cond = true;
+				} else if (strpos($sort, 'modified') !== false) {
+					$c = $i['modified_on'];
+					$cond = true;
+				} else {
+					$c = $i['captured_on'];
+					$cond = false;
+				}
+				if (empty($c)) {
+					$sort_text = '';
+				} else {
+					$sort_text = r(' ', '&nbsp;', $director->_date(__('%m/%d/%Y %I:%M%p', true), $c, $cond));
+				}
+			}
+						
+			$id = $i['id'];
+			
+			$class = '';
+			$tail = '';
+			if ($i['id'] == $album['Album']['preview_id']) {
+				$class = ' class="is-preview"';
+				$tail = ' / ' . __('Album preview', true);
+			} else if (in_array($i['id'], $preview_ids)) {
+				$class = ' class="is-vid-preview"';
+				$tail = ' / ' . __('Video preview', true);
+			}
+			
+		?>
+		<li id="image_<?php e($id); ?>" class="on <?php e(ife($i['is_video'], 'video', 'image')); ?> <?php $i['active'] ? e('active') : e('inactive') ; ?>" style="width:<?php e($w) ?>px;<?php e(ife($hide && !$i['active'], 'display:none;')); ?>">
+			
+			<div class="meta"><?php e($sort_text); ?></div>
+			
+			<div class="scale-image<?php $sorting ? e(' sort') : e(''); ?>"><div class="thumbimg loadme"><span id="url_<?php e($id); ?>" style="display:none;"><?php e($filename); ?></span><img id="drop_<?php e($id); ?>" src="<?php e(DIR_HOST); ?>/app/webroot/img/loading_ei.gif" class="wide fluid" alt="loading" /><?php if ($i['is_video']): ?><img src="<?php e(DIR_HOST); ?>/app/webroot/img/vid_overlay.png" class="video-overlay" width="32" height="32" alt="" /><?php endif; ?></div></div>
+			
+			<div class="<?php $i['active'] ? e('counter') : e('counter-off'); ?> a-counter" id="counter_<?php e($i['id']); ?>"><span<?php e($class); ?>><?php __('Inactive'); ?><?php e($tail); ?></span><span style="display:none">&nbsp;</span></div>							
+		</li>
+	<?php endforeach; ?>
+</ul>
+
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	scaleIt(<?php e($v); ?>);
+	current_album_id = <?php e($album['Album']['id']); ?>;
+	slider_init = true; 
+	sorting = <?php e($sort_s); ?>;
+</script>
+
+<?php e($director->preDialogue('edit-preview-existing', false, 430)); ?>
+	<h1><?php __('Edit video preview'); ?></h1>
+	
+	<div id="prv-empty" style="display:none;">
+		<p><?php __('This album has no images that can be used as a video preview. Please upload images to this album first before editing.'); ?></p>
+	</div>
+	
+	<div id="prv-full">
+
+		<p><?php printf(__('Click on an image to select it as the preview for this video. You can also %s a custom image to use as the video preview', true), '<a href="#" onclick="set_vid_prv_upload(); return false;">' . __('upload', true) . '</a>'); ?>.</p>
+	
+		<div class="dialogue-scroll" style="height:200px;"> 
+		
+			<div class="wrap">
+		
+				<ol class="photo-thumbs-list" id="existing-previews">
+					<?php $i = 0; ?>
+			
+					<?php foreach($this->data['Image'] as $image): if (isImage($image['src'])): $i++;
+							$str = $image['src']; 
+							list($x, $y) = parse_anchor($image['anchor']);				
+					?>
+						<li id="tn_<?php e($image['id']) ?>">
+							<span style="display:none"><?php e(__p(array('src' => $image['src'], 
+																	'album_id' => $album['Album']['id'],
+																	'anchor_x' => $x, 
+																	'anchor_y' => $y,
+																	'force' => true))); ?></span>
+							<img class="fluid" style="cursor:pointer;" width="120" height="90" onclick="assign_vid_preview(<?php e($image['id']); ?>, '<?php e("$str:$x:$y"); ?>');" src="<?php e(DIR_HOST); ?>/app/webroot/img/loading_ei.gif" alt="" />
+						</li>
+					<?php endif; endforeach; ?>
+				</ol>  
+		
+			</div>  
+		   
+		</div>
+	
+		<p class="halfstep"><input type="checkbox" id="make_inactive" checked="checked" /> <?php __('Make this image inactive after assigning it as the video preview.'); ?></p>
+		
+	</div>
+	
+	<?php if ($i == 0): ?>
+		<script type="text/javascript" charset="utf-8">
+			$('prv-empty').show();
+			$('prv-full').hide();
+		</script>
+	<?php endif; ?>
+	<fieldset class="nopad">
+		<button class="primary_lg_mod right"  type="button" title="<?php __('Cancel') ?>" onclick="Messaging.kill('edit-preview-existing');"><?php __('Cancel') ?></button>
+	</fieldset>
+<?php e($director->postDialogue()); ?>

@@ -1,0 +1,4 @@
+<?php foreach($previews as $p): ?>
+	<p style="text-align:left;padding:0;"><span class="warn"><?php printf(__('This image is a video preview graphic for %s', true), '<strong>' . $p['Image']['src'] . '</strong></span>'); ?></p>
+	<button type="button" style="margin-bottom:12px;" class="primary_sm" onclick="rm_vid_preview(<?php e($i['id'] . ', ' . $p['Image']['id']); ?>); return false;"><?php __('Remove'); ?></button>
+<?php endforeach; ?>

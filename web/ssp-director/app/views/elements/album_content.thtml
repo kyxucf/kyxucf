@@ -1,0 +1,194 @@
+<?php e($this->renderElement('album_head')); ?>
+<?php e($asset->js('picker')); ?> 
+<div id="container-wrap">
+
+	<div class="col-wrap">
+		
+		<?php e($this->renderElement('album_subnav')); ?>
+		
+		<div class="clear" style="height:1%;"></div>
+		
+		<?php if($album['Album']['smart']): ?>
+	
+			<?php e($this->renderElement('album_image_list_smart')); ?>
+			
+		<?php else: ?>
+	
+		<div id="rebuild">
+			<?php e($this->renderElement('album_image_list')); ?>
+		</div>
+		<?php if (count($images) != 0): ?>
+		<script type="text/javascript">
+			var edit_images = true;
+			var smart_album = false;
+		</script>
+		<?php endif; ?>
+		<div id="multi-footer" style="display:none;">
+			<ul>
+				<li><span id="multi-count"></span>&nbsp;<?php __('image(s) selected'); ?>&nbsp;&nbsp;/&nbsp;&nbsp;<?php __('Action'); ?>:</li>
+				<li>
+					<a id="edit_btn" title="<?php __('Edit'); ?>" class="icon alt edit_alt nudgeR" href="#" onclick="edit_image_button(); return false;"></a> 
+					<a title="<?php __('Deactivate'); ?>" class="icon alt inactive_alt nudgeR" href="#" onclick="mass_deactivate(); return false;"></a>   
+					<a title="<?php __('Activate'); ?>" class="icon alt active_alt left nudgeR" href="#" onclick="mass_activate(); return false;"></a>   
+					<a title="<?php __('Rotate images counter-clockwise'); ?>" class="icon alt rotleft_alt nudgeR" href="#" onclick="mass_rotate_image(90); return false;"></a>
+					<a title="<?php __('Rotate images clockwise'); ?>" class="icon alt rotright_alt nudgeR" href="#" onclick="mass_rotate_image(-90); return false;"></a>				
+						<?php if (!empty($other_albums)): ?>
+						<a title="<?php __('Copy'); ?>" class="icon alt move_alt nudgeR" href="#" onclick="mass_copy(); return false;"></a>
+						<?php endif; ?>
+						<a title="<?php __('Add tags'); ?>" class="icon alt tag_alt nudgeR" href="#" onclick="mass_tag(); return false;"></a>	
+						<?php if ($user['perms'] > 1): ?>
+						<a title="<?php __('Delete'); ?>" class="icon alt delete_alt nudgeR" href="#" onclick="mass_delete(<?php e($album['Album']['id']) ?>); return false;"></a>
+						<?php endif; ?>
+					 <button type="button" title="<?php __('Clear selection'); ?>" onclick="clear_selection(); return false;" class="primary_sm_alt"><?php __('Clear selection'); ?></button>  
+					</li>
+			</ul>
+		</div>
+
+		<?php e($director->preDialogue('image-tag-mass')); ?>
+			
+			<h1><?php __('Add tags'); ?> <span class="sub">(<?php printf(__('%s %s selected', true), '<span id="tag_count"></span>', '<span id="tag_count_sing">' . __('item', true) . '</span><span id="tag_count_pl" style="display:none">' . __('items', true) . '</span>'); ?>)</span></h1>
+
+			<p><?php printf(__('Enter one or more tags (separated with a space) to assign to your selected content. Your new tags will be appended to any existing tags. To delete the tags already assigned, %s.', true), '<a href="#" onclick="clear_tags(); return false;">' . __('click here', true) . '</a>'); ?></p>
+
+			<form action="#" method="post" onsubmit="mass_tag_do(); return false;">
+				<div class="dialogue-spacer">	
+					<div class="input-wrap"><?php e($form->textarea('Image.mass_tags', array('cols' => 40, 'rows' => 2, 'class' => 'wide'))); ?></div>
+				</div>
+		
+				<fieldset class="nopad">
+					<button id="mass-tag-button" class="primary_lg_mod right" type="submit"><?php __('Tag content'); ?></button> <button id="mass-tag-cancel-button" class="primary_lg_mod right" type="button" onclick="Messaging.kill('image-tag-mass');"><?php __('Cancel'); ?></button>
+				</fieldset>
+			</form>
+
+		<?php e($director->postDialogue()); ?>
+
+		<?php if (!empty($other_albums)): ?>
+	
+			<?php e($director->preDialogue('image-copy-mass')); ?>
+				
+				<h1><?php __('Copy content'); ?> <span class="sub">(<?php printf(__('%s %s selected', true), '<span id="copy_count"></span>', '<span id="copy_count_sing">' . __('item', true) . '</span><span id="copy_count_pl" style="display:none">' . __('items', true) . '</span>'); ?>)</span></h1>
+		
+				<form action="#" method="post" onsubmit="mass_copy_image(<?php e($album['Album']['id']) ?>); return false;">
+		
+				<p><?php __('Select the album you would like to copy this content to.'); ?></p>
+		
+				<div class="dialogue-spacer">		
+					<label class="inline"><?php __('Copy content to'); ?>:&nbsp;</label>
+					<select id="album-to-copy-mass">
+						<?php foreach ($other_albums as $a): ?>
+							<option value="<?php e($a['Album']['id']); ?>"><?php e($a['Album']['name']); ?></option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+				<?php if ($user['perms'] > 1): ?>
+				<p><input type="checkbox" value="1" id="mass-move" />&nbsp;<?php __('Delete content from current album after copy'); ?></p>
+				<?php endif; ?>
+				<fieldset class="nopad">
+					<button id="mass-copy-button" class="primary_lg_mod right" type="submit"><?php __('Copy content'); ?></button> <button id="mass-copy-cancel-button" class="primary_lg_mod right" type="button" onclick="Messaging.kill('image-copy-mass'); image_to_copy = 0;"><?php __('Cancel'); ?></button>
+				</fieldset>
+				</form>
+
+			<?php e($director->postDialogue()); ?>
+
+		<?php endif; ?>
+
+		<script type="text/javascript">
+			var selected_id = <?php e($selected_id); ?>
+		</script>
+
+		<?php endif; ?>
+		
+		<!-- ALBUM AUDIO-->
+
+		<div id="audio-tgt">
+
+			<?php e($this->renderElement('album_audio')); ?>
+
+		</div> <!--close content-->
+		
+
+	</div> <!--close col-wrap-->
+
+</div> <!--close container-wrap-->
+
+<?php e($asset->js('upload')); ?>  
+
+<script type="text/javascript">
+		var dash_audio = true;
+		var _aid = <?php e($html->value('Album.id')); ?>;
+		var h = Element.getHeight('browse-button');
+		var w = Element.getWidth('browse-button');
+		$('browse_wrapper').setStyle({width: w + 'px', height: h + 'px'});
+         
+ 		var flashvars = {
+			aid: _aid,
+			dash: "4",
+			max_size: "<?php e(MAX_SIZE); ?>",
+			upload_url: "<?php e($html->url('/uploads/image/' . CUR_USER_ID)); ?>"  
+		}
+		var params = {  
+			allowScriptAccess: "always",
+			wmode: "transparent"      
+		}
+		var attributes = {
+			id: "_uploader"
+		}
+		swfobject.embedSWF("<?php e($this->webroot . 'swf/upload.swf?' . md5(DIR_VERSION)); ?>", "flash_target_audio_swf", w, h, "9", false, flashvars, params, attributes);
+</script>
+
+<?php e($director->preDialogue('edit-preview-upload', false, 430)); ?>
+	<h1><?php __('Edit video preview'); ?></h1>
+	
+	<p><?php __('To upload a custom image to serve as this video\'s preview image, select a file by clicking the upload button below.'); ?></p>
+	
+	<fieldset class="nopad">
+		<div id="browse_wrapper_vid" style="float:right;position:relative;margin-top:0"><button id="browse-button-vid" type="button" onclick="return false" title="<?php __('Upload image'); ?>" class="primary_lg_mod right nudgeL"><?php __('Upload image'); ?></button> <div id="flash_target_vid" style="position:absolute;top:0;left:0;z-index:1000;"></div></div> 
+		
+		<button class="primary_lg_mod right"  type="button" title="<?php __('Cancel') ?>" onclick="Messaging.kill('edit-preview-upload');"><?php __('Cancel') ?></button>
+	</fieldset>
+<?php e($director->postDialogue()); ?>
+
+<?php e($director->preDialogue('edit-preview', false, 430)); ?>
+	<h1><?php __('Edit video preview'); ?></h1>
+	
+	<p><?php printf(__('Assign a video preview by choosing one of the thumbnails extracted from the video below. You can also use an %s from this album, or %s a custom image', true), '<a href="#" onclick="Messaging.d2d(\'edit-preview\', \'edit-preview-existing\'); return false;">' . __('existing&nbsp;image', true) . '</a>', '<a href="#" onclick="set_vid_prv_upload(); return false;">' . __('upload', true) . '</a>'); ?>.</p>
+	
+	<div class="dialogue-scroll" style="height:200px;">
+		                                              
+		<div class="wrap">
+		
+			<ol class="photo-thumbs-list" id="frames_tgt"></ol>   
+		
+		</div>
+		   
+	</div>
+	
+	<fieldset class="nopad">	
+		<button class="primary_lg_mod right"  type="button" title="<?php __('Cancel') ?>" onclick="Messaging.kill('edit-preview');"><?php __('Cancel') ?></button>
+	</fieldset>
+<?php e($director->postDialogue()); ?>
+
+<?php e($director->preDialogue('preview-focal', false, null, '', false)); ?>
+		
+	<h1><?php __('Assign focal point'); ?></h1>
+
+	<p><?php __('Drag the focal point to the area you wish to maintain when cropping.'); ?></p>
+
+	<div class="dialogue-spacer" style="text-align:center;">
+		<div id="img_wrapper">
+			<img id="anchor" src="<?php e(DIR_HOST); ?>/app/webroot/img/focal_point.png" style="display:none;" /><img id="set_focus" onload="setAnchorAvatar(50,50);" />
+		</div>
+	</div>
+
+	<fieldset class="nopad">
+		<button class="primary_lg_mod right" type="button" title="<?php __('Click to assign focal point'); ?>" onclick="vid_preview_step_3();"><?php __('Assign focal point'); ?></button>
+	</fieldset>    
+
+<?php e($director->postDialogue()); ?>
+
+<script type="text/javascript">
+	var aid = <?php e($album['Album']['id']); ?>;
+	swf_path = "<?php e($this->webroot . 'swf/upload.swf?' . md5(DIR_VERSION)); ?>";
+	upload_url = '<?php e($html->url('/uploads/image/' . CUR_USER_ID)); ?>'
+	max_size = <?php e(MAX_SIZE); ?>;
+</script>

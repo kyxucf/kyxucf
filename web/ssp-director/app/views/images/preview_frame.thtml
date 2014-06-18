@@ -1,0 +1,9 @@
+<?php e($this->element('vid_previews')); ?>
+
+<script type="text/javascript" charset="utf-8">
+<?php if ($refresh): ?>
+	refresh_content_list();
+<?php else: ?>
+	Messaging.hello(__('Done!'), 2, true);
+<?php endif; ?>
+</script>

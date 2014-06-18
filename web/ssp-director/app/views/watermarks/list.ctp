@@ -1,0 +1,1 @@
+<?php e($this->element('watermark_list')); ?>

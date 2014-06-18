@@ -1,0 +1,156 @@
+<div id="no-image-warn"<?php e(ife(count($images) == 0, '', ' style="display:none;"')); ?>>
+<div id="alert">
+	<div class="warn">
+		<div class="tr"></div>
+		<div class="content">
+			<div class="fixed icon">
+				<?php printf(__('This album contains no content. %s.', true), $html->link(__('Click here to upload', true), "/albums/edit/{$album['Album']['id']}/upload")); ?> 
+			</div>
+		</div>
+		<div class="bl"><div class="br"></div></div>
+	</div>
+</div>                
+</div>
+					
+		<div id="edit-module" class="module"<?php e(ife(count($images) == 0, ' style="display:none;"', '')); ?>>
+			
+			<div class="module-head">
+				
+				<h3 class="yanker">&nbsp;</h3>
+			
+				<div id="edit-head">
+					
+					<div id="resize-thumbs-ctrl">
+					
+						<div id="slider"><div id="track1"><div id="handle1"></div></div></div>
+					
+						<div id="resize-label">
+							<h3><?php __('Thumbnail size'); ?>:&nbsp;&nbsp;</h3>
+						</div>
+
+					</div>
+											
+					<div id="sort_type">
+						
+						<ul class="small-nav">
+
+							<li><h3><?php __('[#Order in this case is meant to convey the sequential order of a list of objects.  Example: Order: date captured (newest first)#]Order'); ?>:</h3></li>
+							
+							<li>&nbsp;<select id="sort_data" onchange="update_sort_preset(false);"><?php 
+								$sort = $album['Album']['sort_type'];
+								preg_match('/\((.*)\)/', $sort, $matches);
+								if (empty($matches)) {
+									$sort_dir = '';
+								} else {
+									$sort_dir = $matches[1];
+								}
+								$id = $album['Album']['id'];
+								$options = array(array('manual', __('Manual', true)), array('file name', __('File name', true)), array('date', __('Date uploaded', true)), array('captured', __('Date captured', true)), array('modified', __('Date modified', true)));
+								$out = '';
+								foreach($options as $option):
+									$out .= '<option value="' . $option[0] . '"';
+									if ($sort == $option[0] || $sort == ($option[0] . " ($sort_dir)")):
+										$out .= ' selected="selected"';
+									endif;
+									$out .= '>' . $option[1] . '</option>'; 
+								endforeach;
+								e($out);
+								$dir_sel = '';
+								if ($sort == 'manual') {
+									$sorting = true;
+									$sort_s = 'true';
+								} else {
+									$sorting = false;
+									$sort_s = 'false';
+								}
+								if (strpos($sort, 'manual') === false) {
+									$display = '';
+									if ($sort_dir == 'oldest first') {
+										$dir_sel = ' selected="selected"'; 
+									}
+								} else {
+									$display = ' style="display:none;"';
+								}
+							?></select>&nbsp;&nbsp;<select id="sort_direction" onchange="update_sort_preset(true);"<?php e($display); ?>><option id="descender" value="(newest first)"><?php __('Descending'); ?></option><option id="ascender" value="(oldest first)"<?php e($dir_sel); ?>><?php __('Ascending'); ?></option></select>
+								
+								<button id="sort_button" class="primary_sm" type="button" style="display:none" onclick="change_order_type(<?php e("$id, '$sort'"); ?>)"><?php __('Update order'); ?></button>
+								
+								<?php
+								
+								if (isset($_COOKIE['hide_inactive']) && $_COOKIE['hide_inactive'] == 'true') {
+									$hide = $_COOKIE['hide_inactive'];
+								?>
+								<script type="text/javascript" charset="utf-8">
+									hide_inactive = true;
+								</script>
+								<?php
+								
+								} else {
+									$hide = false;
+								}
+								
+								?>
+								&nbsp;&nbsp;<input type="checkbox" value="0" onclick="toggle_inactive_content(this.checked);" <?php e(ife($hide, ' checked="checked"')); ?>/> <?php __('Hide inactive'); ?>
+							</li>
+							
+						   
+							
+						</ul>
+						<script type="text/javascript" charset="utf-8">
+							var cur_order_type = '<?php e($album['Album']['sort_type']); ?>';
+						</script>
+					</div> <!--close sort_type-->
+
+				</div> <!--close edit-head-->
+				
+				<div class="clear"></div>
+		
+		</div> <!--close module-head-->
+		
+		<?php if (count($images) > 0): ?>
+			
+		<div class="wrap">
+			
+			<div class="content">
+				
+				<div id="image-view-tgt">
+				
+					<?php e($this->renderElement('album_image_view', array('sort' => $sort, 'sorting' => $sorting, 'hide' => $hide, 'sort_s' => $sort_s))); ?>
+					
+				</div>		
+		
+				<div id="edit-images-scroll" style="display:none">
+					<div id="track"><div id="track_l"></div><div id="track_r"></div>
+						<div id="handle"><div id="handle_l"></div><div id="handle_r"></div>&nbsp;</div>
+					</div>
+				</div>
+		
+				<div id="edit-box" style="display:none;">
+					<div id="target"></div>
+					<div class="clear"></div>
+				</div>
+			
+			</div> <!--close content -->
+			
+			</div> <!--close module wrap-->
+			 
+			
+			
+			<?php endif; ?>
+			
+			<div class="module-footer">
+			 
+				<div>&nbsp;</div>
+				
+			</div>
+		
+		</div> <!--close module-->
+		
+		<div class="header-radius">
+			<div class="tr"></div>
+			<div class="content">
+                  <div style="font-size:9px;text-align:center;"><strong><?php __('Controls'); ?>:</strong> <?php __('Single click to select, double click to edit. Command (Mac) / CTRL (Win) click on multiple elements to select a group.'); ?></div>
+				
+			</div>
+			<div class="bl"><div class="br"></div></div>
+		</div>	   

@@ -1,0 +1,215 @@
+* { 
+	margin:0;
+	padding:0;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-user-select: none;
+}
+
+body {
+	background:#202123;
+	text-shadow: rgba(0, 0, 0, .4) 0px 1px 1px;  
+}
+
+/* 	BG is necessary to ensure that the browsers scrolls down far
+	enough to completely hide the URL bar and get an accurate height
+	calculation.
+*/
+#bg { 
+	width: 1024px; 
+	height: 1024px; 
+	position:absolute;
+	top:0px;
+}
+
+#cover { 
+	z-index: 100000; 
+	background: -webkit-gradient(linear, left top, left bottom, from(#2d3032), to(#060606));
+	position:absolute;
+	top:0px;
+}
+
+/* Backside */
+.back {
+	text-shadow: rgba(0, 0, 0, .4) 0px 1px 1px;  
+	line-height:1.5;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", sans-serif; 
+}            
+
+/* Image title */
+.back h1 {
+	color:#fff;
+	font-size: 18px;
+	margin-bottom:12px;
+	letter-spacing:-1px;
+}
+              
+/* Counter */
+.back h2 {
+	font-size:12px;
+	text-transform:uppercase;
+	color:#797f85; 
+	font-family: "HelveticaNeue-Bold"; 
+	letter-spacing:-1px;
+}  
+
+/* Caption */
+.back p {
+	font-size: 13px;
+	font-family: "Helvetica Neue",sans-serif;
+	color:#d2d4d6;
+}
+
+/* Test class to detect iPhone hardware version */
+.deviceTest {width: 1px;}
+
+/* Progress cover and animation */
+.spinner, .spinnerTransparent {
+	width: 51px;
+	height: 52px;
+	padding: 10px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -35px;
+	margin-left: -35px;
+}
+
+.spinner {
+	background: #2d3032; 
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: rgba(0, 0, 0, .4) 0px 2px 4px;
+}
+
+.spinnerWrap { 
+	width: 100%; 
+	height: 100%;
+	position: relative;
+	-webkit-animation-name: spin;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+.spinnerWrap div { background: #fff; width:5px;height:14px;position:absolute;top:19px;left:23px;-webkit-border-radius: 2px;}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    8.32% {
+        -webkit-transform: rotate(0deg);
+    }
+    8.33% {
+        -webkit-transform: rotate(30deg);
+    }
+    16.65% {
+        -webkit-transform: rotate(30deg);
+    }
+    16.66% {
+        -webkit-transform: rotate(60deg);
+    }
+    24.99% {
+        -webkit-transform: rotate(60deg);
+    }
+    25% {
+        -webkit-transform: rotate(90deg);
+    }
+    33.32% {
+        -webkit-transform: rotate(90deg);
+    }
+    33.33% {
+        -webkit-transform: rotate(120deg);
+    }
+    41.65% {
+        -webkit-transform: rotate(120deg);
+    }
+    41.66% {
+        -webkit-transform: rotate(150deg);
+    }
+    49.99% {
+        -webkit-transform: rotate(150deg);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+    }
+    58.32% {
+        -webkit-transform: rotate(180deg);
+    }
+    58.33% {
+        -webkit-transform: rotate(210deg);
+    }
+    66.65% {
+        -webkit-transform: rotate(210deg);
+    }
+    66.66% {
+        -webkit-transform: rotate(240deg);
+    }
+    74.99% {
+        -webkit-transform: rotate(240deg);
+    }
+    75% {
+        -webkit-transform: rotate(270deg);
+    }
+    83.32% {
+        -webkit-transform: rotate(270deg);
+    }
+    83.33% {
+        -webkit-transform: rotate(300deg);
+    }
+    91.65% {
+        -webkit-transform: rotate(300deg);
+    }
+    91.66% {
+        -webkit-transform: rotate(330deg);
+    }
+    99.99% {
+        -webkit-transform: rotate(330deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+/* iPad specific styles */
+@media screen and (min-width: 768px) {	
+	.back {
+		line-height:1.5;
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", sans-serif; 
+	}
+	
+	/* Image title */
+	.back h1 { 
+		color:#fff;
+		font-size: 24px;
+		margin-bottom:12px;
+		letter-spacing:-1px;
+	}
+
+	/* Counter */
+	.back h2 {
+		font-size:14px;
+		text-transform:uppercase;
+		color:#797f85; 
+		font-family: "HelveticaNeue-Bold"; 
+		letter-spacing:-1px;
+	} 
+
+	/* Caption */
+	.back p {
+		font-size: 16px;
+		font-family: "Helvetica Neue",sans-serif;
+		color:#d2d4d6;
+	}
+
+	#v video {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+/* End iPad specific styles */
+
+/* iPhone 4 specific styles go here */
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+	.deviceTest {width: 2px;}
+}

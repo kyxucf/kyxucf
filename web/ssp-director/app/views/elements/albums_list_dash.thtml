@@ -1,0 +1,14 @@
+<?php if (empty($albums)): ?>
+
+	<ul class="dash-strip module-first">
+		<li><?php printf(__('You have not added any albums yet. %s to add one now.', true), $html->link(ucfirst(__('click here', true)), '#', array('onclick' => "Messaging.dialogue('add-album'); Director.Interface.focusDelay('AlbumName', 0.5); return false;"))); ?></li>
+	</ul>	
+
+<?php else: ?>
+
+<ul class="dash-strip module-first">
+	<?php foreach ($albums as $album): ?>
+	<li class="clearfix"><span style="float:left;" class="<?php e(ife($album['Album']['smart'], 'icon_label_smartalbum', 'icon_label_album')) ?>"><?php e($html->link($album['Album']['name'], "/albums/edit/{$album['Album']['id']}")); ?></span><button type="button" onclick="publish_it('album', <?php e($album['Album']['id']); ?>, '<?php e(addslashes($album['Album']['name'])); ?>');" title="<?php __('Publish'); ?>" class="primary_sm right"><?php __('Publish'); ?></button></li>	
+	<?php endforeach; ?>
+</ul>
+<?php endif; ?>

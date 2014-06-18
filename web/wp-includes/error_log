@@ -1,0 +1,263 @@
+[27-Sep-2009 22:36:15] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss.php on line 8
+[27-Sep-2009 22:36:19] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/general-template.php on line 1164
+[27-Sep-2009 22:36:23] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/default-filters.php on line 20
+[27-Sep-2009 22:36:24] PHP Fatal error:  Class 'WP_Widget' not found in /home/turner/public_html/kyxucf.com/wp-includes/default-widgets.php on line 15
+[27-Sep-2009 22:36:29] PHP Fatal error:  Call to undefined function  _deprecated_file() in /home/turner/public_html/kyxucf.com/wp-includes/rss-functions.php on line 8
+[27-Sep-2009 22:36:37] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-atom-comments.php on line 8
+[27-Sep-2009 22:37:05] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/shortcodes.php on line 295
+[27-Sep-2009 22:37:24] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/theme.php on line 892
+[27-Sep-2009 22:37:26] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/taxonomy.php on line 22
+[27-Sep-2009 22:37:27] PHP Fatal error:  Call to undefined function  is_admin() in /home/turner/public_html/kyxucf.com/wp-includes/vars.php on line 16
+[27-Sep-2009 22:37:29] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss2-comments.php on line 8
+[27-Sep-2009 22:37:30] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/kses.php on line 1148
+[27-Sep-2009 22:37:39] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/update.php on line 291
+[27-Sep-2009 22:37:56] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/canonical.php on line 337
+[27-Sep-2009 22:38:25] PHP Fatal error:  Class 'Walker' not found in /home/turner/public_html/kyxucf.com/wp-includes/comment-template.php on line 1142
+[27-Sep-2009 22:38:27] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 25
+[27-Sep-2009 22:38:27] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 25
+[27-Sep-2009 22:38:27] PHP Fatal error:  require() [<a href='function.require'>function.require</a>]: Failed opening required 'ABSPATHWPINC/class.wp-dependencies.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 25
+[27-Sep-2009 22:38:32] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/user.php on line 70
+[27-Sep-2009 22:38:35] PHP Fatal error:  Call to undefined function  do_action() in /home/turner/public_html/kyxucf.com/wp-includes/rss.php on line 18
+[27-Sep-2009 22:38:48] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rdf.php on line 8
+[27-Sep-2009 22:38:49] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-atom.php on line 8
+[27-Sep-2009 22:38:52] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss2.php on line 8
+[27-Sep-2009 22:39:39] PHP Fatal error:  Call to undefined function  is_robots() in /home/turner/public_html/kyxucf.com/wp-includes/template-loader.php on line 66
+[27-Sep-2009 22:39:52] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/turner/public_html/kyxucf.com/wp-includes/class.wp-styles.php on line 19
+[27-Sep-2009 22:40:14] PHP Warning:  require_once(ABSPATHWPINC/class-simplepie.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/class-feed.php on line 4
+[27-Sep-2009 22:40:14] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required 'ABSPATHWPINC/class-simplepie.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/turner/public_html/kyxucf.com/wp-includes/class-feed.php on line 4
+[27-Sep-2009 22:40:24] PHP Fatal error:  Call to undefined function  add_shortcode() in /home/turner/public_html/kyxucf.com/wp-includes/media.php on line 558
+[27-Sep-2009 22:40:26] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/turner/public_html/kyxucf.com/wp-includes/class.wp-scripts.php on line 19
+[27-Sep-2009 22:41:00] PHP Fatal error:  Call to undefined function  _deprecated_file() in /home/turner/public_html/kyxucf.com/wp-includes/registration-functions.php on line 7
+[30-Oct-2009 14:50:28] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/general-template.php on line 1164
+[30-Oct-2009 14:51:06] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/default-filters.php on line 20
+[30-Oct-2009 14:51:07] PHP Fatal error:  Class 'WP_Widget' not found in /home/turner/public_html/kyxucf.com/wp-includes/default-widgets.php on line 15
+[30-Oct-2009 14:51:13] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/user.php on line 70
+[30-Oct-2009 14:51:20] PHP Fatal error:  Call to undefined function  add_shortcode() in /home/turner/public_html/kyxucf.com/wp-includes/media.php on line 558
+[30-Oct-2009 14:51:26] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/shortcodes.php on line 295
+[30-Oct-2009 14:52:04] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/turner/public_html/kyxucf.com/wp-includes/class.wp-scripts.php on line 19
+[30-Oct-2009 14:52:06] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/theme.php on line 892
+[30-Oct-2009 14:52:08] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/taxonomy.php on line 22
+[30-Oct-2009 14:52:09] PHP Fatal error:  Call to undefined function  is_robots() in /home/turner/public_html/kyxucf.com/wp-includes/template-loader.php on line 66
+[30-Oct-2009 14:52:12] PHP Fatal error:  Call to undefined function  is_admin() in /home/turner/public_html/kyxucf.com/wp-includes/vars.php on line 16
+[30-Oct-2009 14:52:13] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/kses.php on line 1148
+[30-Oct-2009 14:52:16] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss2.php on line 8
+[30-Oct-2009 14:52:18] PHP Fatal error:  Class 'Walker' not found in /home/turner/public_html/kyxucf.com/wp-includes/comment-template.php on line 1163
+[30-Oct-2009 14:52:48] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-atom.php on line 8
+[30-Oct-2009 14:52:56] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/canonical.php on line 337
+[30-Oct-2009 14:53:06] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 25
+[30-Oct-2009 14:53:06] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 25
+[30-Oct-2009 14:53:06] PHP Fatal error:  require() [<a href='function.require'>function.require</a>]: Failed opening required 'ABSPATHWPINC/class.wp-dependencies.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 25
+[30-Oct-2009 14:53:09] PHP Fatal error:  Call to undefined function  do_action() in /home/turner/public_html/kyxucf.com/wp-includes/rss.php on line 18
+[30-Oct-2009 14:53:20] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rdf.php on line 8
+[30-Oct-2009 14:53:51] PHP Fatal error:  Call to undefined function  _deprecated_file() in /home/turner/public_html/kyxucf.com/wp-includes/rss-functions.php on line 8
+[30-Oct-2009 14:53:53] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss.php on line 8
+[30-Oct-2009 14:54:02] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/turner/public_html/kyxucf.com/wp-includes/class.wp-styles.php on line 19
+[30-Oct-2009 14:54:22] PHP Warning:  require_once(ABSPATHWPINC/class-simplepie.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/class-feed.php on line 4
+[30-Oct-2009 14:54:22] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required 'ABSPATHWPINC/class-simplepie.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/turner/public_html/kyxucf.com/wp-includes/class-feed.php on line 4
+[30-Oct-2009 14:55:02] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/update.php on line 291
+[30-Oct-2009 14:55:04] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss2-comments.php on line 8
+[30-Oct-2009 14:55:06] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-atom-comments.php on line 8
+[30-Oct-2009 14:55:07] PHP Fatal error:  Call to undefined function  _deprecated_file() in /home/turner/public_html/kyxucf.com/wp-includes/registration-functions.php on line 7
+[19-Nov-2009 08:23:10] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss2-comments.php on line 8
+[19-Nov-2009 08:23:34] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/update.php on line 291
+[19-Nov-2009 08:23:35] PHP Fatal error:  Call to undefined function  is_robots() in /home/turner/public_html/kyxucf.com/wp-includes/template-loader.php on line 66
+[19-Nov-2009 08:23:37] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rdf.php on line 8
+[19-Nov-2009 08:23:40] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/shortcodes.php on line 295
+[19-Nov-2009 08:23:43] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-atom.php on line 8
+[19-Nov-2009 08:24:03] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 25
+[19-Nov-2009 08:24:03] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 25
+[19-Nov-2009 08:24:03] PHP Fatal error:  require() [<a href='function.require'>function.require</a>]: Failed opening required 'ABSPATHWPINC/class.wp-dependencies.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 25
+[19-Nov-2009 08:24:07] PHP Fatal error:  Call to undefined function  do_action() in /home/turner/public_html/kyxucf.com/wp-includes/rss.php on line 18
+[19-Nov-2009 08:24:11] PHP Fatal error:  Call to undefined function  _deprecated_file() in /home/turner/public_html/kyxucf.com/wp-includes/rss-functions.php on line 8
+[19-Nov-2009 08:24:18] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/general-template.php on line 1165
+[19-Nov-2009 08:24:46] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/turner/public_html/kyxucf.com/wp-includes/class.wp-styles.php on line 19
+[19-Nov-2009 08:24:51] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/canonical.php on line 337
+[19-Nov-2009 08:24:55] PHP Fatal error:  Class 'Walker' not found in /home/turner/public_html/kyxucf.com/wp-includes/comment-template.php on line 1165
+[19-Nov-2009 08:25:02] PHP Warning:  require_once(ABSPATHWPINC/class-simplepie.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/class-feed.php on line 4
+[19-Nov-2009 08:25:02] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required 'ABSPATHWPINC/class-simplepie.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/turner/public_html/kyxucf.com/wp-includes/class-feed.php on line 4
+[19-Nov-2009 08:25:20] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/turner/public_html/kyxucf.com/wp-includes/class.wp-scripts.php on line 19
+[19-Nov-2009 08:25:56] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/user.php on line 70
+[19-Nov-2009 08:26:09] PHP Fatal error:  Call to undefined function  _deprecated_file() in /home/turner/public_html/kyxucf.com/wp-includes/registration-functions.php on line 7
+[19-Nov-2009 08:26:10] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-atom-comments.php on line 8
+[19-Nov-2009 08:27:09] PHP Fatal error:  Class 'WP_Widget' not found in /home/turner/public_html/kyxucf.com/wp-includes/default-widgets.php on line 15
+[19-Nov-2009 08:27:16] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss2.php on line 8
+[19-Nov-2009 08:28:27] PHP Fatal error:  Call to undefined function  add_shortcode() in /home/turner/public_html/kyxucf.com/wp-includes/media.php on line 558
+[19-Nov-2009 08:29:02] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss.php on line 8
+[19-Nov-2009 08:29:10] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/theme.php on line 892
+[19-Nov-2009 08:30:00] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/taxonomy.php on line 22
+[19-Nov-2009 08:30:11] PHP Fatal error:  Call to undefined function  is_admin() in /home/turner/public_html/kyxucf.com/wp-includes/vars.php on line 16
+[19-Nov-2009 08:30:15] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/kses.php on line 1148
+[19-Nov-2009 08:31:55] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/default-filters.php on line 20
+[15-Jan-2010 05:14:01] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-atom-comments.php on line 8
+[15-Jan-2010 05:14:06] PHP Fatal error:  Call to undefined function  wp_die() in /home/turner/public_html/kyxucf.com/wp-includes/wp-db.php on line 1039
+[15-Jan-2010 05:14:13] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/general-template.php on line 1166
+[15-Jan-2010 05:14:14] PHP Fatal error:  Class 'Walker' not found in /home/turner/public_html/kyxucf.com/wp-includes/comment-template.php on line 1165
+[15-Jan-2010 05:14:19] PHP Fatal error:  Call to undefined function  wp_embed_register_handler() in /home/turner/public_html/kyxucf.com/wp-includes/default-embeds.php on line 33
+[15-Jan-2010 05:14:20] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/default-filters.php on line 17
+[15-Jan-2010 05:14:21] PHP Fatal error:  Class 'WP_Widget' not found in /home/turner/public_html/kyxucf.com/wp-includes/default-widgets.php on line 15
+[15-Jan-2010 05:14:25] PHP Fatal error:  Call to undefined function  add_shortcode() in /home/turner/public_html/kyxucf.com/wp-includes/media.php on line 615
+[15-Jan-2010 05:14:26] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/user.php on line 70
+[15-Jan-2010 05:14:28] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss2-comments.php on line 8
+[15-Jan-2010 05:14:45] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/shortcodes.php on line 296
+[15-Jan-2010 05:14:48] PHP Fatal error:  Call to undefined function  _deprecated_file() in /home/turner/public_html/kyxucf.com/wp-includes/registration-functions.php on line 7
+[15-Jan-2010 05:15:01] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/theme.php on line 1045
+[15-Jan-2010 05:15:02] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/taxonomy.php on line 22
+[15-Jan-2010 05:15:10] PHP Fatal error:  Call to undefined function  is_admin() in /home/turner/public_html/kyxucf.com/wp-includes/vars.php on line 16
+[15-Jan-2010 05:15:13] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/update.php on line 312
+[15-Jan-2010 05:15:16] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/kses.php on line 1196
+[15-Jan-2010 05:15:29] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/canonical.php on line 343
+[15-Jan-2010 05:15:30] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 26
+[15-Jan-2010 05:15:30] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 26
+[15-Jan-2010 05:15:30] PHP Fatal error:  require() [<a href='function.require'>function.require</a>]: Failed opening required 'ABSPATHWPINC/class.wp-dependencies.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 26
+[15-Jan-2010 05:15:40] PHP Warning:  require_once(ABSPATHWPINC/class-simplepie.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/class-feed.php on line 4
+[15-Jan-2010 05:15:40] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required 'ABSPATHWPINC/class-simplepie.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/turner/public_html/kyxucf.com/wp-includes/class-feed.php on line 4
+[15-Jan-2010 05:15:42] PHP Fatal error:  Call to undefined function  do_action() in /home/turner/public_html/kyxucf.com/wp-includes/rss.php on line 18
+[15-Jan-2010 05:15:46] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/turner/public_html/kyxucf.com/wp-includes/class.wp-scripts.php on line 19
+[15-Jan-2010 05:15:50] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rdf.php on line 8
+[15-Jan-2010 05:15:52] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-atom.php on line 8
+[15-Jan-2010 05:15:53] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss2.php on line 8
+[15-Jan-2010 05:15:55] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/post.php on line 23
+[15-Jan-2010 05:16:00] PHP Fatal error:  Call to undefined function  _deprecated_file() in /home/turner/public_html/kyxucf.com/wp-includes/rss-functions.php on line 8
+[15-Jan-2010 05:16:01] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss.php on line 8
+[15-Jan-2010 05:16:10] PHP Fatal error:  Call to undefined function  is_robots() in /home/turner/public_html/kyxucf.com/wp-includes/template-loader.php on line 66
+[15-Jan-2010 05:16:20] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/turner/public_html/kyxucf.com/wp-includes/class.wp-styles.php on line 19
+[20-Feb-2010 09:47:22] PHP Fatal error:  Call to undefined function  wp_die() in /home/turner/public_html/kyxucf.com/wp-includes/wp-db.php on line 1039
+[20-Feb-2010 09:47:25] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/general-template.php on line 1166
+[20-Feb-2010 09:47:32] PHP Fatal error:  Call to undefined function  wp_embed_register_handler() in /home/turner/public_html/kyxucf.com/wp-includes/default-embeds.php on line 33
+[20-Feb-2010 09:47:33] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/default-filters.php on line 17
+[20-Feb-2010 09:47:34] PHP Fatal error:  Class 'WP_Widget' not found in /home/turner/public_html/kyxucf.com/wp-includes/default-widgets.php on line 15
+[20-Feb-2010 09:47:39] PHP Fatal error:  Call to undefined function  do_action() in /home/turner/public_html/kyxucf.com/wp-includes/rss.php on line 18
+[20-Feb-2010 09:47:55] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/shortcodes.php on line 296
+[20-Feb-2010 09:48:04] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss.php on line 8
+[20-Feb-2010 09:48:08] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/theme.php on line 1045
+[20-Feb-2010 09:48:10] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/taxonomy.php on line 22
+[20-Feb-2010 09:48:11] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/user.php on line 70
+[20-Feb-2010 09:48:13] PHP Fatal error:  Call to undefined function  add_shortcode() in /home/turner/public_html/kyxucf.com/wp-includes/media.php on line 615
+[20-Feb-2010 09:48:15] PHP Fatal error:  Call to undefined function  is_admin() in /home/turner/public_html/kyxucf.com/wp-includes/vars.php on line 16
+[20-Feb-2010 09:48:16] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/kses.php on line 1196
+[20-Feb-2010 09:48:38] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 26
+[20-Feb-2010 09:48:38] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 26
+[20-Feb-2010 09:48:38] PHP Fatal error:  require() [<a href='function.require'>function.require</a>]: Failed opening required 'ABSPATHWPINC/class.wp-dependencies.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 26
+[20-Feb-2010 09:48:45] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/canonical.php on line 343
+[20-Feb-2010 09:48:48] PHP Fatal error:  Class 'Walker' not found in /home/turner/public_html/kyxucf.com/wp-includes/comment-template.php on line 1165
+[20-Feb-2010 09:48:57] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rdf.php on line 8
+[20-Feb-2010 09:48:58] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-atom.php on line 8
+[20-Feb-2010 09:49:00] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss2.php on line 8
+[20-Feb-2010 09:49:04] PHP Fatal error:  Call to undefined function  _deprecated_file() in /home/turner/public_html/kyxucf.com/wp-includes/rss-functions.php on line 8
+[20-Feb-2010 09:49:07] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/post.php on line 23
+[20-Feb-2010 09:49:10] PHP Fatal error:  Call to undefined function  is_robots() in /home/turner/public_html/kyxucf.com/wp-includes/template-loader.php on line 66
+[20-Feb-2010 09:49:15] PHP Warning:  require_once(ABSPATHWPINC/class-simplepie.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/class-feed.php on line 4
+[20-Feb-2010 09:49:15] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required 'ABSPATHWPINC/class-simplepie.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/turner/public_html/kyxucf.com/wp-includes/class-feed.php on line 4
+[20-Feb-2010 09:49:23] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/turner/public_html/kyxucf.com/wp-includes/class.wp-styles.php on line 19
+[20-Feb-2010 09:49:36] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/turner/public_html/kyxucf.com/wp-includes/class.wp-scripts.php on line 19
+[20-Feb-2010 09:49:39] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/update.php on line 312
+[20-Feb-2010 09:49:40] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss2-comments.php on line 8
+[20-Feb-2010 09:49:51] PHP Fatal error:  Call to undefined function  _deprecated_file() in /home/turner/public_html/kyxucf.com/wp-includes/registration-functions.php on line 7
+[20-Feb-2010 09:49:52] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-atom-comments.php on line 8
+[13-Apr-2010 17:38:39] PHP Fatal error:  Call to undefined function  wp_die() in /home/turner/public_html/kyxucf.com/wp-includes/wp-db.php on line 1039
+[13-Apr-2010 17:38:59] PHP Fatal error:  Class 'Walker' not found in /home/turner/public_html/kyxucf.com/wp-includes/comment-template.php on line 1165
+[13-Apr-2010 17:39:01] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/general-template.php on line 1166
+[13-Apr-2010 17:39:15] PHP Fatal error:  Call to undefined function  wp_embed_register_handler() in /home/turner/public_html/kyxucf.com/wp-includes/default-embeds.php on line 33
+[13-Apr-2010 17:39:16] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/default-filters.php on line 17
+[13-Apr-2010 17:39:17] PHP Fatal error:  Class 'WP_Widget' not found in /home/turner/public_html/kyxucf.com/wp-includes/default-widgets.php on line 15
+[13-Apr-2010 17:39:18] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/turner/public_html/kyxucf.com/wp-includes/class.wp-scripts.php on line 19
+[13-Apr-2010 17:39:46] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/shortcodes.php on line 296
+[13-Apr-2010 17:40:14] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/theme.php on line 1045
+[13-Apr-2010 17:40:15] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/taxonomy.php on line 22
+[13-Apr-2010 17:40:16] PHP Fatal error:  Call to undefined function  is_admin() in /home/turner/public_html/kyxucf.com/wp-includes/vars.php on line 16
+[13-Apr-2010 17:40:18] PHP Fatal error:  Call to undefined function  do_action() in /home/turner/public_html/kyxucf.com/wp-includes/rss.php on line 18
+[13-Apr-2010 17:40:19] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/kses.php on line 1196
+[13-Apr-2010 17:40:23] PHP Warning:  require_once(ABSPATHWPINC/class-simplepie.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/class-feed.php on line 4
+[13-Apr-2010 17:40:23] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required 'ABSPATHWPINC/class-simplepie.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/turner/public_html/kyxucf.com/wp-includes/class-feed.php on line 4
+[13-Apr-2010 17:40:25] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss2.php on line 8
+[13-Apr-2010 17:40:32] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 26
+[13-Apr-2010 17:40:32] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 26
+[13-Apr-2010 17:40:32] PHP Fatal error:  require() [<a href='function.require'>function.require</a>]: Failed opening required 'ABSPATHWPINC/class.wp-dependencies.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 26
+[13-Apr-2010 17:40:40] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/canonical.php on line 343
+[13-Apr-2010 17:40:45] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss.php on line 8
+[13-Apr-2010 17:40:48] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-atom-comments.php on line 8
+[13-Apr-2010 17:40:54] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rdf.php on line 8
+[13-Apr-2010 17:40:56] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-atom.php on line 8
+[13-Apr-2010 17:40:58] PHP Fatal error:  Call to undefined function  add_shortcode() in /home/turner/public_html/kyxucf.com/wp-includes/media.php on line 615
+[13-Apr-2010 17:41:00] PHP Fatal error:  Call to undefined function  _deprecated_file() in /home/turner/public_html/kyxucf.com/wp-includes/rss-functions.php on line 8
+[13-Apr-2010 17:41:01] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/post.php on line 23
+[13-Apr-2010 17:41:33] PHP Fatal error:  Call to undefined function  is_robots() in /home/turner/public_html/kyxucf.com/wp-includes/template-loader.php on line 66
+[13-Apr-2010 17:41:37] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/user.php on line 70
+[13-Apr-2010 17:41:46] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss2-comments.php on line 8
+[13-Apr-2010 17:41:53] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/turner/public_html/kyxucf.com/wp-includes/class.wp-styles.php on line 19
+[13-Apr-2010 17:41:57] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/update.php on line 312
+[13-Apr-2010 17:42:06] PHP Fatal error:  Call to undefined function  _deprecated_file() in /home/turner/public_html/kyxucf.com/wp-includes/registration-functions.php on line 7
+[14-Jul-2010 14:31:36] PHP Fatal error:  Class 'Walker' not found in /home/turner/public_html/kyxucf.com/wp-includes/nav-menu-template.php on line 17
+[14-Jul-2010 14:31:40] PHP Fatal error:  Call to undefined function  is_multisite() in /home/turner/public_html/kyxucf.com/wp-includes/wp-db.php on line 505
+[14-Jul-2010 14:31:47] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/general-template.php on line 1273
+[14-Jul-2010 14:31:54] PHP Fatal error:  Call to undefined function  _deprecated_file() in /home/turner/public_html/kyxucf.com/wp-includes/rss.php on line 18
+[14-Jul-2010 14:31:59] PHP Fatal error:  Call to undefined function  wp_embed_register_handler() in /home/turner/public_html/kyxucf.com/wp-includes/default-embeds.php on line 33
+[14-Jul-2010 14:32:00] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/default-filters.php on line 17
+[14-Jul-2010 14:32:06] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/user.php on line 70
+[14-Jul-2010 14:32:22] PHP Fatal error:  Class 'WP_Widget' not found in /home/turner/public_html/kyxucf.com/wp-includes/default-widgets.php on line 15
+[14-Jul-2010 14:32:32] PHP Fatal error:  Call to undefined function  is_robots() in /home/turner/public_html/kyxucf.com/wp-includes/template-loader.php on line 10
+[14-Jul-2010 14:32:50] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/shortcodes.php on line 296
+[14-Jul-2010 14:32:53] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/post.php on line 139
+[14-Jul-2010 14:33:18] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss.php on line 8
+[14-Jul-2010 14:33:40] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/theme.php on line 1137
+[14-Jul-2010 14:33:41] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/taxonomy.php on line 65
+[14-Jul-2010 14:33:43] PHP Fatal error:  Call to undefined function  is_admin() in /home/turner/public_html/kyxucf.com/wp-includes/vars.php on line 16
+[14-Jul-2010 14:33:44] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/kses.php on line 1361
+[14-Jul-2010 14:34:10] PHP Fatal error:  Call to undefined function  _deprecated_file() in /home/turner/public_html/kyxucf.com/wp-includes/rss-functions.php on line 8
+[14-Jul-2010 14:34:19] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-atom-comments.php on line 8
+[14-Jul-2010 14:34:48] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/canonical.php on line 401
+[14-Jul-2010 14:34:54] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 25
+[14-Jul-2010 14:34:54] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 25
+[14-Jul-2010 14:34:54] PHP Fatal error:  require() [<a href='function.require'>function.require</a>]: Failed opening required 'ABSPATHWPINC/class.wp-dependencies.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 25
+[14-Jul-2010 14:35:02] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss2.php on line 8
+[14-Jul-2010 14:35:07] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rdf.php on line 8
+[14-Jul-2010 14:35:08] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-atom.php on line 8
+[14-Jul-2010 14:35:11] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/ms-default-filters.php on line 17
+[14-Jul-2010 14:35:13] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/ms-default-constants.php on line 138
+[14-Jul-2010 14:35:14] PHP Fatal error:  Call to undefined function  add_shortcode() in /home/turner/public_html/kyxucf.com/wp-includes/media.php on line 701
+[14-Jul-2010 14:35:18] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss2-comments.php on line 8
+[14-Jul-2010 14:35:38] PHP Fatal error:  Class 'Walker' not found in /home/turner/public_html/kyxucf.com/wp-includes/comment-template.php on line 1192
+[14-Jul-2010 14:35:45] PHP Warning:  require_once(ABSPATHWPINC/class-simplepie.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/class-feed.php on line 4
+[14-Jul-2010 14:35:45] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required 'ABSPATHWPINC/class-simplepie.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/turner/public_html/kyxucf.com/wp-includes/class-feed.php on line 4
+[14-Jul-2010 14:35:56] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/turner/public_html/kyxucf.com/wp-includes/class.wp-styles.php on line 19
+[14-Jul-2010 14:35:56] PHP Fatal error:  Call to undefined function  _deprecated_file() in /home/turner/public_html/kyxucf.com/wp-includes/class-snoopy.php on line 6
+[14-Jul-2010 14:36:34] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/turner/public_html/kyxucf.com/wp-includes/class.wp-scripts.php on line 19
+[14-Jul-2010 14:36:47] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/update.php on line 330
+[05-Oct-2010 11:20:58] PHP Fatal error:  Class 'Walker' not found in /home/turner/public_html/kyxucf.com/wp-includes/nav-menu-template.php on line 17
+[05-Oct-2010 11:21:05] PHP Fatal error:  Call to undefined function  is_multisite() in /home/turner/public_html/kyxucf.com/wp-includes/wp-db.php on line 505
+[05-Oct-2010 11:21:20] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/general-template.php on line 1273
+[05-Oct-2010 11:21:43] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/user.php on line 70
+[05-Oct-2010 11:21:50] PHP Fatal error:  Call to undefined function  wp_embed_register_handler() in /home/turner/public_html/kyxucf.com/wp-includes/default-embeds.php on line 33
+[05-Oct-2010 11:21:53] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/default-filters.php on line 17
+[05-Oct-2010 11:21:55] PHP Fatal error:  Class 'WP_Widget' not found in /home/turner/public_html/kyxucf.com/wp-includes/default-widgets.php on line 15
+[05-Oct-2010 11:22:07] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss.php on line 8
+[05-Oct-2010 11:22:08] PHP Fatal error:  Call to undefined function  is_robots() in /home/turner/public_html/kyxucf.com/wp-includes/template-loader.php on line 10
+[05-Oct-2010 11:22:09] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rss2.php on line 8
+[05-Oct-2010 11:22:28] PHP Fatal error:  Class 'Walker' not found in /home/turner/public_html/kyxucf.com/wp-includes/comment-template.php on line 1219
+[05-Oct-2010 11:22:33] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/shortcodes.php on line 296
+[05-Oct-2010 11:23:08] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 25
+[05-Oct-2010 11:23:08] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 25
+[05-Oct-2010 11:23:08] PHP Fatal error:  require() [<a href='function.require'>function.require</a>]: Failed opening required 'ABSPATHWPINC/class.wp-dependencies.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/turner/public_html/kyxucf.com/wp-includes/script-loader.php on line 25
+[05-Oct-2010 11:23:11] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/theme.php on line 1137
+[05-Oct-2010 11:23:12] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/post.php on line 139
+[05-Oct-2010 11:23:14] PHP Fatal error:  Call to undefined function  _deprecated_file() in /home/turner/public_html/kyxucf.com/wp-includes/rss.php on line 18
+[05-Oct-2010 11:23:16] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/taxonomy.php on line 65
+[05-Oct-2010 11:23:17] PHP Fatal error:  Call to undefined function  is_admin() in /home/turner/public_html/kyxucf.com/wp-includes/vars.php on line 16
+[05-Oct-2010 11:23:20] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/kses.php on line 1361
+[05-Oct-2010 11:23:22] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-atom.php on line 8
+[05-Oct-2010 11:23:35] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/canonical.php on line 411
+[05-Oct-2010 11:23:44] PHP Warning:  require_once(ABSPATHWPINC/class-simplepie.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/turner/public_html/kyxucf.com/wp-includes/class-feed.php on line 4
+[05-Oct-2010 11:23:44] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required 'ABSPATHWPINC/class-simplepie.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/turner/public_html/kyxucf.com/wp-includes/class-feed.php on line 4
+[05-Oct-2010 11:23:45] PHP Fatal error:  Call to undefined function  feed_content_type() in /home/turner/public_html/kyxucf.com/wp-includes/feed-rdf.php on line 8
+[05-Oct-2010 11:23:53] PHP Fatal error:  Call to undefined function  _deprecated_file() in /home/turner/public_html/kyxucf.com/wp-includes/rss-functions.php on line 8
+[05-Oct-2010 11:23:57] PHP Fatal error:  Call to undefined function  add_filter() in /home/turner/public_html/kyxucf.com/wp-includes/ms-default-filters.php on line 17
+[05-Oct-2010 11:23:59] PHP Fatal error:  Call to undefined function  add_action() in /home/turner/public_html/kyxucf.com/wp-includes/ms-default-constants.php on line 138
+[05-Oct-2010 11:24:31] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/turner/public_html/kyxucf.com/wp-includes/class.wp-styles.php on line 19
+[05-Oct-2010 11:24:32] PHP Fatal error:  Call to undefined function  _deprecated_file() in /home/turner/public_html/kyxucf.com/wp-includes/class-snoopy.php on line 6
+[05-Oct-2010 11:24:39] PHP Fatal error:  Call to undefined function  add_shortcode() in /home/turner/public_html/kyxucf.com/wp-includes/media.php on line 701
+[23-Apr-2013 08:48:23 America/New_York] PHP Warning:  require(ABSPATHWPINC/option.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/kyxucf/www/web/wp-includes/functions.php on line 8
+[23-Apr-2013 08:48:23 America/New_York] PHP Warning:  require(ABSPATHWPINC/option.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/kyxucf/www/web/wp-includes/functions.php on line 8
+[23-Apr-2013 08:48:23 America/New_York] PHP Fatal error:  require() [<a href='function.require'>function.require</a>]: Failed opening required 'ABSPATHWPINC/option.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/kyxucf/www/web/wp-includes/functions.php on line 8
+[23-Apr-2013 08:48:34 America/New_York] PHP Warning:  require(ABSPATHWPINC/option.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/kyxucf/www/web/wp-includes/functions.php on line 8
+[23-Apr-2013 08:48:34 America/New_York] PHP Warning:  require(ABSPATHWPINC/option.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/kyxucf/www/web/wp-includes/functions.php on line 8
+[23-Apr-2013 08:48:34 America/New_York] PHP Fatal error:  require() [<a href='function.require'>function.require</a>]: Failed opening required 'ABSPATHWPINC/option.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/kyxucf/www/web/wp-includes/functions.php on line 8
