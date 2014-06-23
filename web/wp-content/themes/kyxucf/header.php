@@ -24,16 +24,15 @@ $scope = array('album', 4);
     <?php }?>
 
 <!-- Styles  -->
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url'); ?>" />
-	<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/library/styles/screen.css" type="text/css" media="screen, projection" />
-	<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/library/styles/print.css" type="text/css" media="print" />
-	<!--[if IE]><link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/library/styles/ie.css" type="text/css" media="screen, projection" /><![endif]-->
-	<!--[if lte IE 7]><link type="text/css" href="<?php bloginfo('stylesheet_directory'); ?>/library/styles/ie-nav.css" rel="stylesheet" media="all" /><![endif]-->
+	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/library/styles/screen.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/library/styles/print.css" type="text/css" media="print" />
+	<!--[if IE]><link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/library/styles/ie.css" type="text/css" media="screen, projection" /><![endif]-->
+	<!--[if lte IE 7]><link type="text/css" href="<?php echo get_template_directory_uri(); ?>/library/styles/ie-nav.css" rel="stylesheet" media="all" /><![endif]-->
 	<?php //Load Variables
   $css = get_option('T_background_css');
 	?>
 	<?php if ($css == 'Enabled') {?>
-	<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/library/functions/style.php" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/library/functions/style.php" type="text/css" media="screen, projection" />
 	<?php } ?>
 
 	<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>" />
@@ -56,7 +55,7 @@ function flashPutHref(href) { location.href = href; }
 			params.allowfullscreen = "true";
 			var attributes = {};
 			attributes.id = "mainswf";
-			swfobject.embedSWF("<?php bloginfo('template_url'); ?>/flash/mainpage/mainpage.swf", "mainswf", "960", "850", "9.0.15", "http://kyxucf.com/swfobject/expressInstall.swf", flashvars, params, attributes);
+			swfobject.embedSWF("<?php echo get_stylesheet_directory_uri(); ?>/flash/mainpage/mainpage.swf", "mainswf", "960", "850", "9.0.15", "http://kyxucf.com/swfobject/expressInstall.swf", flashvars, params, attributes);
 		</script>
         <script type="text/javascript">
 			var flashvars = {};
@@ -65,7 +64,7 @@ function flashPutHref(href) { location.href = href; }
 			params.allowfullscreen = "true";
 			var attributes = {};
 			attributes.id = "sidebarswf";
-			swfobject.embedSWF("<?php bloginfo('template_url'); ?>/flash/sidebar/sidebar.swf", "sidebarswf", "295", "518", "9.0.15", "http://kyxucf.com/swfobject/expressInstall.swf", flashvars, params, attributes);
+			swfobject.embedSWF("<?php echo get_stylesheet_directory_uri(); ?>/flash/sidebar/sidebar.swf", "sidebarswf", "295", "518", "9.0.15", "http://kyxucf.com/swfobject/expressInstall.swf", flashvars, params, attributes);
 		</script>
 		<script type="text/javascript">
 			var flashvars = {
@@ -76,25 +75,22 @@ function flashPutHref(href) { location.href = href; }
 			params.allowfullscreen = "true";
 			var attributes = {};
 			attributes.id = "photosswf";
-			swfobject.embedSWF("<?php bloginfo('template_url'); ?>/flash/photos/photossimpler.swf", "photosswf", "640", "616", "9.0.15", "http://kyxucf.com/swfobject/expressInstall.swf", flashvars, params, attributes);
+			swfobject.embedSWF("<?php echo get_stylesheet_directory_uri(); ?>/flash/photos/photossimpler.swf", "photosswf", "640", "616", "9.0.15", "http://kyxucf.com/swfobject/expressInstall.swf", flashvars, params, attributes);
 		</script>
-		<style>
-				 @import url("<?php bloginfo('stylesheet_directory'); ?>/custom.css");
-		</style>
 
 </head>
 
 <body>
 <div id="top">
 <div class="left">
-<a href="<?php echo get_settings('home'); ?>/" title="Home" class="logo"><img src="<?php bloginfo('template_url'); ?>/images/crest65.png" alt="kyx-crest" /></a>
+<a href="<?php echo get_settings('home'); ?>/" title="Home" class="logo"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/crest65.png" alt="kyx-crest" /></a>
 </div>
 <!-- Begin Masthead -->
 <div id="masthead">
  <h4 class="left"><a href="<?php echo get_settings('home'); ?>/" title="Home" class="logo"><?php bloginfo('name'); ?></a> <span class="description"><?php bloginfo('description'); ?></span></h4>
 </div>
 
-<?php include (TEMPLATEPATH . '/nav.php'); ?>
+<?php get_template_part( 'nav' ); ?>
 
 <div class="clear"></div>
 </div>

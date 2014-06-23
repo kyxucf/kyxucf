@@ -1,10 +1,12 @@
 <?php
 
 function kyxucf_setup() {
+	
 	// Reister the Menus
 	register_nav_menus( array(
-		'primary' => __( 'Primary Navigation', 'davidwbaratt' ),
+		'primary' => __( 'Primary Navigation' ),
 	) );
+
 }
 
 add_action( 'after_setup_theme', 'kyxucf_setup' );
