@@ -1,7 +1,9 @@
 <?php
 
+require_once '../vendor/autoload.php';
+
 function kyxucf_setup() {
-	
+
 	// Reister the Menus
 	register_nav_menus( array(
 		'primary' => __( 'Primary Navigation' ),

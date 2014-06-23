@@ -9,7 +9,6 @@
 	<meta name="description" content="<?php bloginfo('description') ?>" />
 	<?php
 
-   include('classes/DirectorPHP.php');
    $director = new Director(DIRECTOR_API_KEY, 'kyxucf.com/ssp-director');
 $scope = array('album', 4);
    $recently_taken = $director->content->all(array('scope' => $scope));
