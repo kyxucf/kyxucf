@@ -4,15 +4,15 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a5d721a61b84786f969102391a62bc73",
+    "hash": "c0b419538dde32b608b64c84b39c20b2",
     "packages": [
         {
             "name": "slideshowpro/director-php-api",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "git@bitbucket.org:kyxucf/director-php-api.git",
-                "reference": "master"
+                "reference": "1.2.2"
             },
             "type": "library",
             "autoload": {
