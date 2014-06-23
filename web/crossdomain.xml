@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cross-domain-policy>
-<allow-access-from domain="www.kyxucf.com" />
-<allow-access-from domain="kyxucf.com" />
+  <allow-access-from domain="www.kyxucf.com" />
+  <allow-access-from domain="kyxucf.com" />
+  <allow-access-from domain="www.kyxucf.local" />
+  <allow-access-from domain="kyxucf.local" />
 </cross-domain-policy>
