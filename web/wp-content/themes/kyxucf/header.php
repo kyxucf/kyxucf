@@ -10,7 +10,7 @@
 	<?php
 
    $director = new Director(DIRECTOR_API_KEY, 'kyxucf.com/ssp-director');
-$scope = array('album', 4);
+   $scope = array('album', 4);
    $recently_taken = $director->content->all(array('scope' => $scope));
 
    foreach($recently_taken as $image) {
