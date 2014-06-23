@@ -1,6 +1,6 @@
 <?php
 
-require_once '../vendor/autoload.php';
+require_once(ABSPATH . '/../vendor/autoload.php');
 
 function kyxucf_setup() {
 
